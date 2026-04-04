@@ -71,7 +71,7 @@ export function TeamSlider() {
 
     return (
         <div className="min-h-screen flex flex-col justify-center">
-            <h3 className="text-xl md:text-3xl mb-10 max-w-4xl mx-auto">
+            <h3 className="text-xl md:text-3xl mb-10 max-w-4xl mx-auto px-10">
                 Our team of skilled professionals specializes in personalized, high quality branding and website design solutions.
             </h3>
 

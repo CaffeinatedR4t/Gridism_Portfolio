@@ -23,7 +23,7 @@ export default function GallerySection() {
   ]
 
   return (
-    <section className="bg-neutral-50 py-16 px-4 md:px-8">
+    <section className="py-16 px-4 md:px-8">
       <div className="max-w-4xl mx-auto">
         <div className="columns-1 sm:columns-2 gap-6">
           {photos.map((photo, index) => (
