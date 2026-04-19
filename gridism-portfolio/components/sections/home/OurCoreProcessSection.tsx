@@ -32,8 +32,9 @@ const OurCoreProcessSection = () => {
 
   return (
     <section
-      className="relative w-full bg-white"
+      className="relative w-full bg-white gridism-content-layer"
       data-theme="light"
+      style={{ paddingBottom: "80px" }}
     >
       {/* Heading */}
       <div
@@ -66,7 +67,6 @@ const OurCoreProcessSection = () => {
           position: "relative",
           height: `${tallestCard}px`,
           marginLeft: "70px",
-          marginBottom: "80px",
         }}
       >
         {cards.map((card, i) => {

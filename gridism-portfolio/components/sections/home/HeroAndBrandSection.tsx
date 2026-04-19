@@ -121,7 +121,7 @@ const HeroAndBrandSection = () => {
   );
 
   return (
-    <section className="relative w-full" data-theme="dark">
+    <section className="relative w-full gridism-content-layer" data-theme="dark">
 
       {/* ── PART 1: HERO (100svh) ──────────────────────────────────────── */}
       <div

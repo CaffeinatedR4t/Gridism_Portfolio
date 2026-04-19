@@ -3,14 +3,14 @@
 const OurMainClientsSection = () => {
   return (
     <section
-      className="relative w-full overflow-hidden"
+      className="relative w-full overflow-hidden gridism-content-layer"
       data-theme="light"
       style={{ backgroundColor: "#FFFFFF" }}
     >
       {/* "Main Clients" heading */}
       <div
         style={{
-          paddingTop: "80px",
+          paddingTop: "0px",
           paddingLeft: "4.86%",
           paddingBottom: "60px",
         }}
@@ -115,27 +115,27 @@ const OurMainClientsSection = () => {
         </div>
       </div>
 
-      {/* Group 101 — full-bleed image
+      {/* Group 103 — full-bleed image
           Figma: width=1525px left=-36px → bleeds 36px on both sides
           We use w-full + overflow-hidden on section to crop sides naturally
-          height=1049px as-is                                               */}
+          height=120svh                                                     */}
       <div
         style={{
           position: "relative",
           width: "100%",
-          height: "1049px",
+          height: "120svh",
           overflow: "hidden",
         }}
       >
         <img
-          src="/images/Group 101.webp"
+          src="/images/Group 103.webp"
           alt="Gridism"
           style={{
             position: "absolute",
             left: "50%",
             transform: "translateX(-50%)",
             width: "1525px",
-            height: "1049px",
+            height: "120svh",
             objectFit: "cover",
             display: "block",
           }}

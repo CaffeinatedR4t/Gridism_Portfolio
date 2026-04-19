@@ -43,7 +43,7 @@ const MARQUEE_IMAGES = [
 const AboutSection = () => {
     // Shared class for the mission statement headers
     return (
-        <section className="bg-white">
+        <section className="bg-white gridism-content-layer">
             {/* HERO SECTION: Cyborg + Absolute Text */}
             <div className="relative min-h-screen">
                 <div className="relative min-h-screen bg-yellow">
