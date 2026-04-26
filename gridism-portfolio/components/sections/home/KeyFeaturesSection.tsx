@@ -3,7 +3,7 @@
 const KeyFeaturesSection = () => {
   return (
     <section
-      className="relative w-full bg-white overflow-hidden"
+      className="relative w-full bg-white overflow-hidden gridism-content-layer"
       data-theme="light"
     >
       <div
