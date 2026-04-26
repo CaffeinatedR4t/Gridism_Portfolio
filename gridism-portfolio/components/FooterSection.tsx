@@ -2,6 +2,7 @@
 
 import { cn } from "@/utils/cn"
 import Image from "next/image";
+import StickyFooterImage from "./StickyFooterImage";
 
 const theme = {
   typography: {
@@ -19,160 +20,156 @@ interface footerProps {
 
 const FooterSection = ({ footerImage, footerLogo, footerBgColor, footerFontColor, footerBorderColor }: footerProps) => {
   return (
-    <section className="relative" data-theme="black">
-      {/* ── White upper footer ── */}
-      <div className={cn(footerBgColor,"min-h-screen relative")}>
-        <div className="absolute inset-0 flex flex-col items-center justify-center">
+    <section className="relative gridism-footer-layer" data-theme="black">
+      <StickyFooterImage imageSrc={footerImage} />
 
-          {/* Three-column logo row */}
-          <div className={cn(footerFontColor,"flex flex-row items-center justify-center w-full h-auto mx-auto px-6")}>
-            <p
-              className="text-[24px] tracking-[0.3em] flex-1 text-center"
-              style={{ fontFamily: "'Switzer', sans-serif" }}
-            >
-              G R I D I S M
-            </p>
+      <div style={{ position: "relative", zIndex: 10 }}>
+        {/* ── White upper footer ── */}
+        <div className={cn(footerBgColor,"min-h-screen relative")}>
+          <div className="absolute inset-0 flex flex-col items-center justify-center">
 
-            <Image src={footerLogo} alt="logo" width={283} height={283} className="w-[283px] h-auto" />
-
-            <div className="flex flex-col gap-20 items-center justify-center text-center flex-1">
+            {/* Three-column logo row */}
+            <div className={cn(footerFontColor,"flex flex-col sm:flex-row items-center justify-center w-full h-auto mx-auto px-6")}>
               <p
-                className="text-[24px] leading-[29px] w-[90%]"
+                className="text-base sm:text-lg md:text-xl lg:text-2xl tracking-[0.3em] flex-1 text-center"
                 style={{ fontFamily: "'Switzer', sans-serif" }}
               >
-                Web Development & Branding Agency
+                G R I D I S M
               </p>
-              <a
-                href="mailto:hello@gridism.com"
-                className="text-[24px] leading-[29px] cursor-pointer hover:opacity-60 transition-opacity"
-                style={{ fontFamily: "'Switzer', sans-serif", textDecoration: "none" }}
+
+              <Image src={footerLogo} alt="logo" width={283} height={283} className="w-[283px] h-auto" />
+
+              <div className="flex flex-col gap-20 items-center justify-center text-center flex-1">
+                <p
+                  className="text-base sm:text-lg md:text-xl lg:text-2xl leading-[29px] w-[90%]"
+                  style={{ fontFamily: "'Switzer', sans-serif" }}
+                >
+                  Web Development & Branding Agency
+                </p>
+                <a
+                  href="mailto:hello@gridism.com"
+                  className="hidden md:block text-base sm:text-lg md:text-xl lg:text-2xl leading-[29px] cursor-pointer hover:opacity-60 transition-opacity"
+                  style={{ fontFamily: "'Switzer', sans-serif", textDecoration: "none" }}
+                >
+                  —&nbsp; Contact Us &nbsp;—
+                </a>
+              </div>
+            </div>
+
+            {/* Bottom bar */}
+            <div className={cn(footerBorderColor, footerFontColor ,"absolute bottom-0 flex justify-between items-center w-screen border-t-1 py-[20px] px-[30px] box-border")}>
+              <p
+                className="text-[16px] leading-[19px] m-0"
+                style={{ fontFamily: "'Switzer', sans-serif" }}
               >
-                —&nbsp; Contact Us &nbsp;—
+                @2025
+              </p>
+
+              <div className="flex gap-20">
+                <a
+                  href="https://instagram.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={cn(theme.typography.fontFooter, footerFontColor)}
+                >
+                  -&nbsp; Instagram &nbsp;-
+                </a>
+                <a
+                  href="https://linkedin.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={cn(theme.typography.fontFooter, footerFontColor)}
+                >
+                  -&nbsp; LinkedIn &nbsp;-
+                </a>
+              </div>
+
+              <a
+                href="/legals"
+                className={cn(theme.typography.fontFooter, footerFontColor)}
+              >
+                Legals
               </a>
             </div>
           </div>
-
-          {/* Bottom bar */}
-          <div className={cn(footerBorderColor, footerFontColor ,"absolute bottom-0 flex justify-between items-center w-screen border-t-1 py-[20px] px-[30px] box-border")}>
-            <p
-              className="text-[16px] leading-[19px] m-0"
-              style={{ fontFamily: "'Switzer', sans-serif" }}
-            >
-              @2025
-            </p>
-
-            <div className="flex gap-20">
-              <a
-                href="https://instagram.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className={cn(theme.typography.fontFooter, footerFontColor)}
-              >
-                -&nbsp; Instagram &nbsp;-
-              </a>
-              <a
-                href="https://linkedin.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className={cn(theme.typography.fontFooter, footerFontColor)}
-              >
-                -&nbsp; LinkedIn &nbsp;-
-              </a>
-            </div>
-
-            <a
-              href="/legals"
-              className={cn(theme.typography.fontFooter, footerFontColor)}
-            >
-              Legals
-            </a>
-          </div>
-
         </div>
-      </div>
 
-      {/* ── Group 75 horse image section ── */}
-      <div className="relative w-full">
-        <Image
-          src={footerImage}
-          alt="Footer Background"
-          width={1440}
-          height={1118}
-          className="w-full h-auto object-cover"
-        />
+        {/* ── Footer over sticky image ── */}
+        <div className="relative w-full h-[80svh]">
 
-        {/* Gradient overlay */}
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background:
-              "linear-gradient(180deg, rgba(255,255,255,0) 16.83%, rgba(88,88,88,0.497596) 52.24%, rgba(44,44,44,0.629461) 68.3%, rgba(34,34,34,0.659135) 76.8%, rgba(22,22,22,0.69655) 92.85%, rgba(12,12,12,0.723844) 101.35%, rgba(4,4,4,0.75) 115.05%)",
-            mixBlendMode: "multiply",
-          }}
-        />
-
-        {/* Bottom overlay — buttons left side, logo far right */}
-        <div
-          className="absolute inset-0 flex items-end"
-          style={{ paddingBottom: "48px" }}
-        >
+          {/* Gradient overlay */}
           <div
-            className="w-full flex flex-row items-end justify-between"
+            className="absolute inset-0 pointer-events-none"
             style={{
-              paddingLeft: "60px",
-              paddingRight: "60px",
-              boxSizing: "border-box",
+              background:
+                "linear-gradient(180deg, rgba(255,255,255,0) 16.83%, rgba(88,88,88,0.497596) 52.24%, rgba(44,44,44,0.629461) 68.3%, rgba(34,34,34,0.659135) 76.8%, rgba(22,22,22,0.69655) 92.85%, rgba(12,12,12,0.723844) 101.35%, rgba(4,4,4,0.75) 115.05%)",
+              mixBlendMode: "multiply",
             }}
+          />
+
+          <div
+            className="absolute inset-0 flex items-end"
+            style={{ paddingBottom: "48px" }}
           >
-            {/* Left — both buttons side by side */}
             <div
-              className="flex flex-row items-end"
-              style={{ gap: "48px" }}
+              className="w-full flex flex-row items-end justify-between"
+              style={{
+                paddingLeft: "60px",
+                paddingRight: "60px",
+                boxSizing: "border-box",
+              }}
             >
-              {/* OUR WORKS (DETAILED) */}
-              <button
-                className="text-white cursor-pointer hover:opacity-70 transition-opacity"
-                style={{
-                  fontFamily: "'Switzer', sans-serif",
-                  fontSize: "16px",
-                  lineHeight: "22px",
-                  textAlign: "left",
-                  background: "none",
-                  border: "none",
-                  padding: 0,
-                }}
+              {/* Left — both buttons side by side */}
+              <div
+                className="flex flex-row items-end"
+                style={{ gap: "48px" }}
               >
-                OUR WORKS<br />(DETAILED)
-              </button>
+                {/* OUR WORKS (DETAILED) */}
+                <button
+                  className="text-white cursor-pointer hover:opacity-70 transition-opacity"
+                  style={{
+                    fontFamily: "'Switzer', sans-serif",
+                    fontSize: "16px",
+                    lineHeight: "22px",
+                    textAlign: "left",
+                    background: "none",
+                    border: "none",
+                    padding: 0,
+                  }}
+                >
+                  OUR WORKS<br />(DETAILED)
+                </button>
 
-              {/* LET'S DISCUSS — right beside OUR WORKS */}
-              <button
-                className="text-white cursor-pointer hover:opacity-70 transition-opacity"
-                style={{
-                  fontFamily: "'Switzer', sans-serif",
-                  fontSize: "16px",
-                  lineHeight: "22px",
-                  background: "none",
-                  border: "none",
-                  padding: 0,
-                  paddingBottom: "2px", /* align baseline with bottom of OUR WORKS (DETAILED) */
-                }}
-              >
-                LET&apos;S DISCUSS
-              </button>
+                {/* LET'S DISCUSS — right beside OUR WORKS */}
+                <button
+                  className="text-white cursor-pointer hover:opacity-70 transition-opacity"
+                  style={{
+                    fontFamily: "'Switzer', sans-serif",
+                    fontSize: "16px",
+                    lineHeight: "22px",
+                    background: "none",
+                    border: "none",
+                    padding: 0,
+                    paddingBottom: "2px", /* align baseline with bottom of OUR WORKS (DETAILED) */
+                  }}
+                >
+                  LET&apos;S DISCUSS
+                </button>
+              </div>
+
+              {/* Right — Gridism logo, same bottom alignment as buttons */}
+              <Image
+                src={"/images/gridism-logo - Copy.png"}
+                alt="Gridism Icon"
+                width={50}
+                height={50}
+                className="w-[50px] h-[50px] brightness-0 invert shrink-0"
+              />
             </div>
-
-            {/* Right — Gridism logo, same bottom alignment as buttons */}
-            <Image
-              src={"/images/gridism-logo - Copy.png"}
-              alt="Gridism Icon"
-              width={50}
-              height={50}
-              className="w-[50px] h-[50px] brightness-0 invert shrink-0"
-            />
           </div>
         </div>
       </div>
+
     </section>
   );
 };

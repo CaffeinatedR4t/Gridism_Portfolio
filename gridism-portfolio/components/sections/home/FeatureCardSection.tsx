@@ -16,6 +16,7 @@ interface FeatureCardProps {
   chessPiece: string;
   chessPieceSize: { width: number; height: number };
   bgColor?: "white" | "black";
+  slideDirection?: "left" | "right";
 }
 
 const FeatureCardSection = ({
@@ -27,30 +28,68 @@ const FeatureCardSection = ({
   chessPiece,
   chessPieceSize,
   bgColor = "white",
+  slideDirection = "left",
 }: FeatureCardProps) => {
   const theme = bgColor === "black" ? "dark" : "light";
   const sectionBg = bgColor === "black" ? "#000000" : "#FFFFFF";
 
+  const trackAnimationClass =
+    slideDirection === "left" ? "run-marquee-left" : "run-marquee-right";
+
+  const renderImageBlock = (suffix: string) => (
+    <div
+      key={suffix}
+      className="flex shrink-0"
+      style={{ gap: "20px", paddingRight: "20px" }}
+    >
+      {images.map((image, i) => (
+        <div
+          key={`${suffix}-${i}`}
+          style={{
+            flexShrink: 0,
+            width: `${image.width}px`,
+            height: `${image.height}px`,
+            outlineOffset: "2px",
+          }}
+        >
+          <img
+            src={image.src}
+            alt={image.alt}
+            style={{
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+              display: "block",
+            }}
+          />
+        </div>
+      ))}
+    </div>
+  );
+
   return (
     <section
-      className="relative w-full"
+      className="relative w-full overflow-x-hidden gridism-content-layer"
       data-theme={theme}
       style={{ backgroundColor: sectionBg }}
     >
       {/* Outer wrapper — centers the 1300px black box */}
       <div
+        className="feature-card-panel-wrap"
         style={{
           paddingTop: "34px",
           paddingBottom: "40px",
           display: "flex",
           justifyContent: "center",
+          position: "relative",
+          zIndex: 2,
         }}
       >
         {/* Black box — 1300px, centered */}
         <div
           style={{
             position: "relative",
-            width: "1300px",
+            width: "min(1300px, 100%)",
             backgroundColor: "#000000",
             display: "flex",
             flexDirection: "column",
@@ -61,8 +100,9 @@ const FeatureCardSection = ({
         >
           {/* Title row — height=92px */}
           <div
+            className="feature-card-title-row"
             style={{
-              width: "1300px",
+              width: "100%",
               height: "92px",
               display: "flex",
               alignItems: "flex-end",
@@ -88,23 +128,26 @@ const FeatureCardSection = ({
           {/* Info row — number, subtitle, description */}
           <div
             style={{
-              width: "1300px",
+              width: "100%",
               paddingLeft: "55px",
+              paddingRight: "55px",
               boxSizing: "border-box",
             }}
           >
             <div
+              className="feature-card-info-row"
               style={{
                 display: "flex",
                 flexDirection: "row",
                 alignItems: "flex-start",
                 gap: "25px",
-                width: "1245px",
+                width: "100%",
                 paddingBottom: "50px",
               }}
             >
               {/* Number — no border */}
               <p
+                className="feature-card-number"
                 style={{
                   flexShrink: 0,
                   width: "109px",
@@ -122,6 +165,7 @@ const FeatureCardSection = ({
 
               {/* Subtitle — no border */}
               <p
+                className="feature-card-subtitle"
                 style={{
                   flexShrink: 0,
                   width: "195px",
@@ -139,8 +183,9 @@ const FeatureCardSection = ({
 
               {/* Description — capped so chess piece is visible */}
               <p
+                className="feature-card-description"
                 style={{
-                  width: "600px",
+                  width: "min(600px, 100%)",
                   fontFamily: "'Switzer', sans-serif",
                   fontWeight: 400,
                   fontSize: "20px",
@@ -182,38 +227,27 @@ const FeatureCardSection = ({
       </div>
 
       {/* Image gallery */}
-      <div style={{ backgroundColor: sectionBg, overflowX: "auto" }}>
+      <div
+        className="feature-card-gallery-wrap"
+        style={{
+          backgroundColor: sectionBg,
+          overflowX: "auto",
+          position: "relative",
+          zIndex: 1,
+        }}
+      >
         <div
           style={{
-            display: "flex",
-            flexDirection: "row",
-            alignItems: "center",
-            gap: "20px",
+            width: "100%",
+            overflow: "hidden",
             paddingLeft: "30px",
             paddingBottom: "40px",
           }}
         >
-          {images.map((image, i) => (
-            <div
-              key={i}
-              style={{
-                flexShrink: 0,
-                width: `${image.width}px`,
-                height: `${image.height}px`,
-              }}
-            >
-              <img
-                src={image.src}
-                alt={image.alt}
-                style={{
-                  width: "100%",
-                  height: "100%",
-                  objectFit: "cover",
-                  display: "block",
-                }}
-              />
-            </div>
-          ))}
+          <div className={`flex shrink-0 w-max ${trackAnimationClass}`}>
+            {renderImageBlock("orig")}
+            {renderImageBlock("clone")}
+          </div>
         </div>
       </div>
     </section>

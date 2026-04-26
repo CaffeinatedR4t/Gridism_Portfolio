@@ -25,7 +25,7 @@ export default function RootLayout({
           <Navbar />
           <FloatingLogo />
           <FloatingJakartaTime />
-          <main>{children}</main>
+          <main className="relative z-20">{children}</main>
         </SmoothScroll>
       </body>
     </html>

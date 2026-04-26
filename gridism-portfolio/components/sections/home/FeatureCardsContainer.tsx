@@ -13,18 +13,18 @@ const FeatureCardsContainer = () => {
   ];
 
   const strategicResultsImages = [
-    { src: "/images/EZZRALE%2002%2011.png",  alt: "EZZRALE",  width: 811, height: 569 },
-    { src: "/images/Ogohogoh%2006%2011.png", alt: "Ogohogoh", width: 804, height: 568 },
-    { src: "/images/iJakarta%2005%203.png",  alt: "iJakarta", width: 805, height: 569 },
+    { src: "/images/ezzralef.png", alt: "EZZRALE",  width: 811, height: 569 },
+    { src: "/images/ezzralef.png", alt: "Ogohogoh", width: 804, height: 568 },
+    { src: "/images/ezzralef.png", alt: "iJakarta", width: 805, height: 569 },
   ];
 
   const scalableTechImages = [
-    { src: "/images/envato-labs-image-edit%20-%202026-02-03T165127.390.png",                        alt: "Image 1", width: 574,  height: 574 },
-    { src: "/images/903bd99a-d751-4420-982c-4fcdf1ff93f2.png",                                      alt: "Image 2", width: 377,  height: 565 },
-    { src: "/images/image-gen%20(24)ffh.png",                                                       alt: "Image 3", width: 1020, height: 574 },
-    { src: "/images/portrait-fashion-and-a-woman-on-a-chair-in-studio-2026-01-09-11-02-50-utc.jpg", alt: "Image 4", width: 743,  height: 557 },
-    { src: "/images/ezzralef.png",                                                                  alt: "Image 5", width: 554,  height: 554 },
-    { src: "/images/close-up-black-and-white-shot-portrait-2026-01-07-06-57-46-utc.jpg",            alt: "Image 6", width: 833,  height: 556 },
+    { src: "/images/ezzralef.png", alt: "Image 1", width: 574,  height: 574 },
+    { src: "/images/ezzralef.png", alt: "Image 2", width: 377,  height: 565 },
+    { src: "/images/ezzralef.png", alt: "Image 3", width: 1020, height: 574 },
+    { src: "/images/ezzralef.png", alt: "Image 4", width: 743,  height: 557 },
+    { src: "/images/ezzralef.png", alt: "Image 5", width: 554,  height: 554 },
+    { src: "/images/ezzralef.png", alt: "Image 6", width: 833,  height: 556 },
   ];
 
   return (
@@ -39,6 +39,7 @@ const FeatureCardsContainer = () => {
         chessPiece="/images/Salinan%20Kuda%20png.png"
         chessPieceSize={{ width: 88, height: 134 }}
         bgColor="white"
+        slideDirection="left"
       />
 
       {/* Card 02 — Luncur (bishop/slider) — taller and narrower */}
@@ -51,6 +52,7 @@ const FeatureCardsContainer = () => {
         chessPiece="/images/Salinan%20luncur%20png.png"
         chessPieceSize={{ width: 150, height: 350 }}
         bgColor="white"
+        slideDirection="right"
       />
 
       {/* Card 03 — Benteng (rook) — wide and shorter */}
@@ -63,6 +65,7 @@ const FeatureCardsContainer = () => {
         chessPiece="/images/Salinan%20Benteng%20png.png"
         chessPieceSize={{ width: 90, height: 110 }}
         bgColor="white"
+        slideDirection="left"
       />
     </>
   );

@@ -20,6 +20,100 @@
   animation: rawMarqueeRight 40s linear infinite;
 }
 
+.gridism-content-layer {
+  position: relative;
+  z-index: 20;
+}
+
+.gridism-footer-layer {
+  position: relative;
+  z-index: 10;
+}
+
+.gridism-sticky-footer-image {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 80svh;
+  z-index: 1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.gridism-sticky-footer-image-logo {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0.3;
+}
+
+.gridism-footer-spacer {
+  height: 80svh;
+}
+
+@media (max-width: 768px) {
+  .gridism-sticky-footer-image {
+    display: none;
+  }
+
+  .gridism-footer-spacer {
+    display: none;
+  }
+}
+
+/* Feature cards: desktop overlap between black panel and image strip */
+@media (min-width: 1024px) {
+  .feature-card-gallery-wrap {
+    margin-top: -96px;
+    padding-top: 24px;
+  }
+}
+
+/* Feature cards: reduce overlap on tablets */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .feature-card-gallery-wrap {
+    margin-top: -40px;
+    padding-top: 12px;
+  }
+}
+
+/* Feature cards: stack cleanly on mobile */
+@media (max-width: 767px) {
+  .feature-card-gallery-wrap {
+    margin-top: 0;
+    padding-top: 0;
+  }
+
+  .feature-card-title-row {
+    height: auto !important;
+    min-height: 92px;
+    padding-left: 24px !important;
+    padding-right: 24px !important;
+  }
+
+  .feature-card-info-row {
+    flex-direction: column !important;
+    gap: 12px !important;
+    padding-bottom: 32px !important;
+  }
+
+  .feature-card-number,
+  .feature-card-subtitle,
+  .feature-card-description {
+    width: 100% !important;
+    height: auto !important;
+  }
+
+  .feature-card-description {
+    font-size: 17px !important;
+    line-height: 24px !important;
+  }
+}
+
 
 /* Silka Font - OTF format */
 @font-face {

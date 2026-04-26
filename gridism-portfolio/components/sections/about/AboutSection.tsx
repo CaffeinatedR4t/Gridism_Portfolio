@@ -5,8 +5,7 @@ import GallerySection from "./GallerySection";
 
 const theme = {
     typography: {
-        fontHeader: "text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-light text-black tracking-wider leading-relaxed"
-
+        fontHeader: "text-5xl sm:text-6xl md:text-7xl lg:text-8xl"
     },
     spacing: {
         fontRed: "flex flex-row justify-between",
@@ -14,10 +13,7 @@ const theme = {
     }
 }
 
-const MISSION_TEXT = [
-    "Gridism is a brand and digital studio built for the global market.",
-    "We do Branding and Web for the Global Market."
-];
+// "text-base sm:text-xs md:text-lg lg:text-3xl xl:text-4xl font-light text-black tracking-wider leading-relaxed"
 
 const STRATEGY_GROUPS = [
     ["Personal Branding", "Consulting", "E-commerce strategy", "Brand & Strategy"],
@@ -43,7 +39,7 @@ const MARQUEE_IMAGES = [
 const AboutSection = () => {
     // Shared class for the mission statement headers
     return (
-        <section className="bg-white">
+        <section className="bg-white gridism-content-layer">
             {/* HERO SECTION: Cyborg + Absolute Text */}
             <div className="relative min-h-screen">
                 <div className="relative min-h-screen bg-yellow">
@@ -53,22 +49,17 @@ const AboutSection = () => {
 
             {/* DESCRIPTION SECTION */}
             <div className={cn(theme.spacing.flexCol, "min-h-screen items-center justify-center")}>
-                <div className="w-[90%] max-w-4xl flex flex-col items-center gap-10 text-center">
+                <div className="w-[90%] mx-auto max-w-6xl flex flex-col items-center gap-10 text-center bg-red">
                     {/* Mapped Mission Headers */}
-                    <h1 className="text-3xl md:text-4xl lg:text-[64px] font-light">BUILDING <span className="font-medium">ICONIC</span> BRANDS AND DIGITAL EXPERIENCES</h1>
-                    {MISSION_TEXT.map((text, index) => (
-                        <p key={index} className={cn(theme.typography.fontHeader)}>
-                            {text}
-                        </p>
-                    ))}
-
-                    <p className="text-sm sm:text-base md:text-lg lg:text-xl font-light text-neutral-500 tracking-wide max-w-3xl leading-relaxed">
+                    <h1 className={cn(theme.typography.fontHeader, "text-balance")}>Building Iconic Brands and Digital Experiences</h1>
+                    <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-balance">Gridism is a Digital Brand Studio We do Branding and Web for the Global Market.</h2>
+                    <p className="text-base sm:text-lg md:text-xl lg:text-2xl font-light max-w-3xl text-balance">
                         Full-service creative solutions for lifestyle and tech brands. From Jakarta to the world.
                         Driving Global Scale Through Brand Identity and Digital Innovation.
                     </p>
                 </div>
             </div>
-            <div className="flex gap-30 p-10 bg-black items-center text-white">
+            <div className="flex flex-col flex-start gap-5 md:flex-row md:gap-20 p-5 bg-black md:items-center text-white text-left">
                 <h3 className="text-base sm:text-sm md:text-lg lg:text-2xl xl:text-3xl font-semibold leading-normal">Outcomes Over Process.</h3>
                 <p className="text-base sm:text-sm md:text-md lg:text-xl xl:text-2xl font-regular tracking-wider text-justify">
                     We help brands and products build premium experiences that deliver ROI through rapid prototyping (AI), sharp decision-making, and meticulous detail crafting from start to finish. My process is flexible—what remains consistent are the outcome, quality, and impact.
@@ -80,7 +71,7 @@ const AboutSection = () => {
                 <div className="flex flex-col gap-[8vw] text-black text-center">
 
                     <div className="flex flex-col gap-20">
-                        <h3 className="text-[48px] md:text-[96px]">IDEAS AND STRATEGY</h3>
+                        <h3 className={cn(theme.typography.fontHeader, "text-balance")}>Ideas and Strategy</h3>
 
                         {/* Mapped Strategy Groups - The Infinite Marquee */}
                         {STRATEGY_GROUPS.map((group, groupIndex) => {
