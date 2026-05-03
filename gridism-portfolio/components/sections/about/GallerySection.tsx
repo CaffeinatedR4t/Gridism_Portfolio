@@ -15,7 +15,7 @@ export default function GallerySection() {
   });
 
   // 3. Map vertical scroll to horizontal movement (0% to -50%)
-  const xMovement = useTransform(scrollYProgress, [0, 1], ["0%", "-50%"]);
+  const xMovement = useTransform(scrollYProgress, [0, 1], ["0%", "-30%"]);
 
   const photos = [
     {
