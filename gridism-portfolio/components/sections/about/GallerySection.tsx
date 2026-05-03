@@ -1,6 +1,22 @@
-import Image from 'next/image'
+"use client"; // Required because we are using React hooks
+
+import { useRef } from 'react';
+import Image from 'next/image';
+import { motion, useScroll, useTransform } from 'framer-motion';
 
 export default function GallerySection() {
+  // 1. Create the reference for the section
+  const containerRef = useRef(null);
+
+  // 2. Track scroll progress when this section is in the viewport
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"],
+  });
+
+  // 3. Map vertical scroll to horizontal movement (0% to -50%)
+  const xMovement = useTransform(scrollYProgress, [0, 1], ["0%", "-50%"]);
+
   const photos = [
     {
       src: '/images/IMG_6297.jpg',
@@ -20,29 +36,56 @@ export default function GallerySection() {
       width: 2000,
       height: 2667,
     },
+     {
+      src: '/images/image.jpg',
+      alt: 'Two speakers presenting on stage with an event background',
+      width: 2000,
+      height: 2667,
+    },
+     {
+      src: '/images/image.jpg',
+      alt: 'Two speakers presenting on stage with an event background',
+      width: 2000,
+      height: 2667,
+    },
   ]
 
   return (
-    <section className="py-16 px-4 md:px-8">
-      <div className="max-w-4xl mx-auto">
-        <div className="columns-1 sm:columns-2 gap-6">
+    // 4. Attaching the ref to the section so Framer Motion can track it
+    <section ref={containerRef} className="mb-16 h-[500px] w-full overflow-hidden">
+
+      <motion.div 
+        style={{ x: xMovement }}
+        className="flex shrink-0 w-max h-full"
+      >
+        <div className="flex shrink-0 w-max h-full run-marquee-left hover:[animation-play-state:paused]">
+            <div className="flex shrink-0 gap-1 pr-1 h-full">
           {photos.map((photo, index) => (
-            <div 
-              key={index} 
-              className="break-inside-avoid mb-6 overflow-hidden rounded-2xl shadow-xl transition-all hover:shadow-2xl hover:-translate-y-1 duration-300"
-            >
               <Image
+                key={`photo-orig-${index}`}
                 src={photo.src}
                 alt={photo.alt}
                 width={photo.width}
-                height={photo.height}
-                className="w-full h-auto object-cover"
-                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                height={500}
+                className="h-full w-auto aspect-[3/4] object-cover shrink-0"
               />
-            </div>
           ))}
         </div>
-      </div>
+        <div className="flex shrink-0 gap-1 pr-1 h-full">
+          {photos.map((photo, index) => (
+              <Image
+                key={`photo-clone-${index}`}
+                src={photo.src}
+                alt={photo.alt}
+                width={photo.width}
+                height={500}
+                className="h-full w-auto aspect-[3/4] object-cover shrink-0"
+              />
+          ))}
+        </div>
+          </div>
+      
+      </motion.div>
     </section>
   )
 }
