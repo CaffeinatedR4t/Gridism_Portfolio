@@ -8,17 +8,7 @@ const Navbar = () => {
   const pathname = usePathname()
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
-  const [isBlended, setIsBlended] = useState(pathname != "/");
-
-
-  useEffect(() => {
-      if(pathname == "/") {
-        setIsBlended(window.scrollY > 30)
-      }
-      else {
-        setIsBlended(true)
-      }    
-  }, [pathname])
+  const [isBlended, setIsBlended] = useState(true);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -32,17 +22,12 @@ const Navbar = () => {
       }
       setLastScrollY(currentScrollY);
       // 2. Blend Mode Threshold (10px)
-      if(pathname == "/") {
-        setIsBlended(currentScrollY > 30)
-      }
-      else {
-        setIsBlended(true)
-      }    
+      setIsBlended(true)
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [lastScrollY, pathname]);
+  }, [lastScrollY]);
 
   const navLinks = [
     { href: "/", label: "Home", italic: false },
@@ -59,31 +44,26 @@ const Navbar = () => {
         mixBlendMode: isBlended ? "difference" : "normal",
       }}
     >
-      <nav className="relative w-full max-w-[1440px] mx-auto px-15 flex items-center justify-between">
+      <nav className="relative w-full max-w-[1720px] mx-auto px-6 md:px-10 py-8 md:py-12 flex items-center justify-between">
         
         {/* Logo */}
         <Link href="/" className="relative z-50">
           <img
-            src="icon.svg"
+            src="/images/GRD WHITE TM.png"
             alt="Gridism"
-            width={100}
-            height={100}
+            width={58}
+            height={53}
             className="transition-all duration-300"
-            style={{
-              // When blended, it must be white (#FFFFFF) to work with "difference"
-              // When normal (at top), it stays its original color (assuming black)
-              filter: isBlended ? "invert(1)" : "none",
-            }}
           />
         </Link>
 
         {/* Nav links */}
-        <ul className="flex items-center gap-8 lg:gap-35">
+        <ul className="flex items-center gap-8 lg:gap-[104px]">
           {navLinks.map((link) => (
             <li key={link.href}>
               <Link
                 href={link.href}
-                className={`relative text-[14px] lg:text-[16px] leading-[20px] transition-colors duration-500 hover:opacity-70 group ${
+                className={`relative text-[16px] lg:text-[20px] leading-[24px] transition-colors duration-500 hover:opacity-70 group ${
                   link.italic ? "italic" : ""
                 }`}
                 style={{  

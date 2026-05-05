@@ -31,7 +31,7 @@ const FooterSection = ({ footerImage, footerLogo, footerBgColor, footerFontColor
             {/* Three-column logo row */}
             <div className={cn(footerFontColor,"flex flex-col sm:flex-row items-center justify-center w-full h-auto mx-auto px-6")}>
               <p
-                className="text-base sm:text-lg md:text-xl lg:text-2xl tracking-[0.3em] flex-1 text-center"
+                className="text-lg sm:text-xl md:text-2xl lg:text-3xl tracking-[0.3em] flex-1 text-center font-medium"
                 style={{ fontFamily: "'Switzer', sans-serif" }}
               >
                 G R I D I S M
@@ -41,10 +41,10 @@ const FooterSection = ({ footerImage, footerLogo, footerBgColor, footerFontColor
 
               <div className="flex flex-col gap-20 items-center justify-center text-center flex-1">
                 <p
-                  className="text-base sm:text-lg md:text-xl lg:text-2xl leading-[29px] w-[90%]"
+                  className="text-base sm:text-lg md:text-xl lg:text-2xl leading-[1.2] w-[90%]"
                   style={{ fontFamily: "'Switzer', sans-serif" }}
                 >
-                  Web Development & Branding Agency
+                  Web Development<br />& Branding Agency
                 </p>
                 <a
                   href="mailto:hello@gridism.com"
@@ -62,7 +62,7 @@ const FooterSection = ({ footerImage, footerLogo, footerBgColor, footerFontColor
                 className="text-[16px] leading-[19px] m-0"
                 style={{ fontFamily: "'Switzer', sans-serif" }}
               >
-                @2025
+                @2026
               </p>
 
               <div className="flex gap-20">
@@ -158,12 +158,10 @@ const FooterSection = ({ footerImage, footerLogo, footerBgColor, footerFontColor
               </div>
 
               {/* Right — Gridism logo, same bottom alignment as buttons */}
-              <Image
-                src={"/images/gridism-logo - Copy.png"}
+              <img
+                src={"/images/Alternative Grid Logo.webp"}
                 alt="Gridism Icon"
-                width={50}
-                height={50}
-                className="w-[50px] h-[50px] brightness-0 invert shrink-0"
+                className="h-[80px] lg:h-[120px] w-auto shrink-0 mix-blend-difference object-contain brightness-0 invert"
               />
             </div>
           </div>
