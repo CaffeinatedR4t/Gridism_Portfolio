@@ -13,11 +13,11 @@
 
 /* We create our own utility classes */
 .run-marquee-left {
-  animation: rawMarqueeLeft 40s linear infinite;
+  animation: rawMarqueeLeft 80s linear infinite;
 }
 
 .run-marquee-right {
-  animation: rawMarqueeRight 40s linear infinite;
+  animation: rawMarqueeRight 80s linear infinite;
 }
 
 .gridism-content-layer {

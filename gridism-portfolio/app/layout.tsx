@@ -11,6 +11,10 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Gridism | Digital Creative Agency",
   description: "Human Centric Approach. Structure with Purpose. Commitment to Crafting.",
+  icons: {
+    icon: "/images/WEB VIEW 2.png",
+    apple: "/images/WEB VIEW 2.png",
+  },
 };
 
 export default function RootLayout({

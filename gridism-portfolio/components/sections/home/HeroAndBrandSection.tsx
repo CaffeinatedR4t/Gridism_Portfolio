@@ -4,29 +4,32 @@ import { useEffect, useState } from "react";
 
 /* ─── carousel image sets ────────────────────────────────────────────────── */
 const topRowImages = [
-  { w: 260, h: 170, src: "/images/ezzralef.png", alt: "Portfolio 1" },
-  { w: 260, h: 170, src: "/images/ezzralef.png", alt: "Portfolio 2" },
-  { w: 220, h: 170, src: "/images/ezzralef.png", alt: "Portfolio 3" },
-  { w: 265, h: 170, src: "/images/ezzralef.png", alt: "Portfolio 4" },
-  { w: 215, h: 170, src: "/images/ezzralef.png", alt: "Portfolio 5" },
-  { w: 340, h: 170, src: "/images/ezzralef.png", alt: "Portfolio 6" },
+  { w: 312, h: 255, src: "/images/Artboard 1.png", alt: "Portfolio 1" },
+  { w: 313, h: 255, src: "/images/Artboard 1_2.png", alt: "Portfolio 2" },
+  { w: 313, h: 255, src: "/images/Artboard 1_3.png", alt: "Portfolio 3" },
+  { w: 313, h: 256, src: "/images/Artboard 1_5.png", alt: "Portfolio 4" },
+  { w: 312, h: 255, src: "/images/Artboard 1_1.png", alt: "Portfolio 5" },
+  { w: 312, h: 255, src: "/images/Artboard 1_10.png", alt: "Portfolio 6" },
+  { w: 311, h: 254, src: "/images/Artboard 1_13.png", alt: "Portfolio 7" },
 ];
 
 const bottomRowImages = [
-  { w: 175, h: 100, src: "/images/ezzralef.png", alt: "Portfolio 7" },
-  { w: 190, h: 100, src: "/images/ezzralef.png", alt: "Portfolio 8" },
-  { w: 165, h: 100, src: "/images/ezzralef.png", alt: "Portfolio 9" },
-  { w: 205, h: 100, src: "/images/ezzralef.png", alt: "Portfolio 10" },
-  { w: 155, h: 100, src: "/images/ezzralef.png", alt: "Portfolio 11" },
-  { w: 180, h: 100, src: "/images/ezzralef.png", alt: "Portfolio 12" },
-  { w: 175, h: 100, src: "/images/ezzralef.png", alt: "Portfolio 13" },
+  { w: 250, h: 204, src: "/images/Artboard 1_4.png", alt: "Portfolio 8" },
+  { w: 250, h: 204, src: "/images/Artboard 1_6.png", alt: "Portfolio 9" },
+  { w: 249, h: 203, src: "/images/Artboard 1_7.png", alt: "Portfolio 10" },
+  { w: 250, h: 204, src: "/images/Artboard 1_8.png", alt: "Portfolio 11" },
+  { w: 249, h: 203, src: "/images/Artboard 1_11.png", alt: "Portfolio 12" },
+  { w: 248, h: 203, src: "/images/Artboard 1_14.png", alt: "Portfolio 13" },
+  { w: 248, h: 203, src: "/images/Artboard 1_12.png", alt: "Portfolio 14" },
+  { w: 249, h: 203, src: "/images/Artboard 1_9.png", alt: "Portfolio 15" },
+  { w: 249, h: 203, src: "/images/Artboard 1_15.png", alt: "Portfolio 16" },
 ];
 
 /* ─── MarqueeRow — mirrors AboutSection double-block pattern exactly ─────── */
 const MarqueeRow = ({
   images,
   direction = "left",
-  gap = 14,
+  gap = 20,
 }: {
   images: { w: number; h: number; src: string; alt: string }[];
   direction?: "left" | "right";
@@ -183,15 +186,15 @@ const HeroAndBrandSection = () => {
         </div>
 
         {/* Overlapping Carousels */}
-        <div className="relative w-full" style={{ height: "260px", marginTop: "20px" }}>
+        <div className="relative w-full" style={{ height: "405px", marginTop: "20px" }}>
           {/* Bottom carousel (Smaller) — Behind */}
-          <div className="absolute w-full" style={{ top: "120px", zIndex: 0, opacity: 0.5 }}>
-            <MarqueeRow images={bottomRowImages} direction="right" gap={21} />
+          <div className="absolute w-full" style={{ top: "201px", zIndex: 0 }}>
+            <MarqueeRow images={bottomRowImages} direction="right" gap={20} />
           </div>
           
           {/* Top carousel (Bigger) — In front */}
-          <div className="absolute w-full" style={{ top: "0px", zIndex: 10, filter: "drop-shadow(0px 20px 63.5px rgba(0, 0, 0, 0.69))" }}>
-            <MarqueeRow images={topRowImages} direction="left" gap={21} />
+          <div className="absolute w-full" style={{ top: "0px", zIndex: 10, filter: "drop-shadow(0px 20px 31.75px rgba(0, 0, 0, 0.69))" }}>
+            <MarqueeRow images={topRowImages} direction="left" gap={20} />
           </div>
         </div>
       </div>

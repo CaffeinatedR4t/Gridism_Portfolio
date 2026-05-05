@@ -118,22 +118,14 @@ const OurCoreProcessSection = () => {
     <div className="bg-[#F9F9F7] relative gridism-content-layer">
       <style dangerouslySetInnerHTML={{__html: `
         @keyframes slideLeftPauseV3 {
-          /* Start at Block 2 (33.33% through the 3-block track) */
-          0%, 10% { transform: translate3d(-33.3333%, 0, 0); }
-          /* Step to Image 2 of Block 2 */
-          14.285%, 24.285% { transform: translate3d(-38.0951%, 0, 0); }
-          /* Step to Image 3 of Block 2 */
-          28.571%, 38.571% { transform: translate3d(-42.8570%, 0, 0); }
-          /* Step to Image 4 of Block 2 */
-          42.857%, 52.857% { transform: translate3d(-47.6189%, 0, 0); }
-          /* Step to Image 5 of Block 2 */
-          57.142%, 67.142% { transform: translate3d(-52.3808%, 0, 0); }
-          /* Step to Image 6 of Block 2 */
-          71.428%, 81.428% { transform: translate3d(-57.1427%, 0, 0); }
-          /* Step to Image 7 of Block 2 */
-          85.714%, 95.714% { transform: translate3d(-61.9046%, 0, 0); }
-          /* Slide to reset position (Start of Block 3, which looks like Start of Block 2) */
-          100% { transform: translate3d(-66.6666%, 0, 0); }
+          0%, 10% { transform: translate3d(0%, 0, 0); }
+          14.285%, 24.285% { transform: translate3d(-7.1428%, 0, 0); }
+          28.571%, 38.571% { transform: translate3d(-14.2857%, 0, 0); }
+          42.857%, 52.857% { transform: translate3d(-21.4285%, 0, 0); }
+          57.142%, 67.142% { transform: translate3d(-28.5714%, 0, 0); }
+          71.428%, 81.428% { transform: translate3d(-35.7142%, 0, 0); }
+          85.714%, 95.714% { transform: translate3d(-42.8571%, 0, 0); }
+          100% { transform: translate3d(-50%, 0, 0); }
         }
         .animate-slider-v3 {
           animation: slideLeftPauseV3 28s infinite cubic-bezier(0.45, 0, 0.15, 1);
@@ -153,27 +145,19 @@ const OurCoreProcessSection = () => {
         {/* Slider Container */}
         <div className="absolute w-full h-[70vh] flex items-center justify-start">
            <div className="flex flex-row w-max animate-slider-v3">
-             {/* Block 1 (Buffer) */}
+             {/* Block 1 (Active) */}
              <div className="flex flex-row shrink-0">
                {coreProcessImages.map((src, index) => (
                   <div key={`b1-${index}`} className="w-[33.3333vw] h-[70vh] shrink-0 px-2 md:px-4 gpu-layer">
-                    <img src={src} className="w-full h-full object-cover" loading="eager" alt={`Process Buffer A ${index + 1}`} />
+                    <img src={src} className="w-full h-full object-cover" loading={index < 3 ? "eager" : "lazy"} alt={`Process ${index + 1}`} />
                   </div>
                ))}
              </div>
-             {/* Block 2 (Active) */}
+             {/* Block 2 (Clone for looping) */}
              <div className="flex flex-row shrink-0">
                {coreProcessImages.map((src, index) => (
                   <div key={`b2-${index}`} className="w-[33.3333vw] h-[70vh] shrink-0 px-2 md:px-4 gpu-layer">
-                    <img src={src} className="w-full h-full object-cover" loading="eager" alt={`Process Active ${index + 1}`} />
-                  </div>
-               ))}
-             </div>
-             {/* Block 3 (Buffer) */}
-             <div className="flex flex-row shrink-0">
-               {coreProcessImages.map((src, index) => (
-                  <div key={`b3-${index}`} className="w-[33.3333vw] h-[70vh] shrink-0 px-2 md:px-4 gpu-layer">
-                    <img src={src} className="w-full h-full object-cover" loading="eager" alt={`Process Buffer B ${index + 1}`} />
+                    <img src={src} className="w-full h-full object-cover" loading="lazy" alt={`Process Clone ${index + 1}`} />
                   </div>
                ))}
              </div>
@@ -225,6 +209,7 @@ const OurCoreProcessSection = () => {
                   <img 
                     src={step.image} 
                     alt={step.title} 
+                    loading="lazy"
                     className="w-full h-full object-cover object-center"
                   />
                 </ParallaxGraphic>
