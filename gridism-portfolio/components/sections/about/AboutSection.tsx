@@ -169,7 +169,7 @@ const AboutSection = () => {
             <TeamSlider/>
             <GallerySection/>
 
-            <div className={cn(theme.spacing.flexCol, "min-h-screen justify-evenly gap-20 mx-auto w-[80%]")}>
+            <div className={cn(theme.spacing.flexCol, "min-h-[50vh] justify-evenly gap-15 mx-auto w-[80%]")}>
                 <div className={cn(theme.spacing.flexCol, "gap-5")}>
                     <p>We started in the smallest space possible: a cramped dorm room, no desk, no proper setup, only the floor and a shared belief.</p>
                     <p>Day after day, we moved from one cheap cafe to another, working on things that <span className="font-bold">felt uncertain, unclear, and far from guaranteed.</span>Time, energy, and faith were spent on outcomes we couldn't yet see</p>
