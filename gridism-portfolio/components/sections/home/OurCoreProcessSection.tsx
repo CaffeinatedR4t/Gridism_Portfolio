@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useState, useLayoutEffect } from "react";
+import Image from "next/image";
 import { motion, useScroll, useTransform } from "framer-motion";
 
 /* ─── Parallax Wrapper Component ────────────────────────────────────────── */
@@ -116,79 +117,74 @@ const OurCoreProcessSection = () => {
 
   return (
     <div className="bg-[#F9F9F7] relative gridism-content-layer">
-      <style dangerouslySetInnerHTML={{__html: `
-        @keyframes slideLeftPauseV3 {
-          0%, 10% { transform: translate3d(0%, 0, 0); }
-          14.285%, 24.285% { transform: translate3d(-7.1428%, 0, 0); }
-          28.571%, 38.571% { transform: translate3d(-14.2857%, 0, 0); }
-          42.857%, 52.857% { transform: translate3d(-21.4285%, 0, 0); }
-          57.142%, 67.142% { transform: translate3d(-28.5714%, 0, 0); }
-          71.428%, 81.428% { transform: translate3d(-35.7142%, 0, 0); }
-          85.714%, 95.714% { transform: translate3d(-42.8571%, 0, 0); }
-          100% { transform: translate3d(-50%, 0, 0); }
-        }
-        .animate-slider-v3 {
-          animation: slideLeftPauseV3 28s infinite cubic-bezier(0.45, 0, 0.15, 1);
-          will-change: transform;
-          backface-visibility: hidden;
-          perspective: 1000px;
-          transform-style: preserve-3d;
-        }
-        .gpu-layer {
-          transform: translate3d(0,0,0);
-          backface-visibility: hidden;
-        }
-      `}} />
 
       {/* 1. Hero Graphic Section */}
-      <section className="relative w-full h-screen flex items-center justify-start overflow-hidden">
-        {/* Slider Container */}
-        <div className="absolute w-full h-[70vh] flex items-center justify-start">
-           <div className="flex flex-row w-max animate-slider-v3">
-             {/* Block 1 (Active) */}
-             <div className="flex flex-row shrink-0">
-               {coreProcessImages.map((src, index) => (
-                  <div key={`b1-${index}`} className="w-[33.3333vw] h-[70vh] shrink-0 px-2 md:px-4 gpu-layer">
-                    <img src={src} className="w-full h-full object-cover" loading={index < 3 ? "eager" : "lazy"} alt={`Process ${index + 1}`} />
-                  </div>
-               ))}
-             </div>
-             {/* Block 2 (Clone for looping) */}
-             <div className="flex flex-row shrink-0">
-               {coreProcessImages.map((src, index) => (
-                  <div key={`b2-${index}`} className="w-[33.3333vw] h-[70vh] shrink-0 px-2 md:px-4 gpu-layer">
-                    <img src={src} className="w-full h-full object-cover" loading="lazy" alt={`Process Clone ${index + 1}`} />
-                  </div>
-               ))}
-             </div>
-           </div>
+      <section className="relative w-full h-screen flex items-center justify-center overflow-hidden">
+        {/* Centered Image Background - matches Home hero frame */}
+        <div className="absolute w-full h-full flex items-center justify-center pointer-events-none">
+          <div
+            className="relative overflow-hidden bg-black"
+            style={{
+              width: "333px",
+              height: "512px",
+            }}
+          >
+            <Image
+              src="/images/CP 2.webp"
+              alt="Core Process"
+              fill
+              sizes="333px"
+              className="object-cover"
+            />
+          </div>
         </div>
 
         {/* Text Overlay */}
         <div 
           className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none z-10"
-          style={{
-            mixBlendMode: "difference",
-            color: "#FFFFFF"
-          }}
         >
-          <h1 
-            className="font-['Switzer',sans-serif] text-[clamp(80px,12vw,160px)] leading-[0.9] font-medium text-center m-0"
-          >
-            Our Core<br />
-            <span className="italic">Process</span>
-          </h1>
+          <div className="relative">
+            {/* Layer 1: Liquid Glass Body (Thickness via 5-stop Gradient) */}
+            <h1 
+              className="font-['Switzer',sans-serif] text-[clamp(80px,12vw,160px)] leading-[0.9] font-semibold text-center m-0"
+              style={{
+                background: "linear-gradient(180deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.1) 15%, rgba(0, 0, 0, 0.3) 50%, rgba(0, 0, 0, 0.9) 85%, rgba(255, 255, 255, 0.8) 100%)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                textShadow: "0px 3px 6px rgba(0, 0, 0, 0.32)",
+              }}
+            >
+              Our Core<br />
+              <span className="italic">Process</span>
+            </h1>
+
+            {/* Layer 2: Specular Rim & Surface Texture */}
+            <h1 
+              className="absolute inset-0 font-['Switzer',sans-serif] text-[clamp(80px,12vw,160px)] leading-[0.9] font-semibold text-center m-0"
+              style={{
+                background: "linear-gradient(180deg, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0) 30%)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                WebkitTextStroke: "1px rgba(255, 255, 255, 0.8)",
+                textShadow: "0px 1px 1px rgba(255, 255, 255, 0.35)",
+                mixBlendMode: "overlay",
+              }}
+            >
+              Our Core<br />
+              <span className="italic">Process</span>
+            </h1>
+          </div>
         </div>
       </section>
 
       {/* 2. Scrolling Section */}
       <section 
-        className="relative w-full gridism-content-layer px-8 lg:px-[70px] max-w-[1600px] mx-auto flex flex-row gap-8 lg:gap-[60px]" 
+        className="relative w-full gridism-content-layer px-8 lg:px-[70px] max-w-[1440px] mx-auto flex flex-row gap-8 lg:gap-[29px]" 
         data-theme="light"
       >
         
         {/* Left Column: Sticky Overview */}
-        <div className="w-[150px] lg:w-[200px] shrink-0 relative">
+        <div className="w-[150px] lg:w-[191px] shrink-0 relative">
           <div className="sticky top-[150px] pt-10 h-fit">
             <h2 className="text-black font-['Switzer',sans-serif] font-normal italic text-[20px] lg:text-[24px] leading-[30px]">
               Our Core Process
@@ -201,10 +197,10 @@ const OurCoreProcessSection = () => {
           {steps.map((step, index) => (
             <div 
               key={index}
-              className="min-h-screen flex flex-col xl:flex-row items-center justify-between py-24 gap-12 xl:gap-0"
+              className="min-h-screen flex flex-col lg:flex-row items-start py-24 gap-12 lg:gap-[55px]"
             >
               {/* Center: Parallax Image Container */}
-              <div className="w-full xl:w-[45vw] max-w-[750px] h-[60vh] xl:h-[85vh] max-h-[900px] shrink-0 overflow-hidden relative">
+              <div className="w-full lg:w-[min(603px,calc(100vw-837px))] h-[60vh] lg:h-[643px] shrink-0 overflow-hidden relative">
                 <ParallaxGraphic parallax={20}>
                   <img 
                     src={step.image} 
@@ -216,12 +212,12 @@ const OurCoreProcessSection = () => {
               </div>
 
               {/* Right: Text Description */}
-              <div className="w-full xl:w-[420px] flex flex-col gap-8 xl:pr-10">
-                <h3 className="text-black font-['Switzer',sans-serif] font-normal text-[32px] lg:text-[36px] leading-[1.2]">
+              <div className="w-full lg:w-[422px] shrink-0 flex flex-col gap-[50px]">
+                <h3 className="text-black font-['Switzer',sans-serif] font-normal text-[32px] lg:text-[36px] leading-[30px]">
                   {step.title}
                 </h3>
                 
-                <div className="flex flex-col gap-6 text-black/50 font-['Switzer',sans-serif] font-normal text-[20px] lg:text-[24px] leading-[1.4]">
+                <div className="flex flex-col gap-6 text-black/50 font-['Switzer',sans-serif] font-normal text-[16px] leading-[19px]">
                   <p>{step.description}</p>
                   {step.keywords && (
                     <p className="italic whitespace-pre-wrap">{step.keywords}</p>

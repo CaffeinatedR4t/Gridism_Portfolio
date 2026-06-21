@@ -48,12 +48,11 @@ const KeyFeaturesSection = () => {
 
   return (
     <section
-      className="relative w-full bg-white overflow-hidden gridism-content-layer"
+      className="relative w-full bg-white overflow-hidden gridism-content-layer flex items-center h-[100svh]"
       data-theme="light"
     >
       <div
-        className="relative max-w-[1440px] mx-auto flex flex-row items-center justify-between"
-        style={{ padding: "clamp(60px, 10vw, 150px) 70px" }}
+        className="relative w-full max-w-[1440px] mx-auto flex flex-row items-center justify-between px-10 lg:px-[70px]"
       >
         {/* Heading Container */}
         <motion.div
@@ -67,10 +66,10 @@ const KeyFeaturesSection = () => {
             style={{
               fontFamily: "'Switzer', sans-serif",
               fontWeight: 600,
-              fontSize: "clamp(60px, 11vw, 150px)",
+              fontSize: "clamp(40px, 8vw, 100px)",
               lineHeight: "0.95",
               color: "#000000",
-              maxWidth: "1009px",
+              maxWidth: "800px",
               margin: 0
             }}
           >

@@ -140,14 +140,13 @@ const HeroAndBrandSection = () => {
 
       {/* ── PART 2: BRAND + CAROUSEL (100svh) ─────────────────────────── */}
       <div
-        className="relative w-full bg-black flex flex-col items-center justify-center overflow-hidden"
+        className="relative w-full bg-black flex flex-col items-center justify-center overflow-hidden pt-20 lg:pt-32"
         data-theme="dark"
         style={{ height: "100svh" }}
       >
         {/* Top Header Row (Logo, King, Text) */}
         <div 
-          className="flex flex-row items-center justify-between w-full px-8 md:px-12 lg:px-[20px] max-w-[1600px]"
-          style={{ marginBottom: "clamp(40px, 8vw, 80px)" }}
+          className="flex flex-row items-center justify-between w-full px-10 lg:px-[70px]"
         >
           {/* Left: Logo */}
           <div className="flex-1 flex justify-start">
@@ -186,7 +185,7 @@ const HeroAndBrandSection = () => {
         </div>
 
         {/* Overlapping Carousels */}
-        <div className="relative w-full" style={{ height: "405px", marginTop: "20px" }}>
+        <div className="relative w-full" style={{ height: "405px" }}>
           {/* Bottom carousel (Smaller) — Behind */}
           <div className="absolute w-full" style={{ top: "201px", zIndex: 0 }}>
             <MarqueeRow images={bottomRowImages} direction="right" gap={20} />

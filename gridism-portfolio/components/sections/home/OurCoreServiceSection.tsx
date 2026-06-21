@@ -1,7 +1,7 @@
 "use client";
 
-import { useRef, useState, useLayoutEffect } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef, useState, useLayoutEffect, useEffect } from "react";
+import { motion, useScroll, useTransform, AnimatePresence, useInView } from "framer-motion";
 
 /* ─── Parallax Wrapper Component ────────────────────────────────────────── */
 /**
@@ -43,7 +43,6 @@ const ParallaxGraphic = ({
     offset: ["start end", "end start"],
   });
 
-  // Exact Parallax Math from snippet
   const base = direction === "vertical" ? size.height : size.width;
   const pct = clamp(parallax, 5, 60) / 100;
   const desiredOverflow = base > 0 ? clamp(base * pct, 40, 480) : 0;
@@ -79,150 +78,187 @@ const ParallaxGraphic = ({
   );
 };
 
-/* ─── Main Section ────────────────────────────────────────────────────────── */
-const OurCoreServiceSection = () => {
-  return (
-    <section className="relative w-full bg-[#000000] gridism-content-layer px-[70px] flex flex-row" data-theme="dark">
-      
-      {/* 1. Left Column: Sticky Heading */}
-      <div className="w-[350px] sticky top-0 h-screen flex items-center shrink-0">
-        <h2 
-          className="text-white"
+/* ─── Service Configuration ─────────────────────────────────────────────── */
+const LOREM_IPSUM = "We deliver premium brand and digital experiences. Built fast, crafted with precision, and designed to perform. From first concept to final pixel, we move with flexibility but never compromise on outcome, quality, or impact.";
+
+const SERVICES = [
+  {
+    title: "Web Design & Development",
+    description: LOREM_IPSUM,
+    height: 580,
+    graphic: (
+      <div className="relative w-[656px] h-[580px]">
+        <div 
+          className="absolute inset-0 opacity-20"
           style={{
-            fontFamily: "'Switzer', sans-serif",
-            fontWeight: 400,
-            fontSize: "40px",
-            lineHeight: "40px",
+            backgroundImage: `radial-gradient(circle, #333 1px, transparent 1px)`,
+            backgroundSize: "20px 20px"
+          }}
+        />
+        <div className="absolute top-0 left-0 w-full h-[327px] overflow-hidden">
+          <img 
+            src="/images/Artboard 1sssdwsdws.png" 
+            alt="" 
+            className="w-full h-full object-cover"
+          />
+        </div>
+        <div className="absolute bottom-0 left-0 w-full h-[253px] overflow-hidden">
+          <img 
+            src="/images/image 5.webp" 
+            alt="" 
+            className="w-full h-full object-cover opacity-80"
+          />
+        </div>
+        <div 
+          className="absolute left-[117px] top-[135px] w-[422px] h-[309px] bg-white overflow-hidden"
+          style={{
+            borderRadius: "65px",
+            filter: "drop-shadow(3px 3px 40px rgba(0, 0, 0, 0.4))",
           }}
         >
-          Our Core Service
-        </h2>
+          <img 
+            src="/images/gridism 2@2x.png" 
+            alt="Gridism Layout" 
+            className="w-full h-full object-cover"
+          />
+        </div>
       </div>
+    )
+  },
+  {
+    title: "Branding & Visual Identity",
+    description: LOREM_IPSUM,
+    height: 516,
+    graphic: (
+      <div className="relative w-[741px] h-[516px]">
+        <img 
+          src="/images/ezzrale 1 portos.png" 
+          alt="Ezzrale Branding" 
+          className="w-full h-full object-contain"
+        />
+      </div>
+    )
+  },
+  {
+    title: "Digital Transformation Consulting",
+    description: LOREM_IPSUM,
+    height: 644,
+    graphic: (
+      <div className="relative w-[728px] h-[644px]">
+        <img 
+          src="/images/IMG_8790.jpg" 
+          alt="Digital Consulting" 
+          className="w-full h-full object-cover"
+        />
+      </div>
+    )
+  }
+];
 
-      {/* 2. Right Column: Scrolling Services */}
-      <div className="flex-1 flex flex-col">
+/* ─── Service Image Block ───────────────────────────────────────────────── */
+const ServiceImageBlock = ({ 
+  index, 
+  setActiveIndex, 
+  children 
+}: { 
+  index: number; 
+  setActiveIndex: (i: number) => void; 
+  children: React.ReactNode;
+}) => {
+  const ref = useRef<HTMLDivElement>(null);
+  // Trigger when the element crosses the middle of the viewport
+  const isInView = useInView(ref, { 
+    margin: "-50% 0px -50% 0px",
+    amount: "some"
+  });
+  
+  useEffect(() => {
+    if (isInView) {
+      setActiveIndex(index);
+    }
+  }, [isInView, index, setActiveIndex]);
+
+  return (
+    <div 
+      ref={ref} 
+      className="relative min-h-[120vh] flex items-center justify-center py-20"
+    >
+      {children}
+    </div>
+  );
+};
+
+/* ─── Main Section ────────────────────────────────────────────────────────── */
+const OurCoreServiceSection = () => {
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  // Safeguard against out-of-bounds or undefined services
+  const currentService = SERVICES[activeIndex] || SERVICES[0];
+
+  return (
+    <section className="relative w-full bg-black gridism-content-layer flex flex-row" data-theme="dark">
+      
+      {/* 1. Left Column: Sticky Text content */}
+      <div className="w-[40%] sticky top-0 h-screen flex flex-col justify-between pt-[153px] pb-[85px] px-10 lg:px-[70px] shrink-0 z-20">
         
-        {/* BLOCK 1: Web Design & Development */}
-        <div className="min-h-screen flex flex-col justify-center items-end py-20 gap-10">
-          <h3 
-            className="text-white text-right"
-            style={{
-              fontFamily: "'Switzer', sans-serif",
-              fontWeight: 400,
-              fontSize: "24px",
-              lineHeight: "30px",
-              maxWidth: "350px",
-            }}
+        {/* Top: Section Title */}
+        <div className="relative">
+          <h2 
+            className="text-white font-['Switzer',sans-serif] italic font-normal text-[24px] leading-[30px] tracking-tight"
           >
-            Web Design & Development
-          </h3>
-          
-          <div className="w-full max-w-[800px] h-[580px]">
-            <ParallaxGraphic parallax={25}>
-              <div className="relative w-[656px] h-[580px]">
-                {/* Base Grid Background */}
-                <div 
-                  className="absolute inset-0 opacity-20"
-                  style={{
-                    backgroundImage: `radial-gradient(circle, #333 1px, transparent 1px)`,
-                    backgroundSize: "20px 20px"
-                  }}
-                />
-                
-                {/* Top Artwork */}
-                <div className="absolute top-0 left-0 w-full h-[327px] overflow-hidden">
-                  <img 
-                    src="/images/Artboard 1sssdwsdws.png" 
-                    alt="" 
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-
-                {/* Bottom Sketch Image */}
-                <div className="absolute bottom-0 left-0 w-full h-[253px] overflow-hidden">
-                  <img 
-                    src="/images/image 5.webp" 
-                    alt="" 
-                    className="w-full h-full object-cover opacity-80"
-                  />
-                </div>
-
-                {/* Floating Hero Mockup */}
-                <div 
-                  className="absolute left-[117px] top-[135px] w-[422px] h-[309px] bg-white overflow-hidden"
-                  style={{
-                    borderRadius: "65px",
-                    filter: "drop-shadow(3px 3px 40px rgba(0, 0, 0, 0.4))",
-                  }}
-                >
-                  <img 
-                    src="/images/gridism 2@2x.png" 
-                    alt="Gridism Layout" 
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-              </div>
-            </ParallaxGraphic>
-          </div>
+            Our Core Service
+          </h2>
         </div>
 
-        {/* BLOCK 2: Branding & Visual Identity */}
-        <div className="min-h-screen flex flex-col justify-center items-end py-20 gap-10">
-          <h3 
-            className="text-white text-right"
-            style={{
-              fontFamily: "'Switzer', sans-serif",
-              fontWeight: 400,
-              fontSize: "24px",
-              lineHeight: "30px",
-              maxWidth: "350px",
-            }}
-          >
-            Branding & Visual Identity
-          </h3>
-          
-          <div className="w-full max-w-[800px] h-[516px]">
-            <ParallaxGraphic parallax={25}>
-              <div className="relative w-[741px] h-[516px]">
-                <img 
-                  src="/images/ezzrale 1 portos.png" 
-                  alt="Ezzrale Branding" 
-                  className="w-full h-full object-contain"
-                />
-              </div>
-            </ParallaxGraphic>
-          </div>
+        {/* Middle: Active Service Title */}
+        <div className="flex-1 flex items-center relative">
+          <AnimatePresence mode="wait">
+            <motion.h3
+              key={`title-${activeIndex}`}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.5, ease: [0.45, 0, 0.15, 1] }}
+              className="text-white font-['Switzer',sans-serif] font-normal text-[40px] leading-[40px] max-w-[600px] absolute"
+            >
+              {currentService.title}
+            </motion.h3>
+          </AnimatePresence>
         </div>
 
-        {/* BLOCK 3: Digital Transformation Consulting */}
-        <div className="min-h-screen flex flex-col justify-center items-end py-20 gap-10">
-          <h3 
-            className="text-white text-right"
-            style={{
-              fontFamily: "'Switzer', sans-serif",
-              fontWeight: 400,
-              fontSize: "24px",
-              lineHeight: "30px",
-              maxWidth: "350px",
-            }}
-          >
-            Digital Transformation Consulting
-          </h3>
-          
-          <div className="w-full max-w-[800px] h-[644px]">
-            <ParallaxGraphic parallax={25}>
-              <div className="relative w-[728px] h-[644px]">
-                <img 
-                  src="/images/IMG_8790.jpg" 
-                  alt="Digital Consulting" 
-                  className="w-full h-full object-cover"
-                />
-              </div>
-            </ParallaxGraphic>
-          </div>
+        {/* Bottom: Active Service Description */}
+        <div className="w-full max-w-[339px] relative h-[85px]">
+          <AnimatePresence mode="wait">
+            <motion.p
+              key={`desc-${activeIndex}`}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.4 }}
+              className="text-white font-['Switzer',sans-serif] font-normal text-[14px] leading-normal absolute bottom-0"
+            >
+              {currentService.description}
+            </motion.p>
+          </AnimatePresence>
         </div>
-
       </div>
+
+      {/* 2. Right Column: Scrolling Images */}
+      <div className="flex-1 relative pr-10 lg:pr-[70px]">
+        {SERVICES.map((service, index) => (
+          <ServiceImageBlock key={index} index={index} setActiveIndex={setActiveIndex}>
+            <div 
+              className="w-full max-w-[800px] flex items-center justify-center relative"
+              style={{ height: `${service.height}px` }}
+            >
+              <ParallaxGraphic parallax={25}>
+                {service.graphic}
+              </ParallaxGraphic>
+            </div>
+          </ServiceImageBlock>
+        ))}
+      </div>
+
     </section>
   );
 };
