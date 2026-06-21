@@ -1,14 +1,20 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
+
+import agencyFounderAImg from "../public/images/jeremy foto profile.png"
+import agencyFounderBImg from "../public/images/heles foto profile.png"
+import agencyFounderCImg from "../public/images/jay foto profile.png"
+import agencyFounderDImg from "../public/images/alex foto profile.png"
+
 
 // 1. The Interface
 interface Founder {
     name: string;
     position: string;
     desc: string;
-    src: string;
+    src: StaticImageData,
     alt: string;
     width: number;
     height: number;
@@ -20,7 +26,7 @@ const FOUNDERS: Founder[] = [
         name: "Jeremy Joseph Pohar",
         position: "Founder & Chief Executive Officer (CEO)",
         desc: "Jeremy has over 7 years of experience in web development and technical problem-solving. He leads the technical development at Gridism, focusing on building scalable, efficient, and high-performance digital solutions through clean and structured code.",
-        src: "/images/jeremy foto profile.png", 
+        src: agencyFounderAImg, 
         alt: "Jeremy Pohar",
         width: 300,
         height: 400
@@ -29,7 +35,7 @@ const FOUNDERS: Founder[] = [
         name: "Heles Ofalius",
         position: "Founder & Chief Creative Officer (CCO)",
         desc: "Ofalius has over 8 years of experience in visual design and digital branding. He leads the creative direction at Gridism, overseeing brand identity, visual systems, and digital experiences. His work focuses on clarity, aesthetics, and strategic storytelling across platforms.",
-        src: "/images/heles foto profile.png", 
+        src: agencyFounderBImg, 
         alt: "Heles Ofalius",
         width: 300,
         height: 400
@@ -38,7 +44,7 @@ const FOUNDERS: Founder[] = [
         name: "Jason Julius Then",
         position: "Co-Founder & Head of Engineering", 
         desc: "Jason has more than 5 years of experience in website development and system implementation. At Gridism, he focuses on execution, optimization, and maintaining development quality to ensure reliable and seamless digital products.",
-        src: "/images/jay foto profile.png",
+        src: agencyFounderCImg,
         alt: "Jason Then",
         width: 300,
         height: 400
@@ -47,7 +53,7 @@ const FOUNDERS: Founder[] = [
         name: "Alexander Valentino Lion",
         position: "Co-Founder & Chief Marketing Officer (CMO)",
         desc: "Alex has over 5 years of experience in marketing strategy and business management. He leads growth, client acquisition, and brand positioning at Gridism, ensuring sustainable operations and a strong market presence.",
-        src: "/images/alex foto profile.png", 
+        src: agencyFounderDImg, 
         alt: "Alexander Lion",
         width: 300,
         height: 400
@@ -71,11 +77,11 @@ export function TeamSlider() {
 
     return (
         <div className="min-h-screen flex flex-col justify-center">
-            <h3 className="text-xl md:text-3xl mb-10 max-w-4xl mx-auto px-10">
+            <h3 className="flex-start text-xl md:text-3xl mb-10 max-w px-10">
                 Our team of skilled professionals specializes in personalized, high quality branding and website design solutions.
             </h3>
 
-            <div className="relative w-full max-w-6xl mx-auto overflow-hidden group">
+            <div className="relative w-full max-w-[95%] mx-auto overflow-hidden group">
                 <div 
                     className="flex transition-transform duration-2000 ease-in-out"
                     style={{ transform: `translateX(-${currentIndex * 100}%)` }}
@@ -84,7 +90,7 @@ export function TeamSlider() {
                         <div key={index} className="w-full shrink-0 grid grid-cols-1 md:grid-cols-[1fr_auto_2fr] items-center justify-between gap-6 my-10 px-4 md:px-12">
                             
                             <div className="flex flex-col gap-2">
-                                <p className="text-2xl md:text-3xl font-bold text-gray-900">{item.name}</p>
+                                <p className="text-2xl md:text-3xl text-gray-900">{item.name}</p>
                                 <p className="text-sm italic text-gray-500">{item.position}</p>
                             </div>
 

@@ -25,74 +25,76 @@ const FooterSection = ({ footerImage, footerLogo, footerBgColor, footerFontColor
 
       <div style={{ position: "relative", zIndex: 10 }}>
         {/* ── White upper footer ── */}
-        <div className={cn(footerBgColor,"min-h-screen relative")}>
-          <div className="absolute inset-0 flex flex-col items-center justify-center">
+        {footerBgColor ?
+          <div className={cn(footerBgColor, "min-h-screen relative")}>
+            <div className="absolute inset-0 flex flex-col items-center justify-center">
 
-            {/* Three-column logo row */}
-            <div className={cn(footerFontColor,"flex flex-col sm:flex-row items-center justify-center w-full h-auto mx-auto px-6")}>
-              <p
-                className="text-base sm:text-lg md:text-xl lg:text-2xl tracking-[0.3em] flex-1 text-center"
-                style={{ fontFamily: "'Switzer', sans-serif" }}
-              >
-                G R I D I S M
-              </p>
-
-              <Image src={footerLogo} alt="logo" width={283} height={283} className="w-[283px] h-auto" />
-
-              <div className="flex flex-col gap-20 items-center justify-center text-center flex-1">
+              {/* Three-column logo row */}
+              <div className={cn(footerFontColor, "flex flex-col sm:flex-row items-center justify-center w-full h-auto mx-auto px-6")}>
                 <p
-                  className="text-base sm:text-lg md:text-xl lg:text-2xl leading-[29px] w-[90%]"
+                  className="text-base sm:text-lg md:text-xl lg:text-2xl tracking-[0.3em] flex-1 text-center"
                   style={{ fontFamily: "'Switzer', sans-serif" }}
                 >
-                  Web Development & Branding Agency
+                  G R I D I S M
                 </p>
-                <a
-                  href="mailto:hello@gridism.com"
-                  className="hidden md:block text-base sm:text-lg md:text-xl lg:text-2xl leading-[29px] cursor-pointer hover:opacity-60 transition-opacity"
-                  style={{ fontFamily: "'Switzer', sans-serif", textDecoration: "none" }}
+
+                <Image src={footerLogo} alt="logo" width={283} height={283} className="w-[283px] h-auto" />
+
+                <div className="flex flex-col gap-20 items-center justify-center text-center flex-1">
+                  <p
+                    className="text-base sm:text-lg md:text-xl lg:text-2xl leading-[29px] w-[90%]"
+                    style={{ fontFamily: "'Switzer', sans-serif" }}
+                  >
+                    Web Development & Branding Agency
+                  </p>
+                  <a
+                    href="mailto:hello@gridism.com"
+                    className="hidden md:block text-base sm:text-lg md:text-xl lg:text-2xl leading-[29px] cursor-pointer hover:opacity-60 transition-opacity"
+                    style={{ fontFamily: "'Switzer', sans-serif", textDecoration: "none" }}
+                  >
+                    —&nbsp; Contact Us &nbsp;—
+                  </a>
+                </div>
+              </div>
+
+              {/* Bottom bar */}
+              <div className={cn(footerBorderColor, footerFontColor, "absolute bottom-0 flex justify-between items-center w-screen border-t-1 py-[20px] px-[30px] box-border")}>
+                <p
+                  className="text-[16px] leading-[19px] m-0"
+                  style={{ fontFamily: "'Switzer', sans-serif" }}
                 >
-                  —&nbsp; Contact Us &nbsp;—
+                  @2025
+                </p>
+
+                <div className="flex gap-20">
+                  <a
+                    href="https://instagram.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={cn(theme.typography.fontFooter, footerFontColor)}
+                  >
+                    -&nbsp; Instagram &nbsp;-
+                  </a>
+                  <a
+                    href="https://linkedin.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={cn(theme.typography.fontFooter, footerFontColor)}
+                  >
+                    -&nbsp; LinkedIn &nbsp;-
+                  </a>
+                </div>
+
+                <a
+                  href="/legals"
+                  className={cn(theme.typography.fontFooter, footerFontColor)}
+                >
+                  Legals
                 </a>
               </div>
             </div>
-
-            {/* Bottom bar */}
-            <div className={cn(footerBorderColor, footerFontColor ,"absolute bottom-0 flex justify-between items-center w-screen border-t-1 py-[20px] px-[30px] box-border")}>
-              <p
-                className="text-[16px] leading-[19px] m-0"
-                style={{ fontFamily: "'Switzer', sans-serif" }}
-              >
-                @2025
-              </p>
-
-              <div className="flex gap-20">
-                <a
-                  href="https://instagram.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={cn(theme.typography.fontFooter, footerFontColor)}
-                >
-                  -&nbsp; Instagram &nbsp;-
-                </a>
-                <a
-                  href="https://linkedin.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={cn(theme.typography.fontFooter, footerFontColor)}
-                >
-                  -&nbsp; LinkedIn &nbsp;-
-                </a>
-              </div>
-
-              <a
-                href="/legals"
-                className={cn(theme.typography.fontFooter, footerFontColor)}
-              >
-                Legals
-              </a>
-            </div>
-          </div>
-        </div>
+          </div> : null
+        }
 
         {/* ── Footer over sticky image ── */}
         <div className="relative w-full h-[80svh]">
@@ -159,7 +161,7 @@ const FooterSection = ({ footerImage, footerLogo, footerBgColor, footerFontColor
 
               {/* Right — Gridism logo, same bottom alignment as buttons */}
               <Image
-                src={"/images/gridism-logo - Copy.png"}
+                src={footerLogo}
                 alt="Gridism Icon"
                 width={50}
                 height={50}

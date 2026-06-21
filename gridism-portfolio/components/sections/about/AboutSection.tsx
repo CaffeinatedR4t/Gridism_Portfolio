@@ -9,7 +9,8 @@ const theme = {
     },
     spacing: {
         fontRed: "flex flex-row justify-between",
-        flexCol: "flex flex-col"
+        flexCol: "flex flex-col",
+        flexRow: "flex flex-row"
     }
 }
 
@@ -42,21 +43,18 @@ const AboutSection = () => {
         <section className="bg-white gridism-content-layer">
             {/* HERO SECTION: Cyborg + Absolute Text */}
             <div className="relative min-h-screen">
-                <div className="relative min-h-screen bg-yellow">
+                <div className="relative min-h-screen">
+                    <video src="/videos/about/people-skating-on-ice-skating-rink-outdoors-winter.mov" width={"full"} height={"auto"} autoPlay muted playsInline></video>
                 </div>
-                <Image src="icon.svg" alt="gridism logo" width={200} height={200} className="absolute inset-0 m-auto" />
+                <Image src="/images/ICON WHITE.webp" alt="gridism logo" width={200} height={200} className="absolute inset-0 m-auto" />
             </div>
 
             {/* DESCRIPTION SECTION */}
             <div className={cn(theme.spacing.flexCol, "min-h-screen items-center justify-center")}>
-                <div className="w-[90%] mx-auto max-w-6xl flex flex-col items-center gap-10 text-center bg-red">
+                <div className="w-[90%] mx-auto max-w-6xl flex flex-col items-center gap-10 text-center">
                     {/* Mapped Mission Headers */}
                     <h1 className={cn(theme.typography.fontHeader, "text-balance")}>Building Iconic Brands and Digital Experiences</h1>
-                    <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-balance">Gridism is a Digital Brand Studio We do Branding and Web for the Global Market.</h2>
-                    <p className="text-base sm:text-lg md:text-xl lg:text-2xl font-light max-w-3xl text-balance">
-                        Full-service creative solutions for lifestyle and tech brands. From Jakarta to the world.
-                        Driving Global Scale Through Brand Identity and Digital Innovation.
-                    </p>
+                    <h2 className="font-regular text-xl sm:text-2xl md:text-3xl lg:text-4xl text-balance">Brand & Digital Consultancy, We help Lifestyle and tech brands build the presence they deserve.</h2>
                 </div>
             </div>
             <div className="flex flex-col flex-start gap-5 md:flex-row md:gap-20 p-5 bg-black md:items-center text-white text-left">
@@ -169,7 +167,7 @@ const AboutSection = () => {
             <TeamSlider/>
             <GallerySection/>
 
-            <div className={cn(theme.spacing.flexCol, "min-h-[50vh] justify-evenly gap-15 mx-auto w-[80%]")}>
+            <div className={cn(theme.spacing.flexRow, "min-h-[50vh] justify-evenly gap-15 mx-auto w-[90%]")}>
                 <div className={cn(theme.spacing.flexCol, "gap-5")}>
                     <p>We started in the smallest space possible: a cramped dorm room, no desk, no proper setup, only the floor and a shared belief.</p>
                     <p>Day after day, we moved from one cheap cafe to another, working on things that <span className="font-bold">felt uncertain, unclear, and far from guaranteed.</span>Time, energy, and faith were spent on outcomes we couldn't yet see</p>
