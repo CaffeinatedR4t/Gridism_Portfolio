@@ -66,10 +66,10 @@ const KeyFeaturesSection = () => {
             style={{
               fontFamily: "'Switzer', sans-serif",
               fontWeight: 600,
-              fontSize: "clamp(40px, 8vw, 100px)",
+              fontSize: "clamp(60px, 8.5vw, 130px)",
               lineHeight: "0.95",
               color: "#000000",
-              maxWidth: "800px",
+              maxWidth: "850px",
               margin: 0
             }}
           >
@@ -78,7 +78,7 @@ const KeyFeaturesSection = () => {
         </motion.div>
 
         {/* Right side composition */}
-        <div className="relative flex items-center justify-end" style={{ width: "400px", height: "550px" }}>
+        <div className="relative mt-24" style={{ width: "321.6px", height: "516px" }}>
           
           {/* Piece 1: Knight (Back Left) */}
           <motion.div
@@ -88,7 +88,7 @@ const KeyFeaturesSection = () => {
             viewport={{ once: true }}
             variants={pieceVariants}
             className="absolute"
-            style={{ width: "220px", left: "-50px", top: "0px", zIndex: 1 }}
+            style={{ width: "153.5px", left: "0px", top: "0px", zIndex: 1 }}
           >
             <img
               src="/images/icon-key features-Knight.png"
@@ -105,7 +105,7 @@ const KeyFeaturesSection = () => {
             viewport={{ once: true }}
             variants={pieceVariants}
             className="absolute"
-            style={{ width: "220px", right: "-30px", top: "50px", zIndex: 1 }}
+            style={{ width: "153.5px", left: "168.1px", top: "54.1px", zIndex: 1 }}
           >
             <img
               src="/images/icon-key features-Bishop.png"
@@ -122,7 +122,7 @@ const KeyFeaturesSection = () => {
             viewport={{ once: true }}
             variants={pieceVariants}
             className="absolute"
-            style={{ width: "280px", left: "60px", top: "160px", zIndex: 10 }}
+            style={{ width: "153.5px", left: "31.38px", top: "126.59px", zIndex: 10 }}
           >
             <img
               src="/images/icon-key features-chess rook.png"
@@ -137,12 +137,12 @@ const KeyFeaturesSection = () => {
             whileInView="visible"
             viewport={{ once: true }}
             variants={containerVariants}
-            className="absolute flex flex-col gap-1 z-20"
+            className="absolute flex flex-col gap-1.5 z-20"
             style={{
-              left: "110px",
-              top: "280px",
+              left: "-30px",
+              bottom: "40px",
               fontFamily: "'Switzer', sans-serif",
-              fontSize: "24px",
+              fontSize: "20px",
               fontWeight: 400,
               lineHeight: "1.2",
               whiteSpace: "nowrap",

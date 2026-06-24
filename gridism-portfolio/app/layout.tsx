@@ -24,7 +24,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.className} min-h-screen`} suppressHydrationWarning>
+      <body className={`${inter.className} min-h-screen overflow-x-hidden w-full max-w-[100vw]`} suppressHydrationWarning>
         <SmoothScroll>
           <Navbar />
           <FloatingLogo />

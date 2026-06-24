@@ -1,11 +1,14 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { cn } from "@/utils/cn";
+import Toast from "@/components/Toast";
 
 const ConnectSection = () => {
     // State to handle button UI changes
     const [result, setResult] = useState("Submit");
+    const [toastVisible, setToastVisible] = useState(false);
+    const dismissToast = useCallback(() => setToastVisible(false), []);
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -14,20 +17,30 @@ const ConnectSection = () => {
         const form = event.currentTarget;
         const formData = new FormData(form);
 
-        formData.append("access_key", process.env.NEXT_PUBLIC_WEB3FORMS_KEY as string);
+        const payload = {
+            name: formData.get("name") as string,
+            email: formData.get("email") as string,
+            company: formData.get("company") as string,
+            social: formData.get("social") as string,
+            message: formData.get("message") as string,
+        };
+
+        const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8080";
 
         try {
-            const response = await fetch("https://api.web3forms.com/submit", {
+            const response = await fetch(`${apiUrl}/api/contact`, {
                 method: "POST",
-                body: formData
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(payload),
             });
 
             const data = await response.json();
 
             if (data.success) {
                 setResult("Message Sent");
-                form.reset(); // Clear the form
-                
+                form.reset();
+                setToastVisible(true);
+
                 // Reset button text after 3 seconds
                 setTimeout(() => setResult("Submit"), 3000);
             } else {
@@ -41,16 +54,49 @@ const ConnectSection = () => {
     };
 
     return (
-        <section className="bg-white w-full min-h-screen flex flex-col justify-start">
-            <div className="w-full max-w-full flex-1 flex flex-col md:grid md:grid-cols-2 pt-[153px] pb-[100px] px-10 lg:px-[70px] gap-20">
+        <>
+        <section
+            className="bg-white w-full flex flex-col justify-start"
+            style={{ height: "100vh", overflow: "hidden" }}
+        >
+            <div
+                className="w-full max-w-[1440px] mx-auto flex-1 flex flex-col md:grid md:grid-cols-2"
+                style={{
+                    paddingTop: "120px",
+                    paddingBottom: "40px",
+                    paddingLeft: "77px",
+                    paddingRight: "77px",
+                    gap: "40px",
+                }}
+            >
                 
                 {/* Left Side: Address, Socials & Title */}
                 <div className="flex flex-col justify-between h-full">
-                    <div className="flex flex-col gap-10">
+                    <div className="flex flex-col gap-6">
                         {/* Address */}
-                        <div className="flex flex-col gap-4">
-                            <p className="font-medium text-[20px] text-black m-0">Address</p>
-                            <p className="font-light text-[16px] text-black leading-relaxed whitespace-pre-wrap m-0">
+                        <div className="flex flex-col gap-2">
+                            <p
+                                className="m-0"
+                                style={{
+                                    fontFamily: "'Switzer', sans-serif",
+                                    fontWeight: 500,
+                                    fontSize: "20px",
+                                    lineHeight: "26px",
+                                    color: "#000000",
+                                }}
+                            >
+                                Address
+                            </p>
+                            <p
+                                className="whitespace-pre-wrap m-0"
+                                style={{
+                                    fontFamily: "'Switzer', sans-serif",
+                                    fontWeight: 300,
+                                    fontSize: "16px",
+                                    lineHeight: "21px",
+                                    color: "#000000",
+                                }}
+                            >
                                 Summit Tower, 17th Floor{"\n"}
                                 Jl. Jendral Sudirman No. 45{"\n"}
                                 SCBD, Jakarta 12190{"\n"}
@@ -59,78 +105,232 @@ const ConnectSection = () => {
                         </div>
 
                         {/* Social Links */}
-                        <div className="flex gap-10">
-                            <a href="https://instagram.com/gridism.co" target="_blank" rel="noopener noreferrer" className="font-semibold text-[20px] text-black hover:opacity-60 transition-opacity no-underline">Instagram</a>
-                            <a href="https://id.linkedin.com/company/gridismco" target="_blank" rel="noopener noreferrer" className="font-semibold text-[20px] text-black hover:opacity-60 transition-opacity no-underline">Linkedin</a>
-                            <a href="https://x.com" target="_blank" rel="noopener noreferrer" className="font-semibold text-[20px] text-black hover:opacity-60 transition-opacity no-underline">X</a>
+                        <div className="flex gap-8">
+                            <a
+                                href="https://instagram.com/gridism.co"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="hover:opacity-60 transition-opacity no-underline"
+                                style={{
+                                    fontFamily: "'Switzer', sans-serif",
+                                    fontWeight: 600,
+                                    fontSize: "20px",
+                                    lineHeight: "26px",
+                                    color: "#000000",
+                                }}
+                            >
+                                Instagram
+                            </a>
+                            <a
+                                href="https://id.linkedin.com/company/gridismco"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="hover:opacity-60 transition-opacity no-underline"
+                                style={{
+                                    fontFamily: "'Switzer', sans-serif",
+                                    fontWeight: 600,
+                                    fontSize: "20px",
+                                    lineHeight: "26px",
+                                    color: "#000000",
+                                }}
+                            >
+                                Linkedin
+                            </a>
+                            <a
+                                href="https://x.com"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="hover:opacity-60 transition-opacity no-underline"
+                                style={{
+                                    fontFamily: "'Switzer', sans-serif",
+                                    fontWeight: 600,
+                                    fontSize: "20px",
+                                    lineHeight: "26px",
+                                    color: "#000000",
+                                }}
+                            >
+                                X
+                            </a>
                         </div>
                     </div>
 
                     {/* Branding Title */}
-                    <h1 className="font-light text-[64px] lg:text-[80px] leading-[0.9] text-black m-0 mt-auto">
+                    <h1
+                        className="m-0 mt-auto"
+                        style={{
+                            fontFamily: "'Switzer', sans-serif",
+                            fontWeight: 300,
+                            fontSize: "clamp(36px, 5vw, 64px)",
+                            lineHeight: "1.3",
+                            color: "#000000",
+                        }}
+                    >
                         Let&apos;s Connect
                     </h1>
                 </div>
 
                 {/* Right Side: Form */}
-                <div className="w-full flex flex-col justify-center">
-                    <form onSubmit={handleSubmit} className="flex flex-col gap-8">
+                <div
+                    className="w-full flex flex-col justify-center"
+                    style={{ maxWidth: "886px" }}
+                >
+                    <form onSubmit={handleSubmit} className="flex flex-col gap-5">
                         
                         <div className="flex flex-col gap-2">
-                            <label className="font-medium text-[16px] text-black">Name*</label>
+                            <label
+                                className="font-medium"
+                                style={{
+                                    fontFamily: "'Switzer', sans-serif",
+                                    fontWeight: 500,
+                                    fontSize: "16px",
+                                    lineHeight: "21px",
+                                    color: "#000000",
+                                }}
+                            >
+                                Name*
+                            </label>
                             <input
                                 type="text"
                                 name="name"
                                 placeholder="Hello..."
                                 required
-                                className="border-b border-black/20 bg-transparent py-3 focus:outline-none focus:border-black transition-colors rounded-none w-full font-light text-[14px] placeholder:text-black/35"
+                                className="bg-transparent py-3 focus:outline-none transition-colors rounded-none w-full"
+                                style={{
+                                    fontFamily: "'Switzer', sans-serif",
+                                    fontWeight: 300,
+                                    fontSize: "14px",
+                                    lineHeight: "18px",
+                                    color: "#000000",
+                                    border: "none",
+                                    borderBottom: "1px solid #000000",
+                                }}
                             />
                         </div>
 
                         <div className="flex flex-col gap-2">
-                            <label className="font-medium text-[16px] text-black">Email*</label>
+                            <label
+                                className="font-medium"
+                                style={{
+                                    fontFamily: "'Switzer', sans-serif",
+                                    fontWeight: 500,
+                                    fontSize: "16px",
+                                    lineHeight: "21px",
+                                    color: "#000000",
+                                }}
+                            >
+                                Email*
+                            </label>
                             <input
                                 type="email"
                                 name="email" 
                                 placeholder="HappyJohn@gmail.com"
                                 required
-                                className="border-b border-black/20 bg-transparent py-3 focus:outline-none focus:border-black transition-colors rounded-none w-full font-light text-[14px] placeholder:text-black/35"
+                                className="bg-transparent py-3 focus:outline-none transition-colors rounded-none w-full"
+                                style={{
+                                    fontFamily: "'Switzer', sans-serif",
+                                    fontWeight: 300,
+                                    fontSize: "14px",
+                                    lineHeight: "18px",
+                                    color: "#000000",
+                                    border: "none",
+                                    borderBottom: "1px solid #000000",
+                                }}
                             />
                         </div>
 
                         <div className="flex flex-col gap-2">
-                            <label className="font-medium text-[16px] text-black">Company Name</label>
+                            <label
+                                className="font-medium"
+                                style={{
+                                    fontFamily: "'Switzer', sans-serif",
+                                    fontWeight: 500,
+                                    fontSize: "16px",
+                                    lineHeight: "21px",
+                                    color: "#000000",
+                                }}
+                            >
+                                Company Name
+                            </label>
                             <input
                                 type="text"
                                 name="company" 
                                 placeholder="Your company or website"
-                                className="border-b border-black/20 bg-transparent py-3 focus:outline-none focus:border-black transition-colors rounded-none w-full font-light text-[14px] placeholder:text-black/35"
+                                className="bg-transparent py-3 focus:outline-none transition-colors rounded-none w-full"
+                                style={{
+                                    fontFamily: "'Switzer', sans-serif",
+                                    fontWeight: 300,
+                                    fontSize: "14px",
+                                    lineHeight: "18px",
+                                    color: "#000000",
+                                    border: "none",
+                                    borderBottom: "1px solid #000000",
+                                }}
                             />
                         </div>
 
                         <div className="flex flex-col gap-2">
-                            <label className="font-medium text-[16px] text-black">Social Media*</label>
+                            <label
+                                className="font-medium"
+                                style={{
+                                    fontFamily: "'Switzer', sans-serif",
+                                    fontWeight: 500,
+                                    fontSize: "16px",
+                                    lineHeight: "21px",
+                                    color: "#000000",
+                                }}
+                            >
+                                Social Media*
+                            </label>
                             <input
                                 type="text"
                                 name="social"
                                 placeholder="Your company or website"
                                 required
-                                className="border-b border-black/20 bg-transparent py-3 focus:outline-none focus:border-black transition-colors rounded-none w-full font-light text-[14px] placeholder:text-black/35"
+                                className="bg-transparent py-3 focus:outline-none transition-colors rounded-none w-full"
+                                style={{
+                                    fontFamily: "'Switzer', sans-serif",
+                                    fontWeight: 300,
+                                    fontSize: "14px",
+                                    lineHeight: "18px",
+                                    color: "#000000",
+                                    border: "none",
+                                    borderBottom: "1px solid #000000",
+                                }}
                             />
                         </div>
 
                         <div className="flex flex-col gap-2">
-                            <label className="font-medium text-[16px] text-black">Message?*</label>
+                            <label
+                                className="font-medium"
+                                style={{
+                                    fontFamily: "'Switzer', sans-serif",
+                                    fontWeight: 500,
+                                    fontSize: "16px",
+                                    lineHeight: "21px",
+                                    color: "#000000",
+                                }}
+                            >
+                                Message?*
+                            </label>
                             <textarea
                                 name="message"
                                 placeholder="I want to build...."
                                 required
                                 rows={2}
-                                className="border-b border-black/20 bg-transparent py-3 focus:outline-none focus:border-black transition-colors rounded-none w-full font-light text-[14px] placeholder:text-black/35 resize-none" 
+                                className="bg-transparent py-3 focus:outline-none transition-colors rounded-none w-full resize-none"
+                                style={{
+                                    fontFamily: "'Switzer', sans-serif",
+                                    fontWeight: 300,
+                                    fontSize: "14px",
+                                    lineHeight: "18px",
+                                    color: "#000000",
+                                    border: "none",
+                                    borderBottom: "1px solid #000000",
+                                }}
                             />
                         </div>
                         
-                        <div className="flex justify-end mt-4">
+                        <div className="flex justify-end mt-2">
                             <button 
                                 type="submit"
                                 disabled={result === "Sending..."} 
@@ -143,6 +343,13 @@ const ConnectSection = () => {
                 </div>
             </div>
         </section>
+
+        <Toast
+            message="Message sent. We will get back to you soon."
+            visible={toastVisible}
+            onClose={dismissToast}
+        />
+        </>
     )
 }
 

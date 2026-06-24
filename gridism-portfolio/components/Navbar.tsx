@@ -44,31 +44,40 @@ const Navbar = () => {
         mixBlendMode: isBlended ? "difference" : "normal",
       }}
     >
-      <nav className="relative w-full max-w-[1300px] mx-auto px-5 md:px-8 lg:px-[48px] py-5 md:py-6 lg:py-7 flex items-center justify-between">
+      <nav
+        className="relative w-full mx-auto flex items-center justify-between"
+        style={{
+          maxWidth: "1440px",
+          padding: "32px 50px",
+        }}
+      >
         
-        {/* Logo */}
-        <Link href="/" className="relative z-50">
+        {/* Logo — far left */}
+        <Link href="/" className="relative z-50 flex items-center" style={{ gap: "10px" }}>
           <img
             src="/images/GRD WHITE TM.png"
             alt="Gridism"
-            width={44}
-            height={40}
+            width={58}
+            height={53}
             className="transition-all duration-300"
           />
         </Link>
 
-        {/* Nav links */}
-        <ul className="flex items-center gap-6 md:gap-10 lg:gap-[64px]">
+        {/* Nav links — far right */}
+        <ul className="flex items-center" style={{ gap: "104px" }}>
           {navLinks.map((link) => (
             <li key={link.href}>
               <Link
                 href={link.href}
-                className={`relative text-[15px] lg:text-[17px] leading-[22px] transition-colors duration-500 hover:opacity-70 group ${
+                className={`relative transition-colors duration-500 hover:opacity-70 group ${
                   link.italic ? "italic" : ""
                 }`}
                 style={{  
-                  // Force white color when blended so it can invert against backgrounds
-                  color: "#FFFFFF"
+                  fontFamily: "'Switzer', sans-serif",
+                  fontSize: "20px",
+                  lineHeight: "26px",
+                  fontWeight: 400,
+                  color: "#FFFFFF",
                 }}
               >
                 {link.label}

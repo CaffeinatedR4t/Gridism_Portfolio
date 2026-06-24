@@ -75,6 +75,8 @@ const ParallaxGraphic = ({
   );
 };
 
+
+
 /* ─── Core Process Images ─────────────────────────────────────────────────── */
 const coreProcessImages = [
   "/images/CP 1.webp",
@@ -122,7 +124,11 @@ const OurCoreProcessSection = () => {
       <section className="relative w-full h-screen flex items-center justify-center overflow-hidden">
         {/* Centered Image Background - matches Home hero frame */}
         <div className="absolute w-full h-full flex items-center justify-center pointer-events-none">
-          <div
+          <motion.div
+            initial={{ y: 200, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 2.5, ease: [0.22, 1, 0.36, 1] }}
             className="relative overflow-hidden bg-black"
             style={{
               width: "333px",
@@ -136,11 +142,14 @@ const OurCoreProcessSection = () => {
               sizes="333px"
               className="object-cover"
             />
-          </div>
+          </motion.div>
         </div>
 
         {/* Text Overlay */}
-        <div 
+        <motion.div 
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
           className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none z-10"
         >
           <div className="relative">
@@ -154,8 +163,25 @@ const OurCoreProcessSection = () => {
                 textShadow: "0px 3px 6px rgba(0, 0, 0, 0.32)",
               }}
             >
-              Our Core<br />
-              <span className="italic">Process</span>
+              <motion.span
+                variants={{
+                  hidden: { x: "-50vw", opacity: 0 },
+                  visible: { x: 0, opacity: 1, transition: { duration: 2, ease: [0.22, 1, 0.36, 1], delay: 0.3 } }
+                }}
+                className="inline-block"
+              >
+                Our Core
+              </motion.span>
+              <br />
+              <motion.span
+                variants={{
+                  hidden: { x: "50vw", opacity: 0 },
+                  visible: { x: 0, opacity: 1, transition: { duration: 2, ease: [0.22, 1, 0.36, 1], delay: 0.3 } }
+                }}
+                className="italic inline-block"
+              >
+                Process
+              </motion.span>
             </h1>
 
             {/* Layer 2: Specular Rim & Surface Texture */}
@@ -170,11 +196,28 @@ const OurCoreProcessSection = () => {
                 mixBlendMode: "overlay",
               }}
             >
-              Our Core<br />
-              <span className="italic">Process</span>
+              <motion.span
+                variants={{
+                  hidden: { x: "-50vw", opacity: 0 },
+                  visible: { x: 0, opacity: 1, transition: { duration: 2, ease: [0.22, 1, 0.36, 1], delay: 0.3 } }
+                }}
+                className="inline-block"
+              >
+                Our Core
+              </motion.span>
+              <br />
+              <motion.span
+                variants={{
+                  hidden: { x: "50vw", opacity: 0 },
+                  visible: { x: 0, opacity: 1, transition: { duration: 2, ease: [0.22, 1, 0.36, 1], delay: 0.3 } }
+                }}
+                className="italic inline-block"
+              >
+                Process
+              </motion.span>
             </h1>
           </div>
-        </div>
+        </motion.div>
       </section>
 
       {/* 2. Scrolling Section */}

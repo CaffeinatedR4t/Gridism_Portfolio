@@ -17,6 +17,12 @@ interface FeatureCardProps {
   chessPieceSize: { width: number; height: number };
   bgColor?: "white" | "black";
   slideDirection?: "left" | "right";
+  cardClassName?: string;
+  panelHeight?: string;
+  galleryTop?: string;
+  galleryHeight?: string;
+  descriptionWidth?: string;
+  hideChessPiece?: boolean;
 }
 
 const FeatureCardSection = ({
@@ -29,6 +35,12 @@ const FeatureCardSection = ({
   chessPieceSize,
   bgColor = "white",
   slideDirection = "left",
+  cardClassName = "",
+  panelHeight = "306px",
+  galleryTop = "clamp(300px, 42svh, 334px)",
+  galleryHeight = "min(338px, 43svh)",
+  descriptionWidth = "min(600px, 100%)",
+  hideChessPiece = false,
 }: FeatureCardProps) => {
   const theme = bgColor === "black" ? "dark" : "light";
   const sectionBg = bgColor === "black" ? "#000000" : "#FFFFFF";
@@ -44,11 +56,12 @@ const FeatureCardSection = ({
     >
       {images.map((image, i) => (
         <div
+          className="feature-card-image"
           key={`${suffix}-${i}`}
           style={{
             flexShrink: 0,
-            width: `${image.width}px`,
-            height: `${image.height}px`,
+            width: `calc(${image.width}px * var(--feature-card-image-scale, 1))`,
+            height: `calc(${image.height}px * var(--feature-card-image-scale, 1))`,
             outlineOffset: "2px",
           }}
         >
@@ -69,27 +82,35 @@ const FeatureCardSection = ({
 
   return (
     <section
-      className="relative w-full overflow-x-hidden gridism-content-layer"
+      className={`feature-card-section relative w-full gridism-content-layer ${cardClassName}`.trim()}
       data-theme={theme}
-      style={{ backgroundColor: sectionBg }}
+      style={{
+        backgroundColor: sectionBg,
+        height: "100svh",
+        overflow: "hidden",
+      }}
     >
-      {/* Outer wrapper — centers the 1300px black box */}
       <div
         className="feature-card-panel-wrap"
         style={{
-          paddingTop: "34px",
-          paddingBottom: "40px",
+          position: "absolute",
+          top: "clamp(96px, 19svh, 153px)",
+          left: 0,
+          width: "100%",
+          paddingLeft: "70px",
+          paddingRight: "70px",
+          boxSizing: "border-box",
           display: "flex",
           justifyContent: "center",
-          position: "relative",
           zIndex: 2,
         }}
       >
-        {/* Black box — 1300px, centered */}
         <div
+          className="feature-card-panel"
           style={{
             position: "relative",
             width: "min(1300px, 100%)",
+            height: panelHeight,
             backgroundColor: "#000000",
             backgroundImage: "url('/images/Key Features Text Background.webp')",
             backgroundSize: "cover",
@@ -115,6 +136,7 @@ const FeatureCardSection = ({
             }}
           >
             <p
+              className="feature-card-title"
               style={{
                 fontFamily: "'Switzer', sans-serif",
                 fontWeight: 400,
@@ -130,6 +152,7 @@ const FeatureCardSection = ({
 
           {/* Info row — number, subtitle, description */}
           <div
+            className="feature-card-copy-wrap"
             style={{
               width: "100%",
               paddingLeft: "55px",
@@ -188,7 +211,7 @@ const FeatureCardSection = ({
               <p
                 className="feature-card-description"
                 style={{
-                  width: "min(600px, 100%)",
+                  width: descriptionWidth,
                   fontFamily: "'Switzer', sans-serif",
                   fontWeight: 400,
                   fontSize: "20px",
@@ -204,28 +227,31 @@ const FeatureCardSection = ({
           </div>
 
           {/* Chess piece — right side of black box */}
-          <div
-            style={{
-              position: "absolute",
-              right: "40px",
-              top: "50%",
-              transform: "translateY(-50%)",
-              width: `${chessPieceSize.width}px`,
-              height: `${chessPieceSize.height}px`,
-              zIndex: 20,
-            }}
-          >
-            <img
-              src={chessPiece}
-              alt="Chess Piece"
+          {!hideChessPiece && (
+            <div
+              className="feature-card-chess-piece"
               style={{
-                width: "100%",
-                height: "100%",
-                objectFit: "contain",
-                display: "block",
+                position: "absolute",
+                right: "40px",
+                top: "50%",
+                transform: "translateY(-50%)",
+                width: `${chessPieceSize.width}px`,
+                height: `${chessPieceSize.height}px`,
+                zIndex: 20,
               }}
-            />
-          </div>
+            >
+              <img
+                src={chessPiece}
+                alt="Chess Piece"
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "contain",
+                  display: "block",
+                }}
+              />
+            </div>
+          )}
         </div>
       </div>
 
@@ -234,8 +260,12 @@ const FeatureCardSection = ({
         className="feature-card-gallery-wrap"
         style={{
           backgroundColor: sectionBg,
-          overflowX: "auto",
-          position: "relative",
+          overflow: "hidden",
+          position: "absolute",
+          top: galleryTop,
+          left: 0,
+          width: "100%",
+          height: galleryHeight,
           zIndex: 1,
         }}
       >
@@ -244,7 +274,7 @@ const FeatureCardSection = ({
             width: "100%",
             overflow: "hidden",
             paddingLeft: "30px",
-            paddingBottom: "40px",
+            height: "100%",
           }}
         >
           <div className={`flex shrink-0 w-max ${trackAnimationClass}`}>

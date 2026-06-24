@@ -5,19 +5,42 @@ export default function Home() {
     return (
         <>
             <div className="relative gridism-content-layer bg-white flex flex-col">
+                {/* Main connect content — exactly 100vh */}
                 <ConnectSection />
                 
-                {/* Bottom bar */}
-                <div className="flex justify-between items-center w-full border-t border-black py-5 px-[30px] bg-white">
-                    <p className="text-[16px] leading-[19px] m-0 font-['Switzer',_sans-serif] text-black">
+                {/* Bottom bar — OUTSIDE the 100vh, attached below it */}
+                <div
+                    className="flex items-center w-full bg-white"
+                    style={{
+                        borderTop: "1px solid #000000",
+                        padding: "24px 68px",
+                        fontFamily: "'Switzer', sans-serif",
+                        fontWeight: 400,
+                        fontSize: "16px",
+                        lineHeight: "21px",
+                        color: "#000000",
+                    }}
+                >
+                    {/* Left — @2026 */}
+                    <p className="m-0" style={{ marginRight: "auto" }}>
                         @2026
                     </p>
-                    <div className="flex gap-20">
+
+                    {/* Center — Instagram & LinkedIn */}
+                    <div className="flex items-center" style={{ gap: "40px" }}>
                         <a
                             href="https://instagram.com"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-black text-[16px] hover:opacity-60 transition-opacity font-['Switzer',_sans-serif] no-underline"
+                            className="hover:opacity-60 transition-opacity no-underline"
+                            style={{
+                                fontFamily: "'Switzer', sans-serif",
+                                fontWeight: 400,
+                                fontSize: "16px",
+                                lineHeight: "21px",
+                                color: "#000000",
+                                textAlign: "center",
+                            }}
                         >
                             -&nbsp; Instagram &nbsp;-
                         </a>
@@ -25,20 +48,40 @@ export default function Home() {
                             href="https://linkedin.com"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-black text-[16px] hover:opacity-60 transition-opacity font-['Switzer',_sans-serif] no-underline"
+                            className="hover:opacity-60 transition-opacity no-underline"
+                            style={{
+                                fontFamily: "'Switzer', sans-serif",
+                                fontWeight: 400,
+                                fontSize: "16px",
+                                lineHeight: "21px",
+                                color: "#000000",
+                                textAlign: "center",
+                            }}
                         >
                             -&nbsp; LinkedIn &nbsp;-
                         </a>
                     </div>
+
+                    {/* Right — Legals */}
                     <a
                         href="/legals"
-                        className="text-black text-[16px] hover:opacity-60 transition-opacity font-['Switzer',_sans-serif] no-underline"
+                        className="hover:opacity-60 transition-opacity no-underline"
+                        style={{
+                            fontFamily: "'Switzer', sans-serif",
+                            fontWeight: 400,
+                            fontSize: "16px",
+                            lineHeight: "21px",
+                            color: "#000000",
+                            textAlign: "right",
+                            marginLeft: "auto",
+                        }}
                     >
                         Legals
                     </a>
                 </div>
             </div>
 
+            {/* Sticky footer reveal section — invisible scroll space */}
             <section className="relative gridism-footer-layer" data-theme="black">
                 <StickyFooterImage imageSrc="/images/Connect Footer.webp" />
 
