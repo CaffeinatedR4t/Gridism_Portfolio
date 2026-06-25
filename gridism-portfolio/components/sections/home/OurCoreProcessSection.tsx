@@ -1,8 +1,8 @@
 "use client";
 
-import { useRef, useState, useLayoutEffect } from "react";
+import { useRef, useState, useLayoutEffect, useEffect } from "react";
 import Image from "next/image";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, AnimatePresence, useInView } from "framer-motion";
 
 /* ─── Parallax Wrapper Component ────────────────────────────────────────── */
 const ParallaxGraphic = ({ 
@@ -88,32 +88,61 @@ const coreProcessImages = [
   "/images/CP 7.webp",
 ];
 
+/* ─── Step Image Block (for tracking scroll position) ─────────────────────── */
+const StepImageBlock = ({ 
+  index, 
+  setActiveIndex, 
+  children 
+}: { 
+  index: number; 
+  setActiveIndex: (i: number) => void; 
+  children: React.ReactNode;
+}) => {
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref, { 
+    margin: "-50% 0px -50% 0px",
+    amount: "some"
+  });
+  
+  useEffect(() => {
+    if (isInView) {
+      setActiveIndex(index);
+    }
+  }, [isInView, index, setActiveIndex]);
+
+  return (
+    <div 
+      ref={ref} 
+      className="relative min-h-[100vh] flex flex-col lg:flex-row items-start justify-center py-24 gap-12 lg:gap-[55px]"
+    >
+      {children}
+    </div>
+  );
+};
+
 /* ─── Main Section ────────────────────────────────────────────────────────── */
 const OurCoreProcessSection = () => {
+  const [activeIndex, setActiveIndex] = useState(0);
   const steps = [
     {
       title: "Aligning the Goals & ROI",
-      description: "We quickly align on what “success” means—business goal, user outcome, key metrics, and constraints.",
+      description: "We deliver premium brand and digital experiences. Built fast, crafted with precision, and designed to perform. From first concept to final pixel, we move with flexibility but never compromise on outcome, quality, or impact.",
       image: "/images/image.jpg",
-      keywords: "timeline    tech    brand",
     },
     {
       title: "Prototype to Learn",
-      description: "We create a few solution directions and turn the best ones into interactive prototypes to test and validate early. AI helps speed up exploration, but decisions stay human and intentional.",
+      description: "We deliver premium brand and digital experiences. Built fast, crafted with precision, and designed to perform. From first concept to final pixel, we move with flexibility but never compromise on outcome, quality, or impact.",
       image: "/images/Artboard 1sssdwsdws.png",
-      keywords: "interactive    validation    logic",
     },
     {
       title: "Craft",
-      description: "We refine the chosen direction with ruthless attention to detail—layout, typography, microcopy, interactions, states, and edge cases, so it ends up premium and consistent.",
+      description: "We deliver premium brand and digital experiences. Built fast, crafted with precision, and designed to perform. From first concept to final pixel, we move with flexibility but never compromise on outcome, quality, or impact.",
       image: "/images/ezzrale 1 portos.png",
-      keywords: "detail    precision    craft",
     },
     {
       title: "Ship & Scale",
-      description: "We don't just deliver; we launch for growth. Every product is optimized for speed, SEO, and scalability, ensuring your digital presence is built to evolve and dominate.",
+      description: "We deliver premium brand and digital experiences. Built fast, crafted with precision, and designed to perform. From first concept to final pixel, we move with flexibility but never compromise on outcome, quality, or impact.",
       image: "/images/Artboard 1sssdwsdws.png",
-      keywords: "growth    optimized    scale",
     }
   ];
 
@@ -228,20 +257,18 @@ const OurCoreProcessSection = () => {
         
         {/* Left Column: Sticky Overview */}
         <div className="w-[150px] lg:w-[191px] shrink-0 relative">
-          <div className="sticky top-[150px] pt-10 h-fit">
+          <div className="sticky top-[90px] pt-10 h-fit">
             <h2 className="text-black font-['Switzer',sans-serif] font-normal italic text-[20px] lg:text-[24px] leading-[30px]">
               Our Core Process
             </h2>
           </div>
         </div>
 
-        {/* Right Area: Scrolling Steps */}
-        <div className="flex-1 flex flex-col w-full">
+        {/* Right Area: Scrolling Steps (Mobile) + Center Images (Desktop) */}
+        <div className="flex-1 flex flex-col w-full lg:w-[auto]">
           {steps.map((step, index) => (
-            <div 
-              key={index}
-              className="min-h-screen flex flex-col lg:flex-row items-start py-24 gap-12 lg:gap-[55px]"
-            >
+            <StepImageBlock key={index} index={index} setActiveIndex={setActiveIndex}>
+              
               {/* Center: Parallax Image Container */}
               <div className="w-full lg:w-[min(603px,calc(100vw-837px))] h-[60vh] lg:h-[643px] shrink-0 overflow-hidden relative">
                 <ParallaxGraphic parallax={20}>
@@ -254,9 +281,9 @@ const OurCoreProcessSection = () => {
                 </ParallaxGraphic>
               </div>
 
-              {/* Right: Text Description */}
-              <div className="w-full lg:w-[422px] shrink-0 flex flex-col gap-[50px]">
-                <h3 className="text-black font-['Switzer',sans-serif] font-normal text-[32px] lg:text-[36px] leading-[30px]">
+              {/* Mobile-only Text Description (since desktop text is sticky below) */}
+              <div className="w-full lg:hidden flex flex-col gap-[30px]">
+                <h3 className="text-black font-['Switzer',sans-serif] font-normal text-[32px] leading-[30px]">
                   {step.title}
                 </h3>
                 
@@ -267,8 +294,55 @@ const OurCoreProcessSection = () => {
                   )}
                 </div>
               </div>
-            </div>
+              
+            </StepImageBlock>
           ))}
+        </div>
+
+        {/* Right Column: Sticky Text Description (Desktop Only) */}
+        <div className="w-[422px] shrink-0 relative hidden lg:block">
+          <div className="sticky top-[90px] pt-10 h-fit flex flex-col">
+            
+            <div className="flex flex-col gap-[50px] relative w-full h-[300px]">
+              
+              {/* Animated Title */}
+              <div className="relative h-[80px] w-full">
+                <AnimatePresence mode="wait">
+                  <motion.h3 
+                    key={`title-${activeIndex}`}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    transition={{ duration: 0.5, ease: [0.45, 0, 0.15, 1] }}
+                    className="text-black font-['Switzer',sans-serif] font-normal text-[36px] leading-[30px] absolute"
+                  >
+                    {steps[activeIndex].title}
+                  </motion.h3>
+                </AnimatePresence>
+              </div>
+              
+              {/* Animated Description */}
+              <div className="relative w-full h-[200px]">
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={`desc-${activeIndex}`}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.4 }}
+                    className="flex flex-col gap-6 text-black/50 font-['Switzer',sans-serif] font-normal text-[16px] leading-[19px] absolute top-0"
+                  >
+                    <p>{steps[activeIndex].description}</p>
+                    {steps[activeIndex].keywords && (
+                      <p className="italic whitespace-pre-wrap">{steps[activeIndex].keywords}</p>
+                    )}
+                  </motion.div>
+                </AnimatePresence>
+              </div>
+
+            </div>
+
+          </div>
         </div>
       </section>
     </div>

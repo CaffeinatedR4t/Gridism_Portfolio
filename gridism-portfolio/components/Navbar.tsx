@@ -48,7 +48,7 @@ const Navbar = () => {
         className="relative w-full mx-auto flex items-center justify-between"
         style={{
           maxWidth: "1440px",
-          padding: "32px 50px",
+          padding: "20px 50px",
         }}
       >
         
@@ -57,9 +57,9 @@ const Navbar = () => {
           <img
             src="/images/GRD WHITE TM.png"
             alt="Gridism"
-            width={58}
-            height={53}
-            className="transition-all duration-300"
+            width={48}
+            height={44}
+            className="transition-all duration-500 ease-[cubic-bezier(0.25,0.1,0.25,1)]"
           />
         </Link>
 
@@ -69,20 +69,20 @@ const Navbar = () => {
             <li key={link.href}>
               <Link
                 href={link.href}
-                className={`relative transition-colors duration-500 hover:opacity-70 group ${
+                className={`relative transition-all duration-500 ease-[cubic-bezier(0.25,0.1,0.25,1)] hover:opacity-70 group ${
                   link.italic ? "italic" : ""
                 }`}
                 style={{  
                   fontFamily: "'Switzer', sans-serif",
-                  fontSize: "20px",
-                  lineHeight: "26px",
+                  fontSize: "18px",
+                  lineHeight: "24px",
                   fontWeight: 400,
                   color: "#FFFFFF",
                 }}
               >
                 {link.label}
                 <span
-                  className="absolute left-1/2 bottom-0 w-0 h-px transition-all duration-300 ease-out group-hover:w-full group-hover:left-0"
+                  className="absolute left-1/2 bottom-[-2px] w-0 h-[2px] transition-all duration-500 ease-[cubic-bezier(0.25,0.1,0.25,1)] group-hover:w-full group-hover:left-0"
                   style={{ backgroundColor: "#FFFFFF"}}
                 />
               </Link>
