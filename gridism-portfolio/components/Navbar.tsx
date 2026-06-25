@@ -57,8 +57,8 @@ const Navbar = () => {
           <img
             src="/images/GRD WHITE TM.png"
             alt="Gridism"
-            width={48}
-            height={44}
+            width={32}
+            height={29}
             className="transition-all duration-500 ease-[cubic-bezier(0.25,0.1,0.25,1)]"
           />
         </Link>

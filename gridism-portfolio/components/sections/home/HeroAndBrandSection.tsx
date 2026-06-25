@@ -110,16 +110,22 @@ const HeroAndBrandSection = () => {
         {/* White Base Background Layer */}
         <div className="absolute inset-0 bg-[#F9F9F7]" />
 
-        {/* Black Background Placeholder */}
+        {/* Background Video */}
         <div className="absolute inset-0 w-full h-full flex items-center justify-center">
-          <div 
-            className="bg-[#060606]"
+          <video 
+            autoPlay 
+            loop 
+            muted 
+            playsInline 
             style={{ 
               width: "512px", 
               height: "333px", 
-              transform: "rotate(90deg)" 
+              transform: "rotate(-90deg)",
+              objectFit: "cover"
             }}
-          />
+          >
+            <source src="/videos/close-up-of-swiss-made-watch-mechanics-2025-12-17-21-13-42-utc-ezgif.com-rotate-video.webm" type="video/webm" />
+          </video>
         </div>
 
         {/* Title Container - No z-index to avoid isolation */}
@@ -139,7 +145,7 @@ const HeroAndBrandSection = () => {
                 className="flex flex-col items-center justify-center"
                 style={{
                   fontFamily: "'Switzer', sans-serif",
-                  fontWeight: 400,
+                  fontWeight: 600,
                   color: "#FFFFFF",
                   margin: 0,
                   lineHeight: 1.0,
