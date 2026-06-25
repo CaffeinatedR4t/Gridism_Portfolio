@@ -15,7 +15,7 @@ export default function Home() {
       <StickyFeatureCards />
       <OurCoreProcessSection />
       <OurMainClientsSection />
-      <FooterSection footerImage="/images/Group 75.png" footerLogo="/images/ICON GRADIENT TM.webp" footerBgColor="bg-white" footerFontColor="text-black" footerBorderColor="border-black"/>
+      <FooterSection footerImage="/images/Group 75.png" footerLogo="/images/ICON GRADIENT TM.webp" footerBgColor="bg-[#F9F9F7]" footerFontColor="text-black" footerBorderColor="border-black"/>
     </>
   );
 }

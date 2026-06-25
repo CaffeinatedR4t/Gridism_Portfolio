@@ -106,7 +106,7 @@ export function TeamSlider() {
 
                 <button
                     onClick={prevSlide}
-                    className="absolute top-1/2 left-0 md:left-2 -translate-y-1/2 bg-black/40 hover:bg-black text-white p-3 rounded-full opacity-0 group-hover:opacity-100 transition-opacity z-10"
+                    className="absolute top-1/2 left-0 md:left-2 -translate-y-1/2 bg-[#060606]/40 hover:bg-[#060606] text-white p-3 rounded-full opacity-0 group-hover:opacity-100 transition-opacity z-10"
                     aria-label="Previous slide"
                 >
                     ❮
@@ -114,7 +114,7 @@ export function TeamSlider() {
                 
                 <button
                     onClick={nextSlide}
-                    className="absolute top-1/2 right-0 md:right-2 -translate-y-1/2 bg-black/40 hover:bg-black text-white p-3 rounded-full opacity-0 group-hover:opacity-100 transition-opacity z-10"
+                    className="absolute top-1/2 right-0 md:right-2 -translate-y-1/2 bg-[#060606]/40 hover:bg-[#060606] text-white p-3 rounded-full opacity-0 group-hover:opacity-100 transition-opacity z-10"
                     aria-label="Next slide"
                 >
                     ❯

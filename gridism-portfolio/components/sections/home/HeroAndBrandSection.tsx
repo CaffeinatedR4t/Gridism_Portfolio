@@ -1,6 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+
+const animatedWords = ["Design", "Prosperity", "Legacy"];
 
 /* ─── carousel image sets ────────────────────────────────────────────────── */
 const topRowImages = [
@@ -79,6 +82,7 @@ const MarqueeRow = ({
 /* ─── HeroAndBrandSection ────────────────────────────────────────────────── */
 const HeroAndBrandSection = () => {
   const [viewport, setViewport] = useState({ w: 1440, h: 900 });
+  const [wordIndex, setWordIndex] = useState(0);
 
   useEffect(() => {
     const update = () =>
@@ -86,6 +90,13 @@ const HeroAndBrandSection = () => {
     update();
     window.addEventListener("resize", update, { passive: true });
     return () => window.removeEventListener("resize", update);
+  }, []);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setWordIndex((prev) => (prev + 1) % animatedWords.length);
+    }, 4000);
+    return () => clearInterval(interval);
   }, []);
 
   return (
@@ -97,12 +108,12 @@ const HeroAndBrandSection = () => {
         style={{ height: "100svh" }}
       >
         {/* White Base Background Layer */}
-        <div className="absolute inset-0 bg-white" />
+        <div className="absolute inset-0 bg-[#F9F9F7]" />
 
         {/* Black Background Placeholder */}
         <div className="absolute inset-0 w-full h-full flex items-center justify-center">
           <div 
-            className="bg-black"
+            className="bg-[#060606]"
             style={{ 
               width: "512px", 
               height: "333px", 
@@ -121,26 +132,67 @@ const HeroAndBrandSection = () => {
               pointerEvents: "auto"
             }}
           >
-            <h1
-              style={{
-                fontFamily: "'Switzer', sans-serif",
-                fontWeight: 400,
-                color: "#FFFFFF",
-                margin: 0,
-                lineHeight: 1.0,
-                fontSize: "clamp(60px, 11vw, 150px)",
-                letterSpacing: "-0.02em"
-              }}
-            >
-              A New Order<br />of Design
-            </h1>
+            <div className="w-full flex justify-center">
+              <motion.div
+                layout
+                transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+                className="flex flex-col items-center justify-center"
+                style={{
+                  fontFamily: "'Switzer', sans-serif",
+                  fontWeight: 400,
+                  color: "#FFFFFF",
+                  margin: 0,
+                  lineHeight: 1.0,
+                  fontSize: "clamp(60px, 11vw, 150px)",
+                  letterSpacing: "-0.02em"
+                }}
+              >
+                <motion.div layout="position" transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }} className="text-center">A New Order</motion.div>
+                <motion.div layout transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }} className="flex flex-row items-center justify-center mt-2 overflow-visible">
+                  <motion.div layout="position" transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }} className="whitespace-pre flex-shrink-0">
+                    of{" "}
+                  </motion.div>
+                  <motion.div layout transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }} className="relative flex items-center justify-start flex-shrink-0">
+                    <AnimatePresence mode="popLayout">
+                      <motion.div
+                        key={wordIndex}
+                        initial="hidden"
+                        animate="visible"
+                        exit="exit"
+                        variants={{
+                          hidden: {},
+                          visible: { transition: { staggerChildren: 0.08, staggerDirection: -1, delayChildren: 0.8 } },
+                          exit: { transition: { staggerChildren: 0.05, staggerDirection: -1 } },
+                        }}
+                        className="flex"
+                      >
+                        {animatedWords[wordIndex].split("").map((char, i) => (
+                          <motion.span
+                            key={i}
+                            layout="position"
+                            variants={{
+                              hidden: { opacity: 0, y: -40 },
+                              visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } },
+                              exit: { opacity: 0, y: 40, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } },
+                            }}
+                            className="whitespace-pre flex-shrink-0"
+                          >
+                            {char}
+                          </motion.span>
+                        ))}
+                      </motion.div>
+                    </AnimatePresence>
+                  </motion.div>
+                </motion.div>
+              </motion.div>
+            </div>
           </div>
         </div>
       </div>
 
       {/* ── PART 2: BRAND + CAROUSEL (100svh) ─────────────────────────── */}
       <div
-        className="relative w-full bg-black flex flex-col items-center justify-center overflow-hidden pt-20 lg:pt-32"
+        className="relative w-full bg-[#060606] flex flex-col items-center justify-center overflow-hidden pt-20 lg:pt-32"
         data-theme="dark"
         style={{ height: "100svh" }}
       >

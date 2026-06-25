@@ -4,13 +4,13 @@ import StickyFooterImage from "@/components/StickyFooterImage";
 export default function Home() {
     return (
         <>
-            <div className="relative gridism-content-layer bg-white flex flex-col">
+            <div className="relative gridism-content-layer bg-[#F9F9F7] flex flex-col">
                 {/* Main connect content — exactly 100vh */}
                 <ConnectSection />
                 
                 {/* Bottom bar — OUTSIDE the 100vh, attached below it */}
                 <div
-                    className="flex items-center w-full bg-white"
+                    className="flex items-center w-full bg-[#F9F9F7]"
                     style={{
                         borderTop: "1px solid #000000",
                         padding: "24px 68px",
@@ -32,7 +32,7 @@ export default function Home() {
                             href="https://instagram.com"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="hover:opacity-60 transition-opacity no-underline"
+                            className="hover:opacity-60 transition-opacity no-underline group flex items-center gap-1"
                             style={{
                                 fontFamily: "'Switzer', sans-serif",
                                 fontWeight: 400,
@@ -42,13 +42,15 @@ export default function Home() {
                                 textAlign: "center",
                             }}
                         >
-                            -&nbsp; Instagram &nbsp;-
+                            <span className="transition-transform duration-300 ease-in-out group-hover:-translate-x-1">-</span>
+                            <span>Instagram</span>
+                            <span className="transition-transform duration-300 ease-in-out group-hover:translate-x-1">-</span>
                         </a>
                         <a
                             href="https://linkedin.com"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="hover:opacity-60 transition-opacity no-underline"
+                            className="hover:opacity-60 transition-opacity no-underline group flex items-center gap-1"
                             style={{
                                 fontFamily: "'Switzer', sans-serif",
                                 fontWeight: 400,
@@ -58,7 +60,9 @@ export default function Home() {
                                 textAlign: "center",
                             }}
                         >
-                            -&nbsp; LinkedIn &nbsp;-
+                            <span className="transition-transform duration-300 ease-in-out group-hover:-translate-x-1">-</span>
+                            <span>LinkedIn</span>
+                            <span className="transition-transform duration-300 ease-in-out group-hover:translate-x-1">-</span>
                         </a>
                     </div>
 

@@ -18,7 +18,7 @@ const MainClientsSection = () => {
 
   return (
     <section 
-      className="relative w-full bg-white py-24"
+      className="relative w-full bg-[#F9F9F7] py-24"
       data-theme="light"
     >
       <div className="max-w-[1440px] mx-auto px-[8.68%]">

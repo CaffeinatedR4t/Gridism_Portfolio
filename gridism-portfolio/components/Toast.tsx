@@ -28,7 +28,7 @@ const Toast = ({ message, visible, onClose }: ToastProps) => {
         display: "flex",
         alignItems: "center",
         gap: "20px",
-        backgroundColor: "#ffffff",
+        backgroundColor: "#F9F9F7",
         border: "1px solid #000000",
         padding: "16px 24px",
         fontFamily: "'Switzer', sans-serif",

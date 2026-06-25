@@ -238,7 +238,7 @@ const CardLayer = ({
             position: "relative",
             width: "min(1300px, 100%)",
             height: card.panelHeight,
-            backgroundColor: "#000000",
+            backgroundColor: "#060606",
             backgroundImage: "url('/images/Key Features Text Background.webp')",
             backgroundSize: "cover",
             backgroundPosition: "center",
@@ -409,7 +409,7 @@ const StickyFeatureCards = () => {
       style={{
         /* Each card gets ~200vh of scroll distance + 100vh for the pinned viewport */
         height: `${CARDS.length * 200 + 100}vh`,
-        backgroundColor: "#FFFFFF",
+        backgroundColor: "#F9F9F7",
       }}
     >
       {/* Sticky viewport — stays pinned while user scrolls through the tall container */}
@@ -418,7 +418,7 @@ const StickyFeatureCards = () => {
         style={{
           height: "100vh",
           overflow: "hidden",
-          backgroundColor: "#FFFFFF",
+          backgroundColor: "#F9F9F7",
         }}
       >
         {/* Panels — scroll-driven slide */}
@@ -447,7 +447,7 @@ const StickyFeatureCards = () => {
               left: 0,
               width: "100%",
               height: activeCard.galleryHeight,
-              backgroundColor: "#FFFFFF",
+              backgroundColor: "#F9F9F7",
               overflow: "hidden",
               zIndex: 1,
             }}

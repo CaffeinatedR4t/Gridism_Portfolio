@@ -8,12 +8,12 @@ const HeroSection = () => {
       style={{ height: "100svh" }}
     >
       {/* White Base Background Layer */}
-      <div className="absolute inset-0 bg-white" />
+      <div className="absolute inset-0 bg-[#F9F9F7]" />
 
       {/* Black Background Placeholder */}
       <div className="absolute inset-0 w-full h-full flex items-center justify-center">
         <div 
-          className="bg-black"
+          className="bg-[#060606]"
           style={{ 
             width: "512px", 
             height: "333px", 

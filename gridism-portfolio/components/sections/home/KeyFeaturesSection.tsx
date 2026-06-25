@@ -48,7 +48,7 @@ const KeyFeaturesSection = () => {
 
   return (
     <section
-      className="relative w-full bg-white overflow-hidden gridism-content-layer flex items-center h-[100svh]"
+      className="relative w-full bg-[#F9F9F7] overflow-hidden gridism-content-layer flex items-center h-[100svh]"
       data-theme="light"
     >
       <div

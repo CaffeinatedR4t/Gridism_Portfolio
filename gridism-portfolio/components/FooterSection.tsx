@@ -48,10 +48,12 @@ const FooterSection = ({ footerImage, footerLogo, footerBgColor, footerFontColor
                 </p>
                 <a
                   href="mailto:hello@gridism.com"
-                  className="hidden md:block text-base sm:text-lg md:text-xl lg:text-2xl leading-[29px] cursor-pointer hover:opacity-60 transition-opacity"
+                  className="hidden md:inline-flex items-center gap-2 text-base sm:text-lg md:text-xl lg:text-2xl leading-[29px] cursor-pointer hover:opacity-60 transition-opacity group"
                   style={{ fontFamily: "'Switzer', sans-serif", textDecoration: "none" }}
                 >
-                  —&nbsp; Contact Us &nbsp;—
+                  <span className="transition-transform duration-300 ease-in-out group-hover:-translate-x-1">—</span>
+                  <span>Contact Us</span>
+                  <span className="transition-transform duration-300 ease-in-out group-hover:translate-x-1">—</span>
                 </a>
               </div>
             </div>
@@ -70,17 +72,21 @@ const FooterSection = ({ footerImage, footerLogo, footerBgColor, footerFontColor
                   href="https://instagram.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={cn(theme.typography.fontFooter, footerFontColor)}
+                  className={cn(theme.typography.fontFooter, footerFontColor, "group flex items-center gap-1")}
                 >
-                  -&nbsp; Instagram &nbsp;-
+                  <span className="transition-transform duration-300 ease-in-out group-hover:-translate-x-1">-</span>
+                  <span>Instagram</span>
+                  <span className="transition-transform duration-300 ease-in-out group-hover:translate-x-1">-</span>
                 </a>
                 <a
                   href="https://linkedin.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={cn(theme.typography.fontFooter, footerFontColor)}
+                  className={cn(theme.typography.fontFooter, footerFontColor, "group flex items-center gap-1")}
                 >
-                  -&nbsp; LinkedIn &nbsp;-
+                  <span className="transition-transform duration-300 ease-in-out group-hover:-translate-x-1">-</span>
+                  <span>LinkedIn</span>
+                  <span className="transition-transform duration-300 ease-in-out group-hover:translate-x-1">-</span>
                 </a>
               </div>
 
@@ -97,15 +103,7 @@ const FooterSection = ({ footerImage, footerLogo, footerBgColor, footerFontColor
         {/* ── Footer over sticky image ── */}
         <div className="relative w-full h-[80svh]">
 
-          {/* Gradient overlay */}
-          <div
-            className="absolute inset-0 pointer-events-none"
-            style={{
-              background:
-                "linear-gradient(180deg, rgba(255,255,255,0) 16.83%, rgba(88,88,88,0.497596) 52.24%, rgba(44,44,44,0.629461) 68.3%, rgba(34,34,34,0.659135) 76.8%, rgba(22,22,22,0.69655) 92.85%, rgba(12,12,12,0.723844) 101.35%, rgba(4,4,4,0.75) 115.05%)",
-              mixBlendMode: "multiply",
-            }}
-          />
+          {/* Gradient overlay removed per request */}
 
           <div
             className="absolute inset-0 flex items-end"

@@ -43,7 +43,7 @@ const FeatureCardSection = ({
   hideChessPiece = false,
 }: FeatureCardProps) => {
   const theme = bgColor === "black" ? "dark" : "light";
-  const sectionBg = bgColor === "black" ? "#000000" : "#FFFFFF";
+  const sectionBg = bgColor === "black" ? "#060606" : "#F9F9F7";
 
   const trackAnimationClass =
     slideDirection === "left" ? "run-marquee-left" : "run-marquee-right";
@@ -111,7 +111,7 @@ const FeatureCardSection = ({
             position: "relative",
             width: "min(1300px, 100%)",
             height: panelHeight,
-            backgroundColor: "#000000",
+            backgroundColor: "#060606",
             backgroundImage: "url('/images/Key Features Text Background.webp')",
             backgroundSize: "cover",
             backgroundPosition: "center",

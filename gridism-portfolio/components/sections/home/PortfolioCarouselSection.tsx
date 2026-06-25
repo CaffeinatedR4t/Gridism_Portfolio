@@ -12,7 +12,7 @@ const PortfolioCarouselSection = () => {
 
   return (
     <section
-      className="relative w-full bg-black overflow-hidden"
+      className="relative w-full bg-[#060606] overflow-hidden"
       style={{ height: "254px" }}
       data-theme="dark"
     >

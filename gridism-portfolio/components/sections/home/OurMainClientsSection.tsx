@@ -25,7 +25,7 @@ const ClientCard = ({ client }: { client: typeof clients[0] }) => (
       loading="eager"
       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
     />
-    <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-500" />
+    <div className="absolute inset-0 bg-[#060606]/10 group-hover:bg-transparent transition-colors duration-500" />
     <p
       className="absolute top-6 right-6 lg:top-10 lg:right-10 text-white font-['Switzer',sans-serif] text-[24px] lg:text-[40px] font-normal leading-tight"
     >
@@ -37,7 +37,7 @@ const ClientCard = ({ client }: { client: typeof clients[0] }) => (
 const OurMainClientsSection = () => {
   return (
     <section
-      className="relative w-full bg-white overflow-hidden pt-16 lg:pt-24 gridism-content-layer flex flex-col items-center"
+      className="relative w-full bg-[#F9F9F7] overflow-hidden pt-16 lg:pt-24 gridism-content-layer flex flex-col items-center"
       data-theme="light"
     >
       <style dangerouslySetInnerHTML={{__html: `
@@ -85,7 +85,7 @@ const OurMainClientsSection = () => {
       </div>
 
       {/* 1. Grid Separator Strip */}
-      <div className="w-full h-[30vh] lg:h-[40vh] flex items-start justify-center bg-white overflow-hidden pt-6 lg:pt-10">
+      <div className="w-full h-[30vh] lg:h-[40vh] flex items-start justify-center bg-[#F9F9F7] overflow-hidden pt-6 lg:pt-10">
         <img 
           src="/images/Alternative Grid Logo.webp" 
           className="h-[80px] lg:h-[120px] w-auto object-contain" 

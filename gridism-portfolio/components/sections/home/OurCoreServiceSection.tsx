@@ -110,7 +110,7 @@ const SERVICES = [
           />
         </div>
         <div 
-          className="absolute left-[117px] top-[135px] w-[422px] h-[309px] bg-white overflow-hidden"
+          className="absolute left-[117px] top-[135px] w-[422px] h-[309px] bg-[#F9F9F7] overflow-hidden"
           style={{
             borderRadius: "65px",
             filter: "drop-shadow(3px 3px 40px rgba(0, 0, 0, 0.4))",
@@ -196,7 +196,7 @@ const OurCoreServiceSection = () => {
   const currentService = SERVICES[activeIndex] || SERVICES[0];
 
   return (
-    <section className="relative w-full bg-black gridism-content-layer flex flex-row" data-theme="dark">
+    <section className="relative w-full bg-[#060606] gridism-content-layer flex flex-row" data-theme="dark">
       
       {/* 1. Left Column: Sticky Text content */}
       <div className="w-[40%] sticky top-0 h-screen flex flex-col justify-between pt-[153px] pb-[85px] px-10 lg:px-[70px] shrink-0 z-20">

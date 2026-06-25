@@ -56,7 +56,7 @@ const ConnectSection = () => {
     return (
         <>
         <section
-            className="bg-white w-full flex flex-col justify-start"
+            className="bg-[#F9F9F7] w-full flex flex-col justify-start"
             style={{ height: "100vh", overflow: "hidden" }}
         >
             <div
@@ -334,7 +334,7 @@ const ConnectSection = () => {
                             <button 
                                 type="submit"
                                 disabled={result === "Sending..."} 
-                                className="bg-black text-white px-10 py-3 text-[18px] font-medium transition-all duration-300 hover:bg-black/90 disabled:opacity-50"
+                                className="bg-[#060606] text-white px-10 py-3 text-[18px] font-medium transition-all duration-300 hover:bg-[#060606]/90 disabled:opacity-50"
                             >
                                 {result === "Submit" ? "Submit" : result}
                             </button>

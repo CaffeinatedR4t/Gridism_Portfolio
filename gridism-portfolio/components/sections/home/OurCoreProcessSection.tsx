@@ -158,7 +158,7 @@ const OurCoreProcessSection = () => {
             whileInView={{ y: 0, opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 2.5, ease: [0.22, 1, 0.36, 1] }}
-            className="relative overflow-hidden bg-black"
+            className="relative overflow-hidden bg-[#060606]"
             style={{
               width: "333px",
               height: "512px",
