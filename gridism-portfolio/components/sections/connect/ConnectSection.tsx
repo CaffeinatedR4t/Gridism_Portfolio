@@ -60,12 +60,10 @@ const ConnectSection = () => {
             style={{ height: "100vh", overflow: "hidden" }}
         >
             <div
-                className="w-full max-w-[1440px] mx-auto flex-1 flex flex-col md:grid md:grid-cols-2"
+                className="w-full flex-1 flex flex-col md:grid md:grid-cols-2 px-10 lg:px-[70px]"
                 style={{
                     paddingTop: "120px",
                     paddingBottom: "40px",
-                    paddingLeft: "77px",
-                    paddingRight: "77px",
                     gap: "40px",
                 }}
             >

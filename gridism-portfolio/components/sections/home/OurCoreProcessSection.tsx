@@ -251,13 +251,13 @@ const OurCoreProcessSection = () => {
 
       {/* 2. Scrolling Section */}
       <section 
-        className="relative w-full gridism-content-layer px-8 lg:px-[70px] max-w-[1440px] mx-auto flex flex-row gap-8 lg:gap-[29px]" 
+        className="relative w-full gridism-content-layer px-10 lg:px-[70px] flex flex-row gap-8 lg:gap-[29px]" 
         data-theme="light"
       >
         
         {/* Left Column: Sticky Overview */}
         <div className="w-[150px] lg:w-[191px] shrink-0 relative">
-          <div className="sticky top-[90px] pt-10 h-fit">
+          <div className="sticky top-[55px] pt-10 h-fit">
             <h2 className="text-black font-['Switzer',sans-serif] font-normal italic text-[20px] lg:text-[24px] leading-[30px]">
               Our Core Process
             </h2>
@@ -301,9 +301,9 @@ const OurCoreProcessSection = () => {
 
         {/* Right Column: Sticky Text Description (Desktop Only) */}
         <div className="w-[422px] shrink-0 relative hidden lg:block">
-          <div className="sticky top-[90px] pt-10 h-fit flex flex-col">
+          <div className="sticky top-[55px] pt-10 h-fit flex flex-col">
             
-            <div className="flex flex-col gap-[50px] relative w-full h-[300px]">
+            <div className="flex flex-col gap-[10px] relative w-full h-[300px]">
               
               {/* Animated Title */}
               <div className="relative h-[80px] w-full">

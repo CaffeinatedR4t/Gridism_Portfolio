@@ -85,7 +85,7 @@ const OurMainClientsSection = () => {
       </div>
 
       {/* 1. Grid Separator Strip */}
-      <div className="w-full h-[30vh] lg:h-[40vh] flex items-start justify-center bg-[#F9F9F7] overflow-hidden pt-6 lg:pt-10">
+      <div className="w-full h-[30vh] lg:h-[40vh] flex items-start justify-center bg-[#F9F9F7] overflow-hidden">
         <img 
           src="/images/Alternative Grid Logo.webp" 
           className="h-[80px] lg:h-[120px] w-auto object-contain" 
@@ -107,7 +107,7 @@ const OurMainClientsSection = () => {
         </video>
 
         {/* Branding Overlay */}
-        <div className="absolute inset-0 flex items-center justify-between px-8 md:px-20 lg:px-32">
+        <div className="absolute inset-0 flex items-center justify-between px-10 lg:px-[70px]">
           {/* Left: Logo */}
           <div className="relative z-10">
             <img 

@@ -52,7 +52,7 @@ const KeyFeaturesSection = () => {
       data-theme="light"
     >
       <div
-        className="relative w-full max-w-[1440px] mx-auto flex flex-row items-center justify-between px-10 lg:px-[70px]"
+        className="relative w-full flex flex-row items-center justify-between px-10 lg:px-[70px]"
       >
         {/* Heading Container */}
         <motion.div

@@ -51,15 +51,15 @@ const FooterSection = ({ footerImage, footerLogo, footerBgColor, footerFontColor
                   className="hidden md:inline-flex items-center gap-2 text-base sm:text-lg md:text-xl lg:text-2xl leading-[29px] cursor-pointer hover:opacity-60 transition-opacity group"
                   style={{ fontFamily: "'Switzer', sans-serif", textDecoration: "none" }}
                 >
-                  <span className="transition-transform duration-300 ease-in-out group-hover:-translate-x-1">—</span>
+                  <span className="transition-transform duration-300 ease-in-out group-hover:-translate-x-1">-</span>
                   <span>Contact Us</span>
-                  <span className="transition-transform duration-300 ease-in-out group-hover:translate-x-1">—</span>
+                  <span className="transition-transform duration-300 ease-in-out group-hover:translate-x-1">-</span>
                 </a>
               </div>
             </div>
 
             {/* Bottom bar */}
-            <div className={cn(footerBorderColor, footerFontColor ,"absolute bottom-0 flex justify-between items-center w-screen border-t-1 py-[20px] px-[30px] box-border")}>
+            <div className={cn(footerBorderColor, footerFontColor ,"absolute bottom-0 flex justify-between items-center w-screen border-t-1 py-[20px] px-10 lg:px-[70px] box-border")}>
               <p
                 className="text-[16px] leading-[19px] m-0"
                 style={{ fontFamily: "'Switzer', sans-serif" }}
@@ -92,9 +92,11 @@ const FooterSection = ({ footerImage, footerLogo, footerBgColor, footerFontColor
 
               <a
                 href="/legals"
-                className={cn(theme.typography.fontFooter, footerFontColor)}
+                className={cn(theme.typography.fontFooter, footerFontColor, "group flex items-center gap-1")}
               >
-                Legals
+                <span className="transition-transform duration-300 ease-in-out group-hover:-translate-x-1">-</span>
+                <span>Legals</span>
+                <span className="transition-transform duration-300 ease-in-out group-hover:translate-x-1">-</span>
               </a>
             </div>
           </div>

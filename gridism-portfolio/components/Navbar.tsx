@@ -45,10 +45,10 @@ const Navbar = () => {
       }}
     >
       <nav
-        className="relative w-full mx-auto flex items-center justify-between"
+        className="relative w-full flex items-center justify-between px-10 lg:px-[70px]"
         style={{
-          maxWidth: "1440px",
-          padding: "20px 50px",
+          paddingTop: "30px",
+          paddingBottom: "20px",
         }}
       >
         
