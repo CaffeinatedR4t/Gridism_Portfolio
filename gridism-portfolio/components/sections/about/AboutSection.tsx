@@ -40,7 +40,7 @@ const MARQUEE_IMAGES = [
 const AboutSection = () => {
     // Shared class for the mission statement headers
     return (
-        <section className="bg-white gridism-content-layer">
+        <section className="bg-[#F9F9F7] gridism-content-layer">
             {/* HERO SECTION: Cyborg + Absolute Text */}
             <div className="relative min-h-screen">
                 <div className="relative min-h-screen">
@@ -57,7 +57,7 @@ const AboutSection = () => {
                     <h2 className="font-regular text-xl sm:text-2xl md:text-3xl lg:text-4xl text-balance">Brand & Digital Consultancy, We help Lifestyle and tech brands build the presence they deserve.</h2>
                 </div>
             </div>
-            <div className="flex flex-col flex-start gap-5 md:flex-row md:gap-20 p-5 bg-black md:items-center text-white text-left">
+            <div className="flex flex-col flex-start gap-5 md:flex-row md:gap-20 p-5 bg-[#060606] md:items-center text-white text-left">
                 <h3 className="text-base sm:text-sm md:text-lg lg:text-2xl xl:text-3xl font-semibold leading-normal">Outcomes Over Process.</h3>
                 <p className="text-base sm:text-sm md:text-md lg:text-xl xl:text-2xl font-regular tracking-wider text-justify">
                     We help brands and products build premium experiences that deliver ROI through rapid prototyping (AI), sharp decision-making, and meticulous detail crafting from start to finish. My process is flexible—what remains consistent are the outcome, quality, and impact.
@@ -79,7 +79,7 @@ const AboutSection = () => {
 
                             return (
                                 // The main wrapper MUST have overflow-hidden
-                                <div key={groupIndex} className="flex w-full overflow-hidden bg-white/5 py-4">
+                                <div key={groupIndex} className="flex w-full overflow-hidden bg-[#F9F9F7]/5 py-4">
 
                                     {/* The animated moving track */}
                                     <div className={cn("flex shrink-0 w-max", animationClass)}>

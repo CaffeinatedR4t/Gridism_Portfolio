@@ -11,6 +11,10 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Gridism | Digital Creative Agency",
   description: "Human Centric Approach. Structure with Purpose. Commitment to Crafting.",
+  icons: {
+    icon: "/images/WEB VIEW 2.png",
+    apple: "/images/WEB VIEW 2.png",
+  },
 };
 
 export default function RootLayout({
@@ -20,7 +24,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.className} min-h-screen`} suppressHydrationWarning>
+      <body className={`${inter.className} min-h-screen overflow-x-hidden w-full max-w-[100vw]`} suppressHydrationWarning>
         <SmoothScroll>
           <Navbar />
           <FloatingLogo />

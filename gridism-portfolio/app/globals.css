@@ -13,11 +13,11 @@
 
 /* We create our own utility classes */
 .run-marquee-left {
-  animation: rawMarqueeLeft 40s linear infinite;
+  animation: rawMarqueeLeft 80s linear infinite;
 }
 
 .run-marquee-right {
-  animation: rawMarqueeRight 40s linear infinite;
+  animation: rawMarqueeRight 80s linear infinite;
 }
 
 .gridism-content-layer {
@@ -65,32 +65,192 @@
   }
 }
 
-/* Feature cards: desktop overlap between black panel and image strip */
-@media (min-width: 1024px) {
-  .feature-card-gallery-wrap {
-    margin-top: -96px;
-    padding-top: 24px;
-  }
+/* Feature cards: keep each card's panel and carousel inside one viewport */
+.feature-card-section {
+  --feature-card-image-scale: 1;
 }
 
-/* Feature cards: reduce overlap on tablets */
-@media (min-width: 768px) and (max-width: 1023px) {
-  .feature-card-gallery-wrap {
-    margin-top: -40px;
-    padding-top: 12px;
+.feature-card-02 {
+  --feature-card-image-scale: 1;
+}
+
+.feature-card-03 {
+  --feature-card-image-scale: 1;
+}
+
+@media (max-width: 1340px) {
+  .feature-card-description {
+    width: min(430px, 100%) !important;
+  }
+
+  .feature-card-02 .feature-card-description {
+    width: min(600px, 100%) !important;
+  }
+
+  .feature-card-section.feature-card-02 {
+    --feature-card-image-scale: 0.74;
+  }
+
+  .feature-card-section.feature-card-03 {
+    --feature-card-image-scale: 0.82;
+  }
+
+  .feature-card-03 .feature-card-description {
+    width: min(550px, 100%) !important;
+  }
+
+  .feature-card-chess-piece {
+    right: 24px !important;
   }
 }
 
 /* Feature cards: stack cleanly on mobile */
-@media (max-width: 767px) {
+@media (max-width: 1199px) {
+  .feature-card-section {
+    --feature-card-image-scale: 0.82;
+  }
+
+  .feature-card-description {
+    width: min(360px, 100%) !important;
+  }
+
+  .feature-card-02 {
+    --feature-card-image-scale: 0.82;
+  }
+
+  .feature-card-03 {
+    --feature-card-image-scale: 0.72;
+  }
+
+  .feature-card-02 .feature-card-description {
+    width: min(520px, 100%) !important;
+  }
+
+  .feature-card-panel-wrap {
+    padding-left: 40px !important;
+    padding-right: 40px !important;
+  }
+}
+
+@media (max-width: 1023px) {
+  .feature-card-section {
+    --feature-card-image-scale: 0.68;
+  }
+
+  .feature-card-panel-wrap {
+    top: clamp(72px, 13svh, 104px) !important;
+    padding-left: 32px !important;
+    padding-right: 32px !important;
+  }
+
+  .feature-card-panel {
+    height: auto !important;
+    min-height: 276px;
+  }
+
+  .feature-card-02 {
+    --feature-card-image-scale: 0.58;
+  }
+
+  .feature-card-03 {
+    --feature-card-image-scale: 0.55;
+  }
+
+  .feature-card-02 .feature-card-panel {
+    min-height: 390px;
+  }
+
+  .feature-card-03 .feature-card-panel {
+    min-height: 340px;
+  }
+
+  .feature-card-02 .feature-card-description {
+    width: min(430px, 100%) !important;
+  }
+
+  .feature-card-03 .feature-card-description {
+    width: min(430px, 100%) !important;
+  }
+
   .feature-card-gallery-wrap {
-    margin-top: 0;
-    padding-top: 0;
+    top: clamp(340px, 54svh, 420px) !important;
+    height: 32svh !important;
+  }
+
+  .feature-card-02 .feature-card-gallery-wrap {
+    top: clamp(320px, 51svh, 390px) !important;
+    height: 38svh !important;
+  }
+
+  .feature-card-03 .feature-card-gallery-wrap {
+    top: clamp(340px, 54svh, 420px) !important;
+    height: 36svh !important;
+  }
+}
+
+@media (max-width: 767px) {
+  .feature-card-section {
+    --feature-card-image-scale: 0.48;
+  }
+
+  .feature-card-panel-wrap {
+    top: 40px !important;
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+
+  .feature-card-panel {
+    width: 100% !important;
+    gap: 20px !important;
+    min-height: 0;
+  }
+
+  .feature-card-02 {
+    --feature-card-image-scale: 0.36;
+  }
+
+  .feature-card-03 {
+    --feature-card-image-scale: 0.38;
+  }
+
+  .feature-card-02 .feature-card-panel {
+    min-height: 0;
+  }
+
+  .feature-card-03 .feature-card-panel {
+    min-height: 0;
+  }
+
+  .feature-card-gallery-wrap {
+    top: auto !important;
+    bottom: 40px;
+    height: 30svh !important;
+  }
+
+  .feature-card-02 .feature-card-gallery-wrap {
+    bottom: 32px;
+    height: 31svh !important;
+  }
+
+  .feature-card-03 .feature-card-gallery-wrap {
+    top: auto !important;
+    bottom: 40px;
+    height: 32svh !important;
   }
 
   .feature-card-title-row {
     height: auto !important;
-    min-height: 92px;
+    min-height: 72px;
+    padding-left: 24px !important;
+    padding-right: 24px !important;
+  }
+
+  .feature-card-title {
+    font-size: 28px !important;
+    line-height: 36px !important;
+  }
+
+  .feature-card-copy-wrap {
     padding-left: 24px !important;
     padding-right: 24px !important;
   }
@@ -98,7 +258,7 @@
   .feature-card-info-row {
     flex-direction: column !important;
     gap: 12px !important;
-    padding-bottom: 32px !important;
+    padding-bottom: 24px !important;
   }
 
   .feature-card-number,
@@ -109,8 +269,13 @@
   }
 
   .feature-card-description {
-    font-size: 17px !important;
-    line-height: 24px !important;
+    font-size: 15px !important;
+    line-height: 21px !important;
+    text-align: left !important;
+  }
+
+  .feature-card-chess-piece {
+    display: none;
   }
 }
 
@@ -160,7 +325,7 @@ html {
 body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-family: 'Silka', 'Inter', sans-serif;
+  font-family: 'Switzer', 'Inter', sans-serif;
   overflow-x: hidden;
 }
 

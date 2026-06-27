@@ -15,14 +15,14 @@ const FloatingLogo = () => {
       }}
     >
       <img
-        src="/images/gridism-logo-tilted.svg"
+        src="/images/WORDMARK WHITE.webp"
         alt=""
         aria-hidden="true"
         className="select-none h-auto"
         style={{
-          width: "124px",
+          width: "76px",
           display: "block",
-          filter: "invert(1)",
+          transform: "rotate(180deg)",
         }}
       />
     </div>

@@ -1,32 +1,38 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+
+const animatedWords = ["Design", "Prosperity", "Legacy"];
 
 /* ─── carousel image sets ────────────────────────────────────────────────── */
 const topRowImages = [
-  { w: 260, h: 170, src: "/images/ezzralef.png", alt: "Portfolio 1" },
-  { w: 260, h: 170, src: "/images/ezzralef.png", alt: "Portfolio 2" },
-  { w: 220, h: 170, src: "/images/ezzralef.png", alt: "Portfolio 3" },
-  { w: 265, h: 170, src: "/images/ezzralef.png", alt: "Portfolio 4" },
-  { w: 215, h: 170, src: "/images/ezzralef.png", alt: "Portfolio 5" },
-  { w: 340, h: 170, src: "/images/ezzralef.png", alt: "Portfolio 6" },
+  { w: 312, h: 255, src: "/images/Artboard 1.png", alt: "Portfolio 1" },
+  { w: 313, h: 255, src: "/images/Artboard 1_2.png", alt: "Portfolio 2" },
+  { w: 313, h: 255, src: "/images/Artboard 1_3.png", alt: "Portfolio 3" },
+  { w: 313, h: 256, src: "/images/Artboard 1_5.png", alt: "Portfolio 4" },
+  { w: 312, h: 255, src: "/images/Artboard 1_1.png", alt: "Portfolio 5" },
+  { w: 312, h: 255, src: "/images/Artboard 1_10.png", alt: "Portfolio 6" },
+  { w: 311, h: 254, src: "/images/Artboard 1_13.png", alt: "Portfolio 7" },
 ];
 
 const bottomRowImages = [
-  { w: 175, h: 100, src: "/images/ezzralef.png", alt: "Portfolio 7" },
-  { w: 190, h: 100, src: "/images/ezzralef.png", alt: "Portfolio 8" },
-  { w: 165, h: 100, src: "/images/ezzralef.png", alt: "Portfolio 9" },
-  { w: 205, h: 100, src: "/images/ezzralef.png", alt: "Portfolio 10" },
-  { w: 155, h: 100, src: "/images/ezzralef.png", alt: "Portfolio 11" },
-  { w: 180, h: 100, src: "/images/ezzralef.png", alt: "Portfolio 12" },
-  { w: 175, h: 100, src: "/images/ezzralef.png", alt: "Portfolio 13" },
+  { w: 250, h: 204, src: "/images/Artboard 1_4.png", alt: "Portfolio 8" },
+  { w: 250, h: 204, src: "/images/Artboard 1_6.png", alt: "Portfolio 9" },
+  { w: 249, h: 203, src: "/images/Artboard 1_7.png", alt: "Portfolio 10" },
+  { w: 250, h: 204, src: "/images/Artboard 1_8.png", alt: "Portfolio 11" },
+  { w: 249, h: 203, src: "/images/Artboard 1_11.png", alt: "Portfolio 12" },
+  { w: 248, h: 203, src: "/images/Artboard 1_14.png", alt: "Portfolio 13" },
+  { w: 248, h: 203, src: "/images/Artboard 1_12.png", alt: "Portfolio 14" },
+  { w: 249, h: 203, src: "/images/Artboard 1_9.png", alt: "Portfolio 15" },
+  { w: 249, h: 203, src: "/images/Artboard 1_15.png", alt: "Portfolio 16" },
 ];
 
 /* ─── MarqueeRow — mirrors AboutSection double-block pattern exactly ─────── */
 const MarqueeRow = ({
   images,
   direction = "left",
-  gap = 14,
+  gap = 20,
 }: {
   images: { w: number; h: number; src: string; alt: string }[];
   direction?: "left" | "right";
@@ -76,6 +82,7 @@ const MarqueeRow = ({
 /* ─── HeroAndBrandSection ────────────────────────────────────────────────── */
 const HeroAndBrandSection = () => {
   const [viewport, setViewport] = useState({ w: 1440, h: 900 });
+  const [wordIndex, setWordIndex] = useState(0);
 
   useEffect(() => {
     const update = () =>
@@ -85,40 +92,12 @@ const HeroAndBrandSection = () => {
     return () => window.removeEventListener("resize", update);
   }, []);
 
-  const objectPosition = useMemo(() => {
-    const aspect = viewport.w / viewport.h;
-    let y = "50%";
-    if (aspect >= 1.8) y = "45%";
-    if (aspect >= 2.1) y = "42%";
-    if (aspect <= 1.2) y = "55%";
-    return `center ${y}`;
-  }, [viewport.w, viewport.h]);
-
-  const VerticalText = ({
-    children,
-    leftPercent,
-    topPercent,
-  }: {
-    children: string;
-    leftPercent: number;
-    topPercent: number;
-  }) => (
-    <p
-      className="absolute text-white whitespace-nowrap"
-      style={{
-        left: `${leftPercent}%`,
-        top: `${topPercent}%`,
-        transform: "rotate(90deg)",
-        transformOrigin: "left top",
-        fontSize: "clamp(9px, 0.7vw, 10px)",
-        lineHeight: "12px",
-        fontFamily: "'Switzer', sans-serif",
-        fontWeight: 400,
-      }}
-    >
-      {children}
-    </p>
-  );
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setWordIndex((prev) => (prev + 1) % animatedWords.length);
+    }, 4000);
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <section className="relative w-full gridism-content-layer" data-theme="dark">
@@ -128,187 +107,152 @@ const HeroAndBrandSection = () => {
         className="relative w-full overflow-hidden"
         style={{ height: "100svh" }}
       >
-        {/* Background */}
-        <div className="absolute inset-0 w-full h-full">
-          <img
-            src="/images/about-hero.webp"
-            alt=""
-            aria-hidden="true"
-            className="w-full h-full"
-            style={{ objectFit: "cover", objectPosition, display: "block" }}
-          />
-        </div>
+        {/* White Base Background Layer */}
+        <div className="absolute inset-0 bg-[#F9F9F7]" />
 
-        {/* Grid lines */}
-        <div className="absolute inset-0 pointer-events-none">
-          {[11.1, 26.4, 41.7, 56.9, 72.2, 87.5].map((pct, i) => (
-            <div
-              key={i}
-              className="absolute top-0 w-px h-full"
-              style={{
-                left: `${pct}%`,
-                background: "rgba(255,255,255,0.20)",
-                mixBlendMode: "overlay",
-              }}
-            />
-          ))}
-        </div>
-
-        {/* Labels + title */}
-        <div className="relative z-10 w-full h-full">
-          <VerticalText leftPercent={12} topPercent={8.2}>Human Centric Approach</VerticalText>
-          <VerticalText leftPercent={27.3} topPercent={16.3}>Commitment to Crafting</VerticalText>
-          <VerticalText leftPercent={57.8} topPercent={8.5}>Structure with Purpose</VerticalText>
-          <VerticalText leftPercent={12} topPercent={31}>Consistency Loyalty</VerticalText>
-          <VerticalText leftPercent={42.6} topPercent={30.2}>Growth by Design</VerticalText>
-          <VerticalText leftPercent={73.2} topPercent={40}>Creativity within Order</VerticalText>
-          <VerticalText leftPercent={88.4} topPercent={42.6}>Digital Creative Agency</VerticalText>
-          <VerticalText leftPercent={50.3} topPercent={50.6}>Grit Builds Precision</VerticalText>
-
-          <div
-            className="absolute left-1/2 top-1/2 text-center"
-            style={{ transform: "translate(-50%, -50%)", width: "min(92vw, 1100px)" }}
+        {/* Background Video */}
+        <div className="absolute inset-0 w-full h-full flex items-center justify-center">
+          <video 
+            autoPlay 
+            loop 
+            muted 
+            playsInline 
+            style={{ 
+              width: "512px", 
+              height: "333px", 
+              transform: "rotate(-90deg)",
+              objectFit: "cover"
+            }}
           >
-            <h1
-              style={{
-                fontFamily: "'Switzer', sans-serif",
-                fontWeight: 400,
-                color: "#FFFFFF",
-                margin: 0,
-                lineHeight: 1.05,
-                fontSize: "clamp(44px, 6vw, 90px)",
-              }}
-            >
-              A NEW ORDER
-            </h1>
+            <source src="/videos/close-up-of-swiss-made-watch-mechanics-2025-12-17-21-13-42-utc-ezgif.com-rotate-video.webm" type="video/webm" />
+          </video>
+        </div>
 
-            <div
-              className="flex items-center justify-center"
-              style={{ gap: "clamp(12px, 2vw, 24px)" }}
-            >
-              <h2
+        {/* Title Container - No z-index to avoid isolation */}
+        <div className="relative w-full h-full flex items-center justify-center pointer-events-none">
+          <div
+            className="text-center"
+            style={{ 
+              width: "min(92vw, 1300px)",
+              mixBlendMode: "difference",
+              pointerEvents: "auto"
+            }}
+          >
+            <div className="w-full flex justify-center">
+              <motion.div
+                layout
+                transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+                className="flex flex-col items-center justify-center"
                 style={{
                   fontFamily: "'Switzer', sans-serif",
-                  fontWeight: 400,
+                  fontWeight: 600,
                   color: "#FFFFFF",
                   margin: 0,
-                  lineHeight: 1.05,
-                  fontSize: "clamp(44px, 6vw, 90px)",
+                  lineHeight: 1.0,
+                  fontSize: "clamp(60px, 11vw, 150px)",
+                  letterSpacing: "-0.02em"
                 }}
               >
-                OF
-              </h2>
-
-              <div className="relative inline-block">
-                <div
-                  className="absolute inset-0 -z-10"
-                  style={{
-                    background:
-                      "linear-gradient(90deg, #000000 0%, rgba(174,174,174,0) 100%)",
-                    backgroundBlendMode: "overlay",
-                  }}
-                />
-                <h2
-                  style={{
-                    fontFamily: "'Switzer', sans-serif",
-                    fontWeight: 400,
-                    color: "#FFFFFF",
-                    margin: 0,
-                    lineHeight: 1.05,
-                    fontSize: "clamp(44px, 6vw, 90px)",
-                    paddingLeft: "clamp(10px, 1.2vw, 16px)",
-                    paddingRight: "clamp(10px, 1.2vw, 16px)",
-                  }}
-                >
-                  DESIGN
-                </h2>
-              </div>
+                <motion.div layout="position" transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }} className="text-center">A New Order</motion.div>
+                <motion.div layout transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }} className="flex flex-row items-center justify-center mt-2 overflow-visible">
+                  <motion.div layout="position" transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }} className="whitespace-pre flex-shrink-0">
+                    of{" "}
+                  </motion.div>
+                  <motion.div layout transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }} className="relative flex items-center justify-start flex-shrink-0">
+                    <AnimatePresence mode="popLayout">
+                      <motion.div
+                        key={wordIndex}
+                        initial="hidden"
+                        animate="visible"
+                        exit="exit"
+                        variants={{
+                          hidden: {},
+                          visible: { transition: { staggerChildren: 0.08, staggerDirection: -1, delayChildren: 0.8 } },
+                          exit: { transition: { staggerChildren: 0.05, staggerDirection: -1 } },
+                        }}
+                        className="flex"
+                      >
+                        {animatedWords[wordIndex].split("").map((char, i) => (
+                          <motion.span
+                            key={i}
+                            layout="position"
+                            variants={{
+                              hidden: { opacity: 0, y: -40 },
+                              visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } },
+                              exit: { opacity: 0, y: 40, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } },
+                            }}
+                            className="whitespace-pre flex-shrink-0"
+                          >
+                            {char}
+                          </motion.span>
+                        ))}
+                      </motion.div>
+                    </AnimatePresence>
+                  </motion.div>
+                </motion.div>
+              </motion.div>
             </div>
           </div>
         </div>
       </div>
 
-      {/* ── KING PIECE — centered at the seam ─────────────────────────── */}
-      <div
-        aria-hidden="true"
-        style={{
-          position: "absolute",
-          left: "50%",
-          top: "100svh",
-          transform: "translate(-50%, -50%)",
-          height: "clamp(350px, 16vw, 230px)",
-          width: "auto",
-          zIndex: 20,
-          pointerEvents: "none",
-        }}
-      >
-        <img
-          src="/images/king.webp"
-          alt="King chess piece"
-          style={{ height: "100%", width: "auto", objectFit: "contain", display: "block" }}
-        />
-      </div>
-
       {/* ── PART 2: BRAND + CAROUSEL (100svh) ─────────────────────────── */}
       <div
-        className="relative w-full bg-black"
+        className="relative w-full bg-[#060606] flex flex-col items-center justify-center overflow-hidden pt-20 lg:pt-32"
         data-theme="dark"
-        style={{
-          height: "100svh",
-          overflow: "hidden",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
+        style={{ height: "100svh" }}
       >
-        {/* Logo — padding-top creates breathing room below the king piece */}
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            width: "100%",
-            /* half the king height so logo clears the overlap zone */
-            paddingTop: "clamp(80px, 10vw, 130px)",
-            paddingBottom: "20px",
-          }}
+        {/* Top Header Row (Logo, King, Text) */}
+        <div 
+          className="flex flex-row items-center justify-between w-full px-10 lg:px-[70px]"
         >
-          <img
-            src="/images/Salinan hero-logo-horizontal.png"
-            alt="G R I D I S M"
-            style={{
-              width: "min(780px, 65vw)",
-              height: "auto",
-              objectFit: "contain",
-            }}
-          />
+          {/* Left: Logo */}
+          <div className="flex-1 flex justify-start">
+            <img
+              src="/images/Alternative Grid Wordmark with Icon.webp"
+              alt="G R I D I S M"
+              style={{ width: "244px", height: "auto", objectFit: "contain" }}
+            />
+          </div>
+
+          {/* Center: King Piece */}
+          <div className="flex-shrink-0 flex justify-center items-center">
+            <img
+              src="/images/king.webp"
+              alt="King chess piece"
+              style={{ height: "227px", width: "auto", objectFit: "contain" }}
+            />
+          </div>
+
+          {/* Right: Tagline */}
+          <div className="flex-1 flex justify-end">
+            <p
+              className="text-right text-white"
+              style={{
+                fontFamily: "'Switzer', sans-serif",
+                fontWeight: 400,
+                fontSize: "clamp(18px, 2vw, 26px)",
+                lineHeight: "1.2",
+                maxWidth: "351px",
+                margin: 0,
+              }}
+            >
+              Driving Global Scale Through Brand Identity and Digital Innovation.
+            </p>
+          </div>
         </div>
 
-        {/* Tagline */}
-        <p
-          className="text-center text-white"
-          style={{
-            fontFamily: "'Switzer', sans-serif",
-            fontWeight: 400,
-            fontSize: "clamp(14px, 1.8vw, 24px)",
-            lineHeight: "1.4",
-            maxWidth: "min(680px, 88vw)",
-            margin: 0,
-            paddingBottom: "32px",
-          }}
-        >
-          Driving Global Scale Through Brand Identity and Digital Innovation.
-        </p>
-
-        {/* Top carousel — scrolls left, AboutSection double-block pattern */}
-        <div style={{ width: "100%", marginBottom: "10px" }}>
-          <MarqueeRow images={topRowImages} direction="left" gap={14} />
-        </div>
-
-        {/* Bottom carousel — scrolls right */}
-        <div style={{ width: "100%", paddingBottom: "28px" }}>
-          <MarqueeRow images={bottomRowImages} direction="right" gap={14} />
+        {/* Overlapping Carousels */}
+        <div className="relative w-full" style={{ height: "405px" }}>
+          {/* Bottom carousel (Smaller) — Behind */}
+          <div className="absolute w-full" style={{ top: "201px", zIndex: 0 }}>
+            <MarqueeRow images={bottomRowImages} direction="right" gap={20} />
+          </div>
+          
+          {/* Top carousel (Bigger) — In front */}
+          <div className="absolute w-full" style={{ top: "0px", zIndex: 10, filter: "drop-shadow(0px 20px 31.75px rgba(0, 0, 0, 0.69))" }}>
+            <MarqueeRow images={topRowImages} direction="left" gap={20} />
+          </div>
         </div>
       </div>
 

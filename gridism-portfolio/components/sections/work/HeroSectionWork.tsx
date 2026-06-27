@@ -3,7 +3,7 @@ import horseChessPieceImg from "../../../public/images/Kuda.svg"
 
 export const HeroSectionWork = () => {
     return (
-        <section className="bg-black min-h-screen text-white gridism-content-layer">
+        <section className="bg-[#060606] min-h-screen text-white gridism-content-layer">
             <div className="max-w-[1440px] min-h-screen flex justify-center items-center mx-auto px-15">
                 <div className="relative min-h-[500px] flex flex-col justify-start w-full">
                     <div className="items-center flex mb-5 justify-center gap-5">

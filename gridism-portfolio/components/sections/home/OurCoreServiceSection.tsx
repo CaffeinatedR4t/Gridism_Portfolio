@@ -1,302 +1,264 @@
 "use client";
 
-import { useRef, useState } from "react";
-import { motion, useScroll, useTransform, useSpring } from "framer-motion";
+import { useRef, useState, useLayoutEffect, useEffect } from "react";
+import { motion, useScroll, useTransform, AnimatePresence, useInView } from "framer-motion";
 
-/* ─── Tilt hook ───────────────────────────────────────────────────────────── */
-function useTilt() {
+/* ─── Parallax Wrapper Component ────────────────────────────────────────── */
+/**
+ * One-to-one port of the ParallaxMedia logic provided.
+ */
+const ParallaxGraphic = ({ 
+  children, 
+  parallax = 25, 
+  direction = "vertical", 
+  invert = false,
+  focalX = 50,
+  focalY = 50
+}: { 
+  children: React.ReactNode;
+  parallax?: number;
+  direction?: "vertical" | "horizontal";
+  invert?: boolean;
+  focalX?: number;
+  focalY?: number;
+}) => {
   const ref = useRef<HTMLDivElement>(null);
-  const [tilt, setTilt] = useState({ rotateX: 0, rotateY: 0 });
+  const [size, setSize] = useState({ width: 0, height: 0 });
 
-  const onMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const el = ref.current;
-    if (!el) return;
-    const rect = el.getBoundingClientRect();
-    const x = (e.clientX - rect.left) / rect.width - 0.5;
-    const y = (e.clientY - rect.top) / rect.height - 0.5;
-    setTilt({ rotateX: -y * 5, rotateY: x * 5 });
-  };
+  const clamp = (v: number, min: number, max: number) =>
+    Math.max(min, Math.min(max, v));
 
-  const onMouseLeave = () => setTilt({ rotateX: 0, rotateY: 0 });
-  return { ref, tilt, onMouseMove, onMouseLeave };
-}
+  useLayoutEffect(() => {
+    if (!ref.current || typeof ResizeObserver === "undefined") return;
+    const ro = new ResizeObserver((entries) => {
+      const r = entries[0].contentRect;
+      setSize({ width: r.width, height: r.height });
+    });
+    ro.observe(ref.current);
+    return () => ro.disconnect();
+  }, []);
 
-/* ─── Service data ────────────────────────────────────────────────────────── */
-const services = [
-  {
-    label: "Web Design & Development",
-    image: "/images/Artboard 1sssdwsdws.png",
-    titleLeft: "8%",
-    titleWidth: "52%",
-    imageTop: 120,   // px below top of card content area
-    imageHeight: 461,
-    titleTop: 0,
-  },
-  {
-    label: "Branding & Visual Identity",
-    image: "/images/ezzrale 1 portos.png",
-    titleLeft: "26%",
-    titleWidth: "56%",
-    imageTop: 120,
-    imageHeight: 461,
-    titleTop: 0,
-  },
-  {
-    label: "Digital Transformation Consulting",
-    image: "/images/gridism 2@2x.png",
-    titleLeft: "6%",
-    titleWidth: "56%",
-    imageTop: 240,
-    imageHeight: 466,
-    titleTop: 120,
-  },
-];
-
-/* ─── HEADING PANEL — sticky sibling #0 ─────────────────────────────────── */
-/**
- * Exactly like turugshan's "about" heading panel:
- *   - position: sticky, top: 0
- *   - height: 100vh
- *   - z-index: 0  ← lowest, all cards stack on top of it
- *   - Heading text is top-left with padding
- */
-function HeadingPanel({ sectionRef }: { sectionRef: React.RefObject<HTMLDivElement | null> }) {
   const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start start", "end end"],
+    target: ref,
+    offset: ["start end", "end start"],
   });
 
-  // Horse piece drifts up as section scrolls
-  const horseRawY = useTransform(scrollYProgress, [0, 0.5], [0, -30]);
-  const horseY    = useSpring(horseRawY, { stiffness: 60, damping: 20 });
+  const base = direction === "vertical" ? size.height : size.width;
+  const pct = clamp(parallax, 5, 60) / 100;
+  const desiredOverflow = base > 0 ? clamp(base * pct, 40, 480) : 0;
+  const scale = base > 0 ? 1 + desiredOverflow / Math.max(base, 1) : 1.2;
+  const overflow = Math.max(base, 1) * (scale - 1);
+  const from = invert ? overflow / 2 : -overflow / 2;
+  const to = invert ? -overflow / 2 : overflow / 2;
+  const mv = useTransform(scrollYProgress, [0, 1], [from, to]);
+
+  const transformOrigin = `${clamp(focalX, 0, 100)}% ${clamp(focalY, 0, 100)}%`;
 
   return (
-    <div
-      style={{
-        position: "sticky",
-        top: 0,
-        height: "100vh",
-        width: "100%",
-        zIndex: 0,
-        backgroundColor: "#000000",
-        display: "flex",
-        alignItems: "flex-start",       // top-left, like turugshan
-        justifyContent: "flex-start",
-        paddingTop: "60px",
-        paddingLeft: "67px",
-        boxSizing: "border-box",
-        pointerEvents: "none",
-      }}
+    <div 
+      ref={ref} 
+      className="relative overflow-hidden flex justify-center items-center w-full max-w-[800px]"
+      style={{ height: "100%" }}
     >
-      {/* Heading + chess piece on same row */}
-      <div style={{ position: "relative", display: "inline-block" }}>
-        <h2
-          style={{
-            fontFamily: "'Switzer', sans-serif",
-            fontWeight: 400,
-            fontSize: "clamp(56px, 6.7vw, 96px)",
-            lineHeight: 1.32,
-            color: "#FFFFFF",
-            margin: 0,
-            whiteSpace: "nowrap",
-          }}
-        >
-          Our Core Service
-        </h2>
-
-        {/* Chess piece — vertically centered to the heading text */}
-        <motion.div
-          style={{
-            position: "absolute",
-            right: "-64px",
-            top: "50%",
-            translateY: "-50%",
-            y: horseY,
-            width: "47.74px",
-            height: "72px",
-          }}
-        >
-          <img
-            src="/images/Salinan Kuda png.png"
-            alt=""
-            aria-hidden="true"
-            style={{ width: "100%", height: "100%", objectFit: "contain" }}
-          />
-        </motion.div>
-      </div>
-    </div>
-  );
-}
-
-/* ─── CARD PANEL — sticky sibling #1/#2/#3 ──────────────────────────────── */
-/**
- * Exactly like turugshan's work cards:
- *   - position: sticky, top: 0
- *   - height: 100vh
- *   - z-index: index + 1  → each card sits above the previous one
- *   - backgroundColor: #000  → fully covers whatever is below
- *   - Content is centered vertically inside the 100vh panel
- *
- * Because these are sticky siblings in a tall parent, scrolling naturally
- * causes each panel to slide up and pin — covering the heading and each
- * previous card. No JS translateY animation needed for the core stack.
- *
- * Framer motion is only used for the entry scale + tilt on hover.
- */
-function CardPanel({
-  service,
-  index,
-}: {
-  service: typeof services[0];
-  index: number;
-}) {
-  const panelRef = useRef<HTMLDivElement>(null);
-  const { ref: tiltRef, tilt, onMouseMove, onMouseLeave } = useTilt();
-
-  const springRotateX = useSpring(tilt.rotateX, { stiffness: 200, damping: 22 });
-  const springRotateY = useSpring(tilt.rotateY, { stiffness: 200, damping: 22 });
-
-  // Subtle scale-in as this card enters (using its own scroll progress)
-  const { scrollYProgress } = useScroll({
-    target: panelRef,
-    offset: ["start end", "start start"],
-  });
-  const rawScale = useTransform(scrollYProgress, [0, 1], [0.96, 1]);
-  const scale    = useSpring(rawScale, { stiffness: 80, damping: 22 });
-
-  return (
-    <div
-      ref={panelRef}
-      style={{
-        position: "sticky",
-        top: 0,
-        height: "100vh",
-        width: "100%",
-        zIndex: index + 1,            // 1, 2, 3 — each above the previous
-        backgroundColor: "#000000",   // fully opaque → covers heading + prior cards
-        display: "flex",
-        alignItems: "center",         // vertically center the card block
-        justifyContent: "center",
-        overflow: "hidden",
-      }}
-    >
-      {/* Scale wrapper — animates as card enters */}
-      <motion.div
-        style={{
+      <motion.div 
+        style={{ 
+          position: "absolute",
+          inset: 0,
+          x: direction === "horizontal" ? mv : 0,
+          y: direction === "vertical" ? mv : 0,
           scale,
-          width: "100%",
-          maxWidth: "calc(100% - 64px)", // 32px margin each side
+          transformOrigin,
+          willChange: "transform",
         }}
+        className="w-full h-full flex justify-center items-center"
       >
-        {/* Tilt wrapper */}
-        <motion.div
-          ref={(node) => {
-            (tiltRef as React.MutableRefObject<HTMLDivElement | null>).current = node;
-          }}
-          onMouseMove={onMouseMove}
-          onMouseLeave={onMouseLeave}
-          style={{
-            rotateX: springRotateX,
-            rotateY: springRotateY,
-            transformStyle: "preserve-3d",
-            willChange: "transform",
-            cursor: "default",
-            width: "100%",
-          }}
-        >
-          {/* Card content block */}
-          <div
-            className="relative w-full"
-            style={{
-              // Height = title box + image. Title is always 120px tall.
-              // imageTop is where the image starts (120 or 240).
-              // imageHeight varies per card.
-              height: `${service.imageTop + service.imageHeight}px`,
-            }}
-          >
-            {/* Title white box */}
-            <div
-              className="absolute bg-white flex items-center justify-center"
-              style={{
-                left: service.titleLeft,
-                top: `${service.titleTop}px`,
-                width: service.titleWidth,
-                height: "120px",
-                zIndex: 2,
-              }}
-            >
-              <p
-                className="text-black text-center"
-                style={{
-                  fontFamily: "'Switzer', sans-serif",
-                  fontWeight: 400,
-                  fontSize: "clamp(22px, 2.6vw, 40px)",
-                  lineHeight: 1.35,
-                  margin: 0,
-                  padding: "0 16px",
-                }}
-              >
-                {service.label}
-              </p>
-            </div>
-
-            {/* Service image — full width of card block */}
-            <img
-              src={service.image}
-              alt={service.label}
-              className="absolute object-cover w-full"
-              style={{
-                left: 0,
-                top: `${service.imageTop}px`,
-                height: `${service.imageHeight}px`,
-              }}
-            />
-          </div>
-        </motion.div>
+        {children}
       </motion.div>
     </div>
   );
-}
+};
 
-/* ─── Main section ────────────────────────────────────────────────────────── */
-/**
- * TURUGSHAN PATTERN — EXACT COPY:
- *
- *   <section style="height: 400vh">        ← (N+1) × 100vh, N=3 cards
- *     <HeadingPanel />                     ← sticky, top:0, z-index:0, height:100vh
- *     <CardPanel index=0 />               ← sticky, top:0, z-index:1, height:100vh
- *     <CardPanel index=1 />               ← sticky, top:0, z-index:2, height:100vh
- *     <CardPanel index=2 />               ← sticky, top:0, z-index:3, height:100vh
- *   </section>
- *
- * As you scroll:
- *   - HeadingPanel pins. Card 1 enters from below and pins over it.
- *   - Card 2 enters from below and pins over Card 1.
- *   - Card 3 enters from below and pins over Card 2.
- *   - After Card 3 pins, the section bottom exits and the next section enters.
- *
- * No translateY, no complex progress math. Pure sticky layering.
- */
-const OurCoreServiceSection = () => {
-  const sectionRef = useRef<HTMLDivElement>(null);
+/* ─── Service Configuration ─────────────────────────────────────────────── */
+const LOREM_IPSUM = "We deliver premium brand and digital experiences. Built fast, crafted with precision, and designed to perform. From first concept to final pixel, we move with flexibility but never compromise on outcome, quality, or impact.";
+
+const SERVICES = [
+  {
+    title: "Web Design & Development",
+    description: LOREM_IPSUM,
+    height: 580,
+    graphic: (
+      <div className="relative w-[656px] h-[580px]">
+        <div 
+          className="absolute inset-0 opacity-20"
+          style={{
+            backgroundImage: `radial-gradient(circle, #333 1px, transparent 1px)`,
+            backgroundSize: "20px 20px"
+          }}
+        />
+        <div className="absolute top-0 left-0 w-full h-[327px] overflow-hidden">
+          <img 
+            src="/images/Artboard 1sssdwsdws.png" 
+            alt="" 
+            className="w-full h-full object-cover"
+          />
+        </div>
+        <div className="absolute bottom-0 left-0 w-full h-[253px] overflow-hidden">
+          <img 
+            src="/images/image 5.webp" 
+            alt="" 
+            className="w-full h-full object-cover opacity-80"
+          />
+        </div>
+        <div 
+          className="absolute left-[117px] top-[135px] w-[422px] h-[309px] bg-[#F9F9F7] overflow-hidden"
+          style={{
+            borderRadius: "65px",
+            filter: "drop-shadow(3px 3px 40px rgba(0, 0, 0, 0.4))",
+          }}
+        >
+          <img 
+            src="/images/gridism 2@2x.png" 
+            alt="Gridism Layout" 
+            className="w-full h-full object-cover"
+          />
+        </div>
+      </div>
+    )
+  },
+  {
+    title: "Branding & Visual Identity",
+    description: LOREM_IPSUM,
+    height: 516,
+    graphic: (
+      <div className="relative w-[741px] h-[516px]">
+        <img 
+          src="/images/ezzrale 1 portos.png" 
+          alt="Ezzrale Branding" 
+          className="w-full h-full object-contain"
+        />
+      </div>
+    )
+  },
+  {
+    title: "Digital Transformation Consulting",
+    description: LOREM_IPSUM,
+    height: 644,
+    graphic: (
+      <div className="relative w-[728px] h-[644px]">
+        <img 
+          src="/images/IMG_8790.jpg" 
+          alt="Digital Consulting" 
+          className="w-full h-full object-cover"
+        />
+      </div>
+    )
+  }
+];
+
+/* ─── Service Image Block ───────────────────────────────────────────────── */
+const ServiceImageBlock = ({ 
+  index, 
+  setActiveIndex, 
+  children 
+}: { 
+  index: number; 
+  setActiveIndex: (i: number) => void; 
+  children: React.ReactNode;
+}) => {
+  const ref = useRef<HTMLDivElement>(null);
+  // Trigger when the element crosses the middle of the viewport
+  const isInView = useInView(ref, { 
+    margin: "-50% 0px -50% 0px",
+    amount: "some"
+  });
+  
+  useEffect(() => {
+    if (isInView) {
+      setActiveIndex(index);
+    }
+  }, [isInView, index, setActiveIndex]);
 
   return (
-    <section
-      ref={sectionRef}
-      className="relative w-full bg-black gridism-content-layer"
-      data-theme="dark"
-      style={{
-        // 1 heading panel + 3 card panels = 4 × 100vh
-        height: "400vh",
-      }}
+    <div 
+      ref={ref} 
+      className="relative min-h-[120vh] flex items-center justify-center py-20"
     >
-      {/* Sticky sibling 0: Heading */}
-      <HeadingPanel sectionRef={sectionRef} />
+      {children}
+    </div>
+  );
+};
 
-      {/* Sticky siblings 1–3: Cards */}
-      {services.map((service, i) => (
-        <CardPanel key={service.label} service={service} index={i} />
-      ))}
+/* ─── Main Section ────────────────────────────────────────────────────────── */
+const OurCoreServiceSection = () => {
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  // Safeguard against out-of-bounds or undefined services
+  const currentService = SERVICES[activeIndex] || SERVICES[0];
+
+  return (
+    <section className="relative w-full bg-[#060606] gridism-content-layer flex flex-row" data-theme="dark">
+      
+      {/* 1. Left Column: Sticky Text content */}
+      <div className="w-[40%] sticky top-0 h-screen flex flex-col justify-between pt-[153px] pb-[85px] px-10 lg:px-[70px] shrink-0 z-20">
+        
+        {/* Top: Section Title */}
+        <div className="relative">
+          <h2 
+            className="text-white font-['Switzer',sans-serif] italic font-normal text-[24px] leading-[30px] tracking-tight"
+          >
+            Our Core Service
+          </h2>
+        </div>
+
+        {/* Middle: Active Service Title */}
+        <div className="flex-1 flex items-center relative">
+          <AnimatePresence mode="wait">
+            <motion.h3
+              key={`title-${activeIndex}`}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.5, ease: [0.45, 0, 0.15, 1] }}
+              className="text-white font-['Switzer',sans-serif] font-normal text-[40px] leading-[40px] max-w-[600px] absolute"
+            >
+              {currentService.title}
+            </motion.h3>
+          </AnimatePresence>
+        </div>
+
+        {/* Bottom: Active Service Description */}
+        <div className="w-full max-w-[339px] relative h-[85px]">
+          <AnimatePresence mode="wait">
+            <motion.p
+              key={`desc-${activeIndex}`}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.4 }}
+              className="text-white font-['Switzer',sans-serif] font-normal text-[14px] leading-normal absolute bottom-0"
+            >
+              {currentService.description}
+            </motion.p>
+          </AnimatePresence>
+        </div>
+      </div>
+
+      {/* 2. Right Column: Scrolling Images */}
+      <div className="flex-1 relative pr-10 lg:pr-[70px]">
+        {SERVICES.map((service, index) => (
+          <ServiceImageBlock key={index} index={index} setActiveIndex={setActiveIndex}>
+            <div 
+              className="w-full max-w-[800px] flex items-center justify-center relative"
+              style={{ height: `${service.height}px` }}
+            >
+              <ParallaxGraphic parallax={25}>
+                {service.graphic}
+              </ParallaxGraphic>
+            </div>
+          </ServiceImageBlock>
+        ))}
+      </div>
+
     </section>
   );
 };
