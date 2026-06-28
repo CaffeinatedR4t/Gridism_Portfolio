@@ -1,19 +1,22 @@
 import Image from "next/image";
 
+import softexClientImg from "../../../public/images/Softex.jpeg"
 import ezzraleClientImg from "../../../public/images/ezzralef.png"
 import iJakartaClientImg from "../../../public/images/ijaakrta.png"
 import dummyClientImg from "../../../public/images/dummy.png"
 import LegacyClientImg from "../../../public/images/Legacy in Every Line.svg"
+import sneakersIDCLientImg from "../../../public/images/SneakersID.jpeg"
+import xSphereClientImg from "../../../public/images/Xsphere.jpeg"
 
 
 const projects = [
-    { title: "Campaign Design", desc: "SOFTEX", src: ezzraleClientImg, span: "row-span-2", ratio: "aspect-square" },
-    { title: "Graphic Design", desc: "SNEAKERS.ID", src: iJakartaClientImg, span: "row-span-3", ratio: "aspect-[2/3]" },
+    { title: "Campaign Design", desc: "SOFTEX", src: softexClientImg, span: "row-span-2", ratio: "aspect-square" },
+    { title: "Graphic Design", desc: "SNEAKERS.ID", src: sneakersIDCLientImg, span: "row-span-3", ratio: "aspect-[2/3]" },
     { title: "Branding", desc: "EZZRALE", src: ezzraleClientImg, span: "row-span-2", ratio: "aspect-square" },
     { title: "Revamp", desc: "iJakarta", src: iJakartaClientImg, span: "row-span-3", ratio: "aspect-[2/3]" },
-    { title: "Branding", desc: "EZZRALE", src: dummyClientImg, span: "row-span-2", ratio: "aspect-square" },
-    { title: "Branding", desc: "EZZRALE", src: dummyClientImg, span: "row-span-3", ratio: "aspect-[2/3]" },
-    { title: "Branding", desc: "EZZRALE", src: LegacyClientImg, span: "row-span-3", ratio: "aspect-[2/3]" },
+    { title: "Branding", desc: "XSphere", src: xSphereClientImg, span: "row-span-2", ratio: "aspect-square" },
+    { title: "-", desc: "-", src: dummyClientImg, span: "row-span-3", ratio: "aspect-[2/3]" },
+    { title: "-", desc: "-", src: LegacyClientImg, span: "row-span-3", ratio: "aspect-[2/3]" },
 ]
 
 const ProjectSectionWork = () => {
