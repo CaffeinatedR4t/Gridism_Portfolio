@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 
 const KeyFeaturesSection = () => {
   const services = [
@@ -13,7 +13,7 @@ const KeyFeaturesSection = () => {
     "User Experience (UX)"
   ];
 
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -24,7 +24,7 @@ const KeyFeaturesSection = () => {
     }
   };
 
-  const itemVariants = {
+  const itemVariants: Variants = {
     hidden: { opacity: 0, x: 50 },
     visible: { 
       opacity: 1, 
@@ -33,7 +33,7 @@ const KeyFeaturesSection = () => {
     }
   };
 
-  const pieceVariants = {
+  const pieceVariants: Variants = {
     hidden: { opacity: 0, y: 100 },
     visible: (i: number) => ({
       opacity: 1,
