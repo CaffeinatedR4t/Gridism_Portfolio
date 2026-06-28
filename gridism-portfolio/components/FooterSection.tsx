@@ -31,14 +31,22 @@ const FooterSection = ({ footerImage, footerLogo, footerBgColor, footerFontColor
 
             {/* Three-column logo row */}
             <div className={cn(footerFontColor,"flex flex-col sm:flex-row items-center justify-center w-full h-auto mx-auto px-6")}>
-              <p
-                className="text-lg sm:text-xl md:text-2xl lg:text-3xl tracking-[0.3em] flex-1 text-center font-medium"
-                style={{ fontFamily: "'Switzer', sans-serif" }}
-              >
-                G R I D I S M
-              </p>
+              <div className="flex-1 flex justify-center">
+                <img 
+                  src="/images/WORDMARK WHITE.webp" 
+                  alt="Gridism Wordmark" 
+                  className="object-contain" 
+                  style={{ width: "264px", height: "42px", filter: footerFontColor === 'text-black' ? 'invert(1)' : 'none' }}
+                />
+              </div>
 
-              <Image src={footerLogo} alt="logo" width={283} height={283} className="w-[283px] h-auto" />
+              <Image 
+                src={footerLogo} 
+                alt="logo" 
+                width={283} 
+                height={283} 
+                className={`h-auto transition-transform ${footerLogo.includes('ICON BLACK') ? 'w-[180px]' : 'w-[283px]'}`} 
+              />
 
               <div className="flex flex-col gap-20 items-center justify-center text-center flex-1">
                 <p

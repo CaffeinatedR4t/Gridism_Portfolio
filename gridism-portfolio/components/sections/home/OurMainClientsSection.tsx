@@ -3,8 +3,8 @@
 import { motion } from "framer-motion";
 
 const clients = [
-  { id: "01", name: "EZZRALE", src: "/images/ezzralef.png", w: 955 },
-  { id: "02", name: "Alfred Situmorang", src: "/images/Frame 64.png", w: 828 },
+  { id: "01", name: "EZZRALE", src: "/images/Artboard 28.webp", w: 955 },
+  { id: "02", name: "Alfred Situmorang", src: "/images/bg logo sonority.webp", w: 828 },
   // Add more clients here as needed
 ];
 
@@ -26,11 +26,6 @@ const ClientCard = ({ client }: { client: typeof clients[0] }) => (
       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
     />
     <div className="absolute inset-0 bg-[#060606]/10 group-hover:bg-transparent transition-colors duration-500" />
-    <p
-      className="absolute top-6 right-6 lg:top-10 lg:right-10 text-white font-['Switzer',sans-serif] text-[24px] lg:text-[40px] font-normal leading-tight"
-    >
-      {client.id} &nbsp; {client.name}
-    </p>
   </div>
 );
 
@@ -128,10 +123,13 @@ const OurMainClientsSection = () => {
           </div>
 
           {/* Right: Branding Text */}
-          <div className="relative z-10">
-             <p className="text-white font-['Switzer',sans-serif] text-[18px] md:text-[20px] lg:text-[24px] tracking-[0.4em] font-normal uppercase">
-               G R I D I S M
-             </p>
+          <div className="relative z-10 flex items-center">
+             <img 
+               src="/images/WORDMARK WHITE.webp" 
+               alt="Gridism Wordmark" 
+               className="w-20 md:w-24 lg:w-32 h-auto object-contain" 
+               style={{ maxWidth: "130px" }}
+             />
           </div>
         </div>
       </div>

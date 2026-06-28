@@ -9,7 +9,7 @@ const STRATEGY_GROUPS = [
 ];
 
 const MovingText = () => {
-    const containerRef = useRef(null);
+    const containerRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         const observer = new IntersectionObserver((entries) => {
@@ -20,6 +20,8 @@ const MovingText = () => {
                 }
             });
         }, { threshold: 0.1 });
+
+        if (!containerRef.current) return;
 
         const rows = containerRef.current.querySelectorAll(".strategy-row");
         rows.forEach((row) => observer.observe(row));

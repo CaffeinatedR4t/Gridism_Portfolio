@@ -127,22 +127,22 @@ const OurCoreProcessSection = () => {
     {
       title: "Aligning the Goals & ROI",
       description: "We deliver premium brand and digital experiences. Built fast, crafted with precision, and designed to perform. From first concept to final pixel, we move with flexibility but never compromise on outcome, quality, or impact.",
-      image: "/images/image.jpg",
+      image: "/videos/IMG_0480.webm",
     },
     {
       title: "Prototype to Learn",
       description: "We deliver premium brand and digital experiences. Built fast, crafted with precision, and designed to perform. From first concept to final pixel, we move with flexibility but never compromise on outcome, quality, or impact.",
-      image: "/images/Artboard 1sssdwsdws.png",
+      image: "/images/Artboard 1_5.png",
     },
     {
       title: "Craft",
       description: "We deliver premium brand and digital experiences. Built fast, crafted with precision, and designed to perform. From first concept to final pixel, we move with flexibility but never compromise on outcome, quality, or impact.",
-      image: "/images/ezzrale 1 portos.png",
+      image: "/images/CP 5.webp",
     },
     {
       title: "Ship & Scale",
       description: "We deliver premium brand and digital experiences. Built fast, crafted with precision, and designed to perform. From first concept to final pixel, we move with flexibility but never compromise on outcome, quality, or impact.",
-      image: "/images/Artboard 1sssdwsdws.png",
+      image: "/videos/VID EZZRALE BARU 2.webm",
     }
   ];
 
@@ -272,12 +272,23 @@ const OurCoreProcessSection = () => {
               {/* Center: Parallax Image Container */}
               <div className="w-full lg:w-[min(603px,calc(100vw-837px))] h-[60vh] lg:h-[643px] shrink-0 overflow-hidden relative">
                 <ParallaxGraphic parallax={20}>
-                  <img 
-                    src={step.image} 
-                    alt={step.title} 
-                    loading="lazy"
-                    className="w-full h-full object-cover object-center"
-                  />
+                  {step.image.endsWith(".webm") || step.image.endsWith(".mp4") ? (
+                    <video
+                      src={step.image}
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      className="w-full h-full object-cover object-center"
+                    />
+                  ) : (
+                    <img 
+                      src={step.image} 
+                      alt={step.title} 
+                      loading="lazy"
+                      className="w-full h-full object-cover object-center"
+                    />
+                  )}
                 </ParallaxGraphic>
               </div>
 
