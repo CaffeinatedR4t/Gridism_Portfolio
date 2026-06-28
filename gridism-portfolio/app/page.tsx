@@ -6,6 +6,25 @@ import OurCoreProcessSection from "@/components/sections/home/OurCoreProcessSect
 import OurMainClientsSection from "@/components/sections/home/OurMainClientsSection";
 import FooterSection from "@/components/FooterSection";
 
+import { Metadata } from "next";
+
+export const metadata: Metadata = {  
+  robots: "index, follow",
+  alternates: {
+    canonical: "https://gridism.co",
+  },
+  keywords: [
+    "web design", 
+    "web development", 
+    "software development",  
+    "branding", 
+    "visual identity", 
+    "SaaS", 
+    "UI/UX design",
+    "research development"
+  ]
+};
+
 export default function Home() {
   return (
     <>
@@ -15,7 +34,7 @@ export default function Home() {
       <StickyFeatureCards />
       <OurCoreProcessSection />
       <OurMainClientsSection />
-      <FooterSection footerImage="/images/Group 75.png" footerLogo="/images/ICON GRADIENT TM.webp" footerBgColor="bg-[#F9F9F7]" footerFontColor="text-black" footerBorderColor="border-black"/>
+      <FooterSection footerImage="/images/Group 75.png" footerLogo="/images/ICON GRADIENT TM.webp" footerBgColor="bg-[#F9F9F7]" footerFontColor="text-black" footerBorderColor="border-black" />
     </>
   );
 }

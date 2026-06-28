@@ -3,10 +3,10 @@
 import { useState, useEffect } from "react";
 import Image, { StaticImageData } from "next/image";
 
-import agencyFounderAImg from "../public/images/jeremy foto profile.png"
-import agencyFounderBImg from "../public/images/heles foto profile.png"
-import agencyFounderCImg from "../public/images/jay foto profile.png"
-import agencyFounderDImg from "../public/images/alex foto profile.png"
+import agencyFounderAImg from "../public/images/Jeremy J Pohar 1 (1).webp"
+import agencyFounderBImg from "../public/images/Heles Ofalius 1 (1).webp"
+import agencyFounderCImg from "../public/images/Jason Then 1 (1).webp"
+import agencyFounderDImg from "../public/images/Alexander V Lion 1 (1).webp"
 
 
 // 1. The Interface
@@ -25,7 +25,7 @@ const FOUNDERS: Founder[] = [
     {
         name: "Jeremy Joseph Pohar",
         position: "Founder & Chief Executive Officer (CEO)",
-        desc: "Jeremy has over 7 years of experience in web development and technical problem-solving. He leads the technical development at Gridism, focusing on building scalable, efficient, and high-performance digital solutions through clean and structured code.",
+        desc: "Jeremy has over 5 years of experience in web development and technical problem-solving. He leads the technical development at Gridism, focusing on building scalable, efficient, and high-performance digital solutions through clean and structured code.",
         src: agencyFounderAImg, 
         alt: "Jeremy Pohar",
         width: 300,
@@ -34,7 +34,7 @@ const FOUNDERS: Founder[] = [
     {
         name: "Heles Ofalius",
         position: "Founder & Chief Creative Officer (CCO)",
-        desc: "Ofalius has over 8 years of experience in visual design and digital branding. He leads the creative direction at Gridism, overseeing brand identity, visual systems, and digital experiences. His work focuses on clarity, aesthetics, and strategic storytelling across platforms.",
+        desc: "Ofalius has over 7 years of experience in visual design and digital branding. He leads the creative direction at Gridism, overseeing brand identity, visual systems, and digital experiences. His work focuses on clarity, aesthetics, and strategic storytelling across platforms.",
         src: agencyFounderBImg, 
         alt: "Heles Ofalius",
         width: 300,
@@ -112,7 +112,7 @@ export function TeamSlider() {
 
                 <button
                     onClick={prevSlide}
-                    className="absolute top-1/2 left-0 md:left-2 -translate-y-1/2 bg-[#060606]/40 hover:bg-[#060606] text-white p-3 rounded-full opacity-0 group-hover:opacity-100 transition-opacity z-10"
+                    className="absolute top-1/2 left-0 md:left-2 -translate-y-1/2 text-[#060606] transition-opacity z-10"
                     aria-label="Previous slide"
                 >
                     ❮
@@ -120,7 +120,7 @@ export function TeamSlider() {
                 
                 <button
                     onClick={nextSlide}
-                    className="absolute top-1/2 right-0 md:right-2 -translate-y-1/2 bg-[#060606]/40 hover:bg-[#060606] text-white p-3 rounded-full opacity-0 group-hover:opacity-100 transition-opacity z-10"
+                    className="absolute top-1/2 right-0 md:right-2 -translate-y-1/2 text-[#060606] transition-opacity z-10"
                     aria-label="Next slide"
                 >
                     ❯

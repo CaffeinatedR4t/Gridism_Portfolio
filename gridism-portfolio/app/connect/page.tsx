@@ -1,13 +1,24 @@
 import ConnectSection from "@/components/sections/connect/ConnectSection";
 import StickyFooterImage from "@/components/StickyFooterImage";
 
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+    title: "Contact Us",
+    robots: "index, follow",
+    description: "Ready to build something iconic? Get in touch with Gridism to discuss your next digital project, branding, or web development needs.",
+    alternates: {
+        canonical: "https://gridism.co/connect",
+    }
+}
+
 export default function Home() {
     return (
         <>
             <div className="relative gridism-content-layer bg-[#F9F9F7] flex flex-col">
                 {/* Main connect content — exactly 100vh */}
                 <ConnectSection />
-                
+
                 {/* Bottom bar — OUTSIDE the 100vh, attached below it */}
                 <div
                     className="flex items-center w-full bg-[#F9F9F7]"

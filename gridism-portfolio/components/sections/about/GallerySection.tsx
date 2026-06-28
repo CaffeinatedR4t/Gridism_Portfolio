@@ -37,16 +37,16 @@ export default function GallerySection() {
       height: 2667,
     },
      {
-      src: '/images/image.jpg',
-      alt: 'Two speakers presenting on stage with an event background',
-      width: 2000,
-      height: 2667,
+      src: '/images/IMG_6297.jpg',
+      alt: 'Group of four friends in a casual room setting',
+      width: 3024,
+      height: 4032,
     },
      {
-      src: '/images/image.jpg',
-      alt: 'Two speakers presenting on stage with an event background',
-      width: 2000,
-      height: 2667,
+      src: '/images/IMG_8790.jpg',
+      alt: 'Screen displaying various design projects and portfolio work',
+      width: 1920,
+      height: 1080,
     },
   ]
 
