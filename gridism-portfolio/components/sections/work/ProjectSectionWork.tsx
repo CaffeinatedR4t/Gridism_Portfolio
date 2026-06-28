@@ -7,8 +7,8 @@ import LegacyClientImg from "../../../public/images/Legacy in Every Line.svg"
 
 
 const projects = [
-    { title: "Campaign Branding", desc: "IKEA", src: ezzraleClientImg, span: "row-span-2", ratio: "aspect-square" },
-    { title: "Web Development", desc: "KINGSMAN", src: iJakartaClientImg, span: "row-span-3", ratio: "aspect-[2/3]" },
+    { title: "Campaign Design", desc: "SOFTEX", src: ezzraleClientImg, span: "row-span-2", ratio: "aspect-square" },
+    { title: "Graphic Design", desc: "SNEAKERS.ID", src: iJakartaClientImg, span: "row-span-3", ratio: "aspect-[2/3]" },
     { title: "Branding", desc: "EZZRALE", src: ezzraleClientImg, span: "row-span-2", ratio: "aspect-square" },
     { title: "Revamp", desc: "iJakarta", src: iJakartaClientImg, span: "row-span-3", ratio: "aspect-[2/3]" },
     { title: "Branding", desc: "EZZRALE", src: dummyClientImg, span: "row-span-2", ratio: "aspect-square" },
