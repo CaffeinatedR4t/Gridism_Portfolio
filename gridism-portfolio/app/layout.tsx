@@ -5,6 +5,8 @@ import Navbar from "@/components/Navbar";
 import FloatingLogo from "@/components/FloatingLogo";
 import FloatingJakartaTime from "@/components/FloatingJakartaTime";
 import SmoothScroll from "@/components/SmoothScroll";
+import Preloader from "@/components/Preloader";
+import { TransitionProvider } from "@/components/TransitionContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -50,12 +52,15 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${inter.className} min-h-screen overflow-x-hidden w-full max-w-[100vw]`} suppressHydrationWarning>
-        <SmoothScroll>
-          <Navbar />
-          <FloatingLogo />
-          <FloatingJakartaTime />
-          <main className="relative z-20">{children}</main>
-        </SmoothScroll>
+        <TransitionProvider>
+          <Preloader />
+          <SmoothScroll>
+            <Navbar />
+            <FloatingLogo />
+            <FloatingJakartaTime />
+            <main className="relative z-20">{children}</main>
+          </SmoothScroll>
+        </TransitionProvider>
       </body>
     </html>
   );

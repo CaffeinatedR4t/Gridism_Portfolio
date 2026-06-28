@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import TransitionLink from "./TransitionLink";
 
 const Navbar = () => {
   const pathname = usePathname()
@@ -53,21 +54,21 @@ const Navbar = () => {
       >
         
         {/* Logo — far left */}
-        <Link href="/" className="relative z-50 flex items-center" style={{ gap: "10px" }}>
+        <TransitionLink href="/" className="relative z-50 flex items-center group" style={{ gap: "10px" }}>
           <img
             src="/images/GRD WHITE TM.png"
             alt="Gridism"
             width={32}
             height={29}
-            className="transition-all duration-500 ease-[cubic-bezier(0.25,0.1,0.25,1)]"
+            className="transition-all duration-300 ease-[cubic-bezier(0.25,0.1,0.25,1)] group-hover:-translate-y-1 group-hover:scale-110 group-hover:rotate-[-5deg]"
           />
-        </Link>
+        </TransitionLink>
 
         {/* Nav links — far right */}
         <ul className="flex items-center" style={{ gap: "104px" }}>
           {navLinks.map((link) => (
             <li key={link.href}>
-              <Link
+              <TransitionLink
                 href={link.href}
                 className={`relative transition-all duration-500 ease-[cubic-bezier(0.25,0.1,0.25,1)] hover:opacity-70 group ${
                   link.italic ? "italic" : ""
@@ -85,7 +86,7 @@ const Navbar = () => {
                   className="absolute left-1/2 bottom-[-2px] w-0 h-[2px] transition-all duration-500 ease-[cubic-bezier(0.25,0.1,0.25,1)] group-hover:w-full group-hover:left-0"
                   style={{ backgroundColor: "#F9F9F7"}}
                 />
-              </Link>
+              </TransitionLink>
             </li>
           ))}
         </ul>

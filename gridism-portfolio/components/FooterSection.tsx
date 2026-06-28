@@ -3,6 +3,7 @@
 import { cn } from "@/utils/cn"
 import Image from "next/image";
 import StickyFooterImage from "./StickyFooterImage";
+import TransitionLink from "./TransitionLink";
 
 const theme = {
   typography: {
@@ -90,14 +91,14 @@ const FooterSection = ({ footerImage, footerLogo, footerBgColor, footerFontColor
                 </a>
               </div>
 
-              <a
+              <TransitionLink
                 href="/legals"
                 className={cn(theme.typography.fontFooter, footerFontColor, "group flex items-center gap-1")}
               >
                 <span className="transition-transform duration-300 ease-in-out group-hover:-translate-x-1">-</span>
                 <span>Legals</span>
                 <span className="transition-transform duration-300 ease-in-out group-hover:translate-x-1">-</span>
-              </a>
+              </TransitionLink>
             </div>
           </div>
         </div>

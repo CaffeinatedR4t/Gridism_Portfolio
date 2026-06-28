@@ -52,7 +52,7 @@ const CARDS: CardData[] = [
     title: "Strategic Results Oriented",
     subtitle: "Clear identity.",
     description:
-      "We are strategic and results-oriented, focusing on outcomes over rituals by starting with fast, AI-assisted prototyping to surface real problems early. Through sharp decisions and meticulous craft microcopy, spacing, motion, complete UI states, and polish passes. we deliver premium, ship-ready experiences that drive real ROI, with a flexible process but consistently high impact.",
+      "We are strategic and results-oriented, focusing on outcomes over rituals by starting with fast, AI-assisted prototyping to surface real problems early. Through sharp decisions and meticulous craft microcopy, spacing, motion, complete UI states, and polish passes.\n\nWe deliver premium, ship-ready experiences that drive real ROI, with a flexible process but consistently high impact.",
     images: [
       { src: "/images/EZZRALE%2002%2011%201.webp", alt: "EZZRALE", width: 811, height: 569 },
       { src: "/images/Ogohogoh%2006%2011%201.webp", alt: "Ogohogoh", width: 804, height: 568 },
@@ -71,7 +71,7 @@ const CARDS: CardData[] = [
     title: "Scalable Technology",
     subtitle: "Clear Quality",
     description:
-      "We use AI technology system to accelerate processes so we can focus fully on refining prototypes, combining AI technology and design into one unified system. Our approach is human–technology, AI-centric—where efficiency is powered by AI, but vision and meaning remain human, reflected across our website, branding, and every experience we create.",
+      "We use AI technology system to accelerate processes so we can focus fully on refining prototypes, combining AI technology and design into one unified system.\n\nOur approach is human–technology, AI-centric—where efficiency is powered by AI, but vision and meaning remain human, reflected across our website, branding, and every experience we create.",
     images: [
       { src: "/images/envato-labs-image-edit%20-%202026-02-03T165127.390%201.webp", alt: "Envato Labs Edit", width: 574, height: 574 },
       { src: "/images/903bd99a-d751-4420-982c-4fcdf1ff93f2%201.webp", alt: "Portrait", width: 377, height: 565 },
@@ -306,8 +306,8 @@ const CardLayer = ({
                   height: "21px",
                   fontFamily: "'Switzer', sans-serif",
                   fontWeight: 400,
-                  fontSize: "20px",
-                  lineHeight: "26px",
+                  fontSize: "24px",
+                  lineHeight: "32px",
                   color: "#FFFFFF",
                   margin: 0,
                 }}
@@ -323,8 +323,8 @@ const CardLayer = ({
                   height: "21px",
                   fontFamily: "'Switzer', sans-serif",
                   fontWeight: 400,
-                  fontSize: "20px",
-                  lineHeight: "26px",
+                  fontSize: "24px",
+                  lineHeight: "32px",
                   color: "#FFFFFF",
                   margin: 0,
                 }}
@@ -338,9 +338,10 @@ const CardLayer = ({
                   width: card.descriptionWidth,
                   fontFamily: "'Switzer', sans-serif",
                   fontWeight: 400,
-                  fontSize: "20px",
-                  lineHeight: "26px",
+                  fontSize: "24px",
+                  lineHeight: "32px",
                   textAlign: "justify",
+                  whiteSpace: "pre-wrap",
                   color: "#FFFFFF",
                   margin: 0,
                 }}
@@ -358,8 +359,10 @@ const CardLayer = ({
               right: "40px",
               top: 0,
               bottom: 0,
+              width: "150px", // Fixed width to align X-axis centers
               display: "flex",
               alignItems: "center",
+              justifyContent: "center", // Center images horizontally within the fixed width
               zIndex: 20,
               pointerEvents: "none",
             }}
