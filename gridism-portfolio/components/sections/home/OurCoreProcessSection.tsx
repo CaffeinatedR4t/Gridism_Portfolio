@@ -123,7 +123,7 @@ const StepImageBlock = ({
 /* ─── Main Section ────────────────────────────────────────────────────────── */
 const OurCoreProcessSection = () => {
   const [activeIndex, setActiveIndex] = useState(0);
-  const steps = [
+  const steps: { title: string; description: string; image: string; keywords?: string }[] = [
     {
       title: "Aligning the Goals & ROI",
       description: "We deliver premium brand and digital experiences. Built fast, crafted with precision, and designed to perform. From first concept to final pixel, we move with flexibility but never compromise on outcome, quality, or impact.",

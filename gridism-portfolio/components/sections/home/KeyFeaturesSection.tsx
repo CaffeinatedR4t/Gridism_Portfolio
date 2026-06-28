@@ -13,7 +13,7 @@ const KeyFeaturesSection = () => {
     "User Experience (UX)"
   ];
 
-  const containerVariants: Variants = {
+  const containerVariants: any = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -24,16 +24,16 @@ const KeyFeaturesSection = () => {
     }
   };
 
-  const itemVariants: Variants = {
+  const itemVariants: any = {
     hidden: { opacity: 0, x: 50 },
     visible: { 
       opacity: 1, 
       x: 0,
-      transition: { duration: 0.8, ease: "easeOut" as const }
+      transition: { duration: 0.8, ease: "easeOut" }
     }
   };
 
-  const pieceVariants: Variants = {
+  const pieceVariants: any = {
     hidden: { opacity: 0, y: 100 },
     visible: (i: number) => ({
       opacity: 1,
@@ -41,7 +41,7 @@ const KeyFeaturesSection = () => {
       transition: { 
         duration: 0.8, 
         delay: 0.2 + (i * 0.2),
-        ease: "easeOut" as const 
+        ease: "easeOut" 
       }
     })
   };
