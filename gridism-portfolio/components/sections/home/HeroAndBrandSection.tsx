@@ -124,7 +124,7 @@ const HeroAndBrandSection = () => {
               objectFit: "cover"
             }}
           >
-            <source src="/videos/close-up-of-swiss-made-watch-mechanics-2025-12-17-21-13-42-utc-ezgif.com-rotate-video.webm" type="video/webm" />
+            <source src="/videos/close-up-of-swiss-made-watch-mechanics-2025-12-17-21-13-42-utc (1).webm" type="video/webm" />
           </video>
         </div>
 
