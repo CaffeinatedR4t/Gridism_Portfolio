@@ -13,8 +13,31 @@ export const metadata: Metadata = {
 }
 
 export default function Home() {
+      const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://gridism.co"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Our Work",
+        "item": "https://gridism.co/connect" // The current page
+      }
+    ]
+  };
+
     return (
         <>
+         <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
             <div className="relative gridism-content-layer bg-[#F9F9F7] flex flex-col">
                 {/* Main connect content — exactly 100vh */}
                 <ConnectSection />

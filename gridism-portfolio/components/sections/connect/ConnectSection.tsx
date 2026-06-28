@@ -135,7 +135,7 @@ const ConnectSection = () => {
                                 Linkedin
                             </a>
                             <a
-                                href="https://x.com"
+                                href="https://gridismco.com"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="hover:opacity-60 transition-opacity no-underline"

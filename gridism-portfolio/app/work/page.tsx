@@ -40,8 +40,31 @@ export const metadata: Metadata = {
 };
 
 export default function Home() {
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://gridism.co"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Our Work",
+        "item": "https://gridism.co/work" // The current page
+      }
+    ]
+  };
+
   return (
     <>
+     <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
       <Hero />
       <Projects />
       <Footer footerImage="/images/Work Footer.webp" footerLogo="/images/ICON GRADIENT TM 2.png" footerBgColor="bg-[#060606]" footerFontColor="text-white" footerBorderColor="border-white" />

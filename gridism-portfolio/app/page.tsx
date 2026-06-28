@@ -26,8 +26,31 @@ export const metadata: Metadata = {
 };
 
 export default function Home() {
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "Gridism",
+    "url": "https://gridism.co",
+    "logo": "https://gridism.co/images/ICON BLACK.webp",
+    "description": "A creative digital agency specializing in immersive 3D web design, software development, and distinct visual identities.",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Jakarta",
+      "addressCountry": "ID"
+    },
+    "sameAs": [
+      "https://www.instagram.com/gridism.co",
+      "https://www.linkedin.com/company/gridismco"
+    ]
+  };
+
   return (
     <>
+    <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <HeroAndBrandSection />
       <OurCoreServiceSection />
       <KeyFeaturesSection />

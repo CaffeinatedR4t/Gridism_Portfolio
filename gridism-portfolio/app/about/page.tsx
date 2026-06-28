@@ -43,8 +43,31 @@ export const metadata: Metadata = {
 };
 
 export default function Home() {
+     const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://gridism.co"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Our Work",
+        "item": "https://gridism.co/about" // The current page
+      }
+    ]
+  };
+  
   return (
     <>
+     <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
     <AboutSection/>
     <FooterSection footerImage="/images/About Footer.webp" footerLogo="/images/ICON BLACK.webp" footerBgColor="bg-[#F9F9F7]" footerFontColor="text-black" footerBorderColor="border-black"/>
     </>
