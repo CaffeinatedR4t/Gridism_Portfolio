@@ -44,7 +44,7 @@ const AboutSection = () => {
             {/* HERO SECTION: Cyborg + Absolute Text */}
             <div className="relative min-h-[100dvh]">
                 <div className="relative h-dvh w-full overflow-hidden">
-                    <video src="/videos/people-skating-on-ice-skating-rink-outdoors-winter.mov" className="absolute inset-0 h-full w-full object-cover" autoPlay muted playsInline loop></video>
+                    <video src="/videos/people-skating-on-ice-skating-rink-outdoors-winter.webm" className="absolute inset-0 h-full w-full object-cover" autoPlay muted playsInline loop></video>
                 </div>
                 <Image src="/images/GRD WHITE LOGO.png" alt="gridism logo" width={200} height={200} className="absolute inset-0 m-auto mix-blend-difference" />
             </div>

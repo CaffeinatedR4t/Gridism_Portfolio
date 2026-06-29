@@ -33,7 +33,7 @@ export default function Preloader() {
   const [gone, setGone] = useState<Set<number>>(new Set());
   
   const [phase, setPhase] = useState<"show" | "spiral" | "fade-out" | "done" | "prepare" | "bg-fade-in" | "logo-fade-in">(
-    "prepare"
+    "bg-fade-in"
   );
 
   const runOutAnimation = () => {
@@ -44,40 +44,35 @@ export default function Preloader() {
 
     setPhase("spiral");
     SPIRAL.forEach((_, i) => {
-      // 20% faster: 120 -> 95
-      later(() => setGone((s) => new Set(s).add(i)), i * 95);
+      later(() => setGone((s) => new Set(s).add(i)), i * 90);
     });
 
     later(() => {
       setPhase("fade-out");
       later(() => {
         setPhase("done");
-        document.body.style.overflow = ""; 
-      }, 640); // 800 -> 640
-    }, SPIRAL.length * 95 + 280); // 350 -> 280
+        document.body.style.overflow = "";
+      }, 600);
+    }, SPIRAL.length * 90 + 200);
 
     return bag;
   };
 
   useEffect(() => {
     document.body.style.overflow = "hidden";
+
     const bag: ReturnType<typeof setTimeout>[] = [];
-    
-    // 1. Fade in the blank background
-    bag.push(setTimeout(() => {
-      setPhase("bg-fade-in");
-    }, 40)); 
-    
-    // 2. Wait for background to fade in, then fade in the logo
+
+    // 1. Fade in the logo (background is already visible from initial render)
     bag.push(setTimeout(() => {
       setPhase("logo-fade-in");
-    }, 680)); 
+    }, 500));
 
-    // 3. Wait for logo to fully fade in, then spiral out
+    // 2. Wait for logo to fully fade in, then spiral out
     bag.push(setTimeout(() => {
       const outBag = runOutAnimation();
       bag.push(...outBag);
-    }, 1320)); 
+    }, 1200));
 
     return () => {
       bag.forEach(clearTimeout);
@@ -101,19 +96,19 @@ export default function Preloader() {
 
       setTimeout(() => {
         setPhase("bg-fade-in");
-      }, 40); // 50 -> 40
+      }, 20);
 
       setTimeout(() => {
         setPhase("logo-fade-in");
-      }, 680); // 850 -> 680
+      }, 400);
 
       setTimeout(() => {
         router.push(url);
-        
+
         setTimeout(() => {
           runOutAnimation();
-        }, 240); // 300 -> 240
-      }, 1320); // 1650 -> 1320
+        }, 150);
+      }, 800);
     };
 
     window.addEventListener("start-transition", handleTransition);
@@ -142,7 +137,7 @@ export default function Preloader() {
         justifyContent: "center",
         background: bgColor,
         opacity: overlayOpacity,
-        transition: "opacity 640ms cubic-bezier(0.4, 0, 0.2, 1), background-color 640ms ease", // 800 -> 640
+        transition: "opacity 400ms cubic-bezier(0.4, 0, 0.2, 1), background-color 400ms ease",
       }}
     >
       <div
@@ -151,7 +146,7 @@ export default function Preloader() {
           width: LOGO_W + SZ,
           height: LOGO_H + SZ,
           opacity: logoOpacity,
-          transition: "opacity 480ms ease", // 600 -> 480
+          transition: "opacity 300ms ease",
           transform: "scale(0.49)", 
         }}
       >
@@ -173,7 +168,7 @@ export default function Preloader() {
                 height: SZ,
                 opacity: off ? 0 : 1,
                 transform: off ? "scale(0.3)" : "scale(1)",
-                transition: "opacity 110ms ease-out, transform 110ms ease-out", // 140 -> 110
+                transition: "opacity 80ms ease-out, transform 80ms ease-out",
                 pointerEvents: "none",
                 filter: svgFilter,
               }}

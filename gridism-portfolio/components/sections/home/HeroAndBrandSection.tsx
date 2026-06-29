@@ -55,7 +55,6 @@ const MarqueeRow = ({
           <img
             src={img.src}
             alt={img.alt}
-            loading="lazy"
             style={{
               width: "100%",
               height: "100%",
