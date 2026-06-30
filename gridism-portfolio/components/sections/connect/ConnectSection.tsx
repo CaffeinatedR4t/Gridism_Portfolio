@@ -165,178 +165,210 @@ const ConnectSection = () => {
                     </h1>
                 </div>
 
-                {/* Right Side: Form */}
-                <div
-                    className="w-full flex flex-col justify-center"
-                    style={{ maxWidth: "886px" }}
-                >
-                    <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+                {/* Right Side: Gmail-style compose card */}
+                <div className="w-full flex flex-col justify-center" style={{ maxWidth: "886px" }}>
+                    <div style={{ border: "1px solid #000000", borderRadius: 0, overflow: "hidden" }}>
 
-                        <div className="flex flex-col gap-2">
-                            <label
+                        {/* Card Header */}
+                        <div
+                            style={{
+                                backgroundColor: "#060606",
+                                padding: "10px 20px",
+                                display: "flex",
+                                alignItems: "center",
+                                gap: "10px",
+                            }}
+                        >
+                            <img
+                                src="/images/ICON BLACK.webp"
+                                alt="Gridism"
+                                style={{ width: "20px", height: "20px", objectFit: "contain", filter: "invert(1)" }}
+                            />
+                            <span
                                 style={{
                                     fontFamily: "'Switzer', sans-serif",
                                     fontWeight: 500,
-                                    fontSize: "16px",
-                                    lineHeight: "21px",
-                                    color: "#000000",
+                                    fontSize: "14px",
+                                    color: "#F9F9F7",
+                                    letterSpacing: "0.02em",
                                 }}
                             >
-                                Name*
-                            </label>
-                            <input
-                                type="text"
-                                name="name"
-                                placeholder="Hello..."
-                                required
-                                className="bg-transparent py-3 focus:outline-none w-full"
-                                style={{
-                                    fontFamily: "'Switzer', sans-serif",
-                                    fontWeight: 300,
-                                    fontSize: "14px",
-                                    lineHeight: "18px",
-                                    color: "#000000",
-                                    border: "none",
-                                    borderBottom: "1px solid #000000",
-                                    borderRadius: 0,
-                                }}
-                            />
+                                New Message
+                            </span>
                         </div>
 
-                        <div className="flex flex-col gap-2">
-                            <label
-                                style={{
-                                    fontFamily: "'Switzer', sans-serif",
-                                    fontWeight: 500,
-                                    fontSize: "16px",
-                                    lineHeight: "21px",
-                                    color: "#000000",
-                                }}
-                            >
-                                Email*
-                            </label>
-                            <input
-                                type="email"
-                                name="email"
-                                placeholder="HappyJohn@gmail.com"
-                                required
-                                className="bg-transparent py-3 focus:outline-none w-full"
-                                style={{
-                                    fontFamily: "'Switzer', sans-serif",
-                                    fontWeight: 300,
-                                    fontSize: "14px",
-                                    lineHeight: "18px",
-                                    color: "#000000",
-                                    border: "none",
-                                    borderBottom: "1px solid #000000",
-                                    borderRadius: 0,
-                                }}
-                            />
+                        {/* Card Body */}
+                        <div style={{ backgroundColor: "#F9F9F7", padding: "28px 24px 24px" }}>
+                            <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+
+                                <div className="flex flex-col gap-2">
+                                    <label
+                                        style={{
+                                            fontFamily: "'Switzer', sans-serif",
+                                            fontWeight: 500,
+                                            fontSize: "16px",
+                                            lineHeight: "21px",
+                                            color: "#000000",
+                                        }}
+                                    >
+                                        Name*
+                                    </label>
+                                    <input
+                                        type="text"
+                                        name="name"
+                                        placeholder="Hello..."
+                                        required
+                                        className="bg-transparent py-3 focus:outline-none w-full"
+                                        style={{
+                                            fontFamily: "'Switzer', sans-serif",
+                                            fontWeight: 300,
+                                            fontSize: "14px",
+                                            lineHeight: "18px",
+                                            color: "#000000",
+                                            border: "none",
+                                            borderBottom: "1px solid #000000",
+                                            borderRadius: 0,
+                                        }}
+                                    />
+                                </div>
+
+                                <div className="flex flex-col gap-2">
+                                    <label
+                                        style={{
+                                            fontFamily: "'Switzer', sans-serif",
+                                            fontWeight: 500,
+                                            fontSize: "16px",
+                                            lineHeight: "21px",
+                                            color: "#000000",
+                                        }}
+                                    >
+                                        Email*
+                                    </label>
+                                    <input
+                                        type="email"
+                                        name="email"
+                                        placeholder="HappyJohn@gmail.com"
+                                        required
+                                        className="bg-transparent py-3 focus:outline-none w-full"
+                                        style={{
+                                            fontFamily: "'Switzer', sans-serif",
+                                            fontWeight: 300,
+                                            fontSize: "14px",
+                                            lineHeight: "18px",
+                                            color: "#000000",
+                                            border: "none",
+                                            borderBottom: "1px solid #000000",
+                                            borderRadius: 0,
+                                        }}
+                                    />
+                                </div>
+
+                                <div className="flex flex-col gap-2">
+                                    <label
+                                        style={{
+                                            fontFamily: "'Switzer', sans-serif",
+                                            fontWeight: 500,
+                                            fontSize: "16px",
+                                            lineHeight: "21px",
+                                            color: "#000000",
+                                        }}
+                                    >
+                                        Company Name
+                                    </label>
+                                    <input
+                                        type="text"
+                                        name="company"
+                                        placeholder="Your company or website"
+                                        className="bg-transparent py-3 focus:outline-none w-full"
+                                        style={{
+                                            fontFamily: "'Switzer', sans-serif",
+                                            fontWeight: 300,
+                                            fontSize: "14px",
+                                            lineHeight: "18px",
+                                            color: "#000000",
+                                            border: "none",
+                                            borderBottom: "1px solid #000000",
+                                            borderRadius: 0,
+                                        }}
+                                    />
+                                </div>
+
+                                <div className="flex flex-col gap-2">
+                                    <label
+                                        style={{
+                                            fontFamily: "'Switzer', sans-serif",
+                                            fontWeight: 500,
+                                            fontSize: "16px",
+                                            lineHeight: "21px",
+                                            color: "#000000",
+                                        }}
+                                    >
+                                        Social Media*
+                                    </label>
+                                    <input
+                                        type="text"
+                                        name="social"
+                                        placeholder="@yourhandle"
+                                        required
+                                        className="bg-transparent py-3 focus:outline-none w-full"
+                                        style={{
+                                            fontFamily: "'Switzer', sans-serif",
+                                            fontWeight: 300,
+                                            fontSize: "14px",
+                                            lineHeight: "18px",
+                                            color: "#000000",
+                                            border: "none",
+                                            borderBottom: "1px solid #000000",
+                                            borderRadius: 0,
+                                        }}
+                                    />
+                                </div>
+
+                                <div className="flex flex-col gap-2">
+                                    <label
+                                        style={{
+                                            fontFamily: "'Switzer', sans-serif",
+                                            fontWeight: 500,
+                                            fontSize: "16px",
+                                            lineHeight: "21px",
+                                            color: "#000000",
+                                        }}
+                                    >
+                                        Message?*
+                                    </label>
+                                    <textarea
+                                        name="message"
+                                        placeholder="I want to build...."
+                                        required
+                                        rows={2}
+                                        className="bg-transparent py-3 focus:outline-none w-full resize-none"
+                                        style={{
+                                            fontFamily: "'Switzer', sans-serif",
+                                            fontWeight: 300,
+                                            fontSize: "14px",
+                                            lineHeight: "18px",
+                                            color: "#000000",
+                                            border: "none",
+                                            borderBottom: "1px solid #000000",
+                                            borderRadius: 0,
+                                        }}
+                                    />
+                                </div>
+
+                                <div className="flex justify-end mt-2">
+                                    <button
+                                        type="submit"
+                                        disabled={result === "Sending..."}
+                                        className="bg-[#060606] text-white px-10 py-3 text-[18px] font-medium transition-all duration-300 hover:bg-[#060606]/90 disabled:opacity-50"
+                                        style={{ borderRadius: 0 }}
+                                    >
+                                        {result}
+                                    </button>
+                                </div>
+                            </form>
                         </div>
 
-                        <div className="flex flex-col gap-2">
-                            <label
-                                style={{
-                                    fontFamily: "'Switzer', sans-serif",
-                                    fontWeight: 500,
-                                    fontSize: "16px",
-                                    lineHeight: "21px",
-                                    color: "#000000",
-                                }}
-                            >
-                                Company Name
-                            </label>
-                            <input
-                                type="text"
-                                name="company"
-                                placeholder="Your company or website"
-                                className="bg-transparent py-3 focus:outline-none w-full"
-                                style={{
-                                    fontFamily: "'Switzer', sans-serif",
-                                    fontWeight: 300,
-                                    fontSize: "14px",
-                                    lineHeight: "18px",
-                                    color: "#000000",
-                                    border: "none",
-                                    borderBottom: "1px solid #000000",
-                                    borderRadius: 0,
-                                }}
-                            />
-                        </div>
-
-                        <div className="flex flex-col gap-2">
-                            <label
-                                style={{
-                                    fontFamily: "'Switzer', sans-serif",
-                                    fontWeight: 500,
-                                    fontSize: "16px",
-                                    lineHeight: "21px",
-                                    color: "#000000",
-                                }}
-                            >
-                                Social Media*
-                            </label>
-                            <input
-                                type="text"
-                                name="social"
-                                placeholder="@yourhandle"
-                                required
-                                className="bg-transparent py-3 focus:outline-none w-full"
-                                style={{
-                                    fontFamily: "'Switzer', sans-serif",
-                                    fontWeight: 300,
-                                    fontSize: "14px",
-                                    lineHeight: "18px",
-                                    color: "#000000",
-                                    border: "none",
-                                    borderBottom: "1px solid #000000",
-                                    borderRadius: 0,
-                                }}
-                            />
-                        </div>
-
-                        <div className="flex flex-col gap-2">
-                            <label
-                                style={{
-                                    fontFamily: "'Switzer', sans-serif",
-                                    fontWeight: 500,
-                                    fontSize: "16px",
-                                    lineHeight: "21px",
-                                    color: "#000000",
-                                }}
-                            >
-                                Message?*
-                            </label>
-                            <textarea
-                                name="message"
-                                placeholder="I want to build...."
-                                required
-                                rows={2}
-                                className="bg-transparent py-3 focus:outline-none w-full resize-none"
-                                style={{
-                                    fontFamily: "'Switzer', sans-serif",
-                                    fontWeight: 300,
-                                    fontSize: "14px",
-                                    lineHeight: "18px",
-                                    color: "#000000",
-                                    border: "none",
-                                    borderBottom: "1px solid #000000",
-                                    borderRadius: 0,
-                                }}
-                            />
-                        </div>
-
-                        <div className="flex justify-end mt-2">
-                            <button
-                                type="submit"
-                                disabled={result === "Sending..."}
-                                className="bg-[#060606] text-white px-10 py-3 text-[18px] font-medium transition-all duration-300 hover:bg-[#060606]/90 disabled:opacity-50"
-                                style={{ borderRadius: 0 }}
-                            >
-                                {result}
-                            </button>
-                        </div>
-                    </form>
+                    </div>
                 </div>
             </div>
         </section>
