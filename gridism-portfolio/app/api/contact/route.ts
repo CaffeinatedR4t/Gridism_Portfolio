@@ -71,54 +71,92 @@ export async function POST(req: NextRequest) {
     const safeMessage = escapeHtml(message).replace(/\n/g, "<br>");
     const companyDisplay = safeCompany || `<em style="color:#999;">Not provided</em>`;
 
-    // 1. Owner notification email (dark theme)
+    // 1. Owner notification email
     const ownerHTML = `<!DOCTYPE html>
 <html lang="en">
 <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"></head>
-<body style="margin:0;padding:0;background-color:#0a0a0a;font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;">
-  <table width="100%" cellpadding="0" cellspacing="0" style="background-color:#0a0a0a;padding:48px 0;">
+<body style="margin:0;padding:0;background-color:#F9F9F7;font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;">
+  <table width="100%" cellpadding="0" cellspacing="0" style="background-color:#F9F9F7;padding:48px 0;">
     <tr><td align="center">
-      <table width="600" cellpadding="0" cellspacing="0" style="background-color:#111111;border-radius:16px;overflow:hidden;">
-        <tr><td style="background:linear-gradient(90deg,#ffffff 0%,#cccccc 100%);height:3px;"></td></tr>
+      <table width="600" cellpadding="0" cellspacing="0" style="background-color:#F9F9F7;border:1px solid #000000;border-radius:0;overflow:hidden;">
+
+        <!-- Header -->
         <tr>
-          <td style="padding:48px 48px 32px;text-align:center;">
-            <p style="margin:0 0 24px;color:#666666;font-size:11px;letter-spacing:3px;text-transform:uppercase;">Gridism Co</p>
-            <h1 style="margin:0 0 12px;color:#ffffff;font-size:28px;font-weight:300;letter-spacing:-0.5px;line-height:1.2;">New Contact Form Submission</h1>
-            <p style="margin:0;color:#888888;font-size:15px;font-weight:300;line-height:1.6;">Someone reached out through your Gridism portfolio.</p>
-          </td>
-        </tr>
-        <tr><td style="padding:0 48px;"><div style="height:1px;background-color:#222222;"></div></td></tr>
-        <tr>
-          <td style="padding:36px 48px;">
+          <td style="background-color:#060606;padding:16px 32px;">
             <table width="100%" cellpadding="0" cellspacing="0">
               <tr>
-                <td style="padding:12px 0;border-bottom:1px solid #222222;width:110px;vertical-align:top;"><strong style="color:#888888;font-size:12px;text-transform:uppercase;letter-spacing:0.8px;">Name</strong></td>
-                <td style="padding:12px 0 12px 16px;border-bottom:1px solid #222222;color:#ffffff;font-size:15px;">${safeName}</td>
-              </tr>
-              <tr>
-                <td style="padding:12px 0;border-bottom:1px solid #222222;vertical-align:top;"><strong style="color:#888888;font-size:12px;text-transform:uppercase;letter-spacing:0.8px;">Email</strong></td>
-                <td style="padding:12px 0 12px 16px;border-bottom:1px solid #222222;font-size:15px;"><a href="mailto:${safeEmail}" style="color:#ffffff;text-decoration:none;">${safeEmail}</a></td>
-              </tr>
-              <tr>
-                <td style="padding:12px 0;border-bottom:1px solid #222222;vertical-align:top;"><strong style="color:#888888;font-size:12px;text-transform:uppercase;letter-spacing:0.8px;">Company</strong></td>
-                <td style="padding:12px 0 12px 16px;border-bottom:1px solid #222222;color:#ffffff;font-size:15px;">${companyDisplay}</td>
-              </tr>
-              <tr>
-                <td style="padding:12px 0;border-bottom:1px solid #222222;vertical-align:top;"><strong style="color:#888888;font-size:12px;text-transform:uppercase;letter-spacing:0.8px;">Social</strong></td>
-                <td style="padding:12px 0 12px 16px;border-bottom:1px solid #222222;color:#ffffff;font-size:15px;">${safeSocial}</td>
-              </tr>
-              <tr>
-                <td style="padding:12px 0;vertical-align:top;"><strong style="color:#888888;font-size:12px;text-transform:uppercase;letter-spacing:0.8px;">Message</strong></td>
-                <td style="padding:12px 0 12px 16px;color:#cccccc;font-size:15px;line-height:1.6;">${safeMessage}</td>
+                <td>
+                  <img src="https://gridism.co/images/ICON%20BLACK.webp" alt="Gridism" width="28" height="28" style="display:block;filter:invert(1);" />
+                </td>
+                <td style="padding-left:12px;">
+                  <span style="color:#F9F9F7;font-size:13px;font-weight:500;letter-spacing:0.05em;">New Contact Form Submission</span>
+                </td>
               </tr>
             </table>
           </td>
         </tr>
+
+        <!-- Intro -->
         <tr>
-          <td style="background-color:#0d0d0d;padding:20px 48px;text-align:center;border-top:1px solid #1a1a1a;">
-            <p style="margin:0;color:#444444;font-size:11px;line-height:1.6;">© 2026 Gridism Co · Jakarta, Indonesia<br>Sent from the Gridism Portfolio contact form.</p>
+          <td style="padding:40px 32px 24px;">
+            <h1 style="margin:0 0 8px;color:#000000;font-size:26px;font-weight:300;line-height:1.2;">Someone reached out.</h1>
+            <p style="margin:0;color:#555555;font-size:14px;line-height:1.6;">A new message was submitted through the Gridism portfolio contact form.</p>
           </td>
         </tr>
+
+        <!-- Divider -->
+        <tr><td style="padding:0 32px;"><div style="height:1px;background-color:#000000;"></div></td></tr>
+
+        <!-- Fields -->
+        <tr>
+          <td style="padding:24px 32px;">
+            <table width="100%" cellpadding="0" cellspacing="0">
+              <tr>
+                <td style="padding:10px 0;border-bottom:1px solid #dddddd;width:100px;vertical-align:top;">
+                  <strong style="color:#000000;font-size:11px;text-transform:uppercase;letter-spacing:1px;">Name</strong>
+                </td>
+                <td style="padding:10px 0 10px 16px;border-bottom:1px solid #dddddd;color:#000000;font-size:14px;">${safeName}</td>
+              </tr>
+              <tr>
+                <td style="padding:10px 0;border-bottom:1px solid #dddddd;vertical-align:top;">
+                  <strong style="color:#000000;font-size:11px;text-transform:uppercase;letter-spacing:1px;">Email</strong>
+                </td>
+                <td style="padding:10px 0 10px 16px;border-bottom:1px solid #dddddd;font-size:14px;">
+                  <a href="mailto:${safeEmail}" style="color:#000000;text-decoration:underline;">${safeEmail}</a>
+                </td>
+              </tr>
+              <tr>
+                <td style="padding:10px 0;border-bottom:1px solid #dddddd;vertical-align:top;">
+                  <strong style="color:#000000;font-size:11px;text-transform:uppercase;letter-spacing:1px;">Company</strong>
+                </td>
+                <td style="padding:10px 0 10px 16px;border-bottom:1px solid #dddddd;color:#000000;font-size:14px;">${companyDisplay}</td>
+              </tr>
+              <tr>
+                <td style="padding:10px 0;border-bottom:1px solid #dddddd;vertical-align:top;">
+                  <strong style="color:#000000;font-size:11px;text-transform:uppercase;letter-spacing:1px;">Social</strong>
+                </td>
+                <td style="padding:10px 0 10px 16px;border-bottom:1px solid #dddddd;color:#000000;font-size:14px;">${safeSocial}</td>
+              </tr>
+              <tr>
+                <td style="padding:10px 0;vertical-align:top;">
+                  <strong style="color:#000000;font-size:11px;text-transform:uppercase;letter-spacing:1px;">Message</strong>
+                </td>
+                <td style="padding:10px 0 10px 16px;color:#000000;font-size:14px;line-height:1.7;">${safeMessage}</td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- Divider -->
+        <tr><td style="padding:0 32px;"><div style="height:1px;background-color:#000000;"></div></td></tr>
+
+        <!-- Footer -->
+        <tr>
+          <td style="padding:16px 32px;text-align:center;">
+            <p style="margin:0;color:#888888;font-size:11px;line-height:1.6;">© 2026 Gridism Co · Jakarta, Indonesia<br>Sent from the Gridism Portfolio contact form.</p>
+          </td>
+        </tr>
+
       </table>
     </td></tr>
   </table>
@@ -134,56 +172,88 @@ export async function POST(req: NextRequest) {
 
     console.log(`Owner notification sent to ${notifyEmail}`);
 
-    // 2. Client thank-you email (dark theme) — non-fatal if it fails
+    // 2. Client thank-you email — non-fatal if it fails
     const clientHTML = `<!DOCTYPE html>
 <html lang="en">
 <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"></head>
-<body style="margin:0;padding:0;background-color:#0a0a0a;font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;">
-  <table width="100%" cellpadding="0" cellspacing="0" style="background-color:#0a0a0a;padding:48px 0;">
+<body style="margin:0;padding:0;background-color:#F9F9F7;font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;">
+  <table width="100%" cellpadding="0" cellspacing="0" style="background-color:#F9F9F7;padding:48px 0;">
     <tr><td align="center">
-      <table width="600" cellpadding="0" cellspacing="0" style="background-color:#111111;border-radius:16px;overflow:hidden;">
-        <tr><td style="background:linear-gradient(90deg,#ffffff 0%,#cccccc 100%);height:3px;"></td></tr>
+      <table width="600" cellpadding="0" cellspacing="0" style="background-color:#F9F9F7;border:1px solid #000000;border-radius:0;overflow:hidden;">
+
+        <!-- Header -->
         <tr>
-          <td style="padding:48px 48px 32px;text-align:center;">
-            <p style="margin:0 0 24px;color:#666666;font-size:11px;letter-spacing:3px;text-transform:uppercase;">Gridism Co</p>
-            <h1 style="margin:0 0 12px;color:#ffffff;font-size:36px;font-weight:300;letter-spacing:-0.5px;line-height:1.2;">Thank you, ${safeName}.</h1>
-            <p style="margin:0;color:#888888;font-size:16px;font-weight:300;line-height:1.6;">We've received your message and we're excited to connect.</p>
-          </td>
-        </tr>
-        <tr><td style="padding:0 48px;"><div style="height:1px;background-color:#222222;"></div></td></tr>
-        <tr>
-          <td style="padding:36px 48px;">
-            <p style="margin:0 0 20px;color:#aaaaaa;font-size:15px;font-weight:300;line-height:1.8;">Hi ${safeName},</p>
-            <p style="margin:0 0 20px;color:#aaaaaa;font-size:15px;font-weight:300;line-height:1.8;">Your message has landed in our inbox. Our team will review your project and get back to you personally usually within <strong style="color:#ffffff;font-weight:500;">1-2 business days</strong>.</p>
-            <p style="margin:0 0 32px;color:#aaaaaa;font-size:15px;font-weight:300;line-height:1.8;">In the meantime, feel free to explore our work or follow us on social media to see what we've been building.</p>
+          <td style="background-color:#060606;padding:16px 32px;">
             <table width="100%" cellpadding="0" cellspacing="0">
               <tr>
-                <td style="background-color:#1a1a1a;border-left:3px solid #ffffff;border-radius:0 8px 8px 0;padding:20px 24px;">
-                  <p style="margin:0 0 6px;color:#666666;font-size:11px;letter-spacing:2px;text-transform:uppercase;">Your message</p>
-                  <p style="margin:0;color:#cccccc;font-size:14px;font-weight:300;line-height:1.7;">${safeMessage}</p>
+                <td>
+                  <img src="https://gridism.co/images/ICON%20BLACK.webp" alt="Gridism" width="28" height="28" style="display:block;filter:invert(1);" />
+                </td>
+                <td style="padding-left:12px;">
+                  <span style="color:#F9F9F7;font-size:13px;font-weight:500;letter-spacing:0.05em;">Gridism Co</span>
                 </td>
               </tr>
             </table>
           </td>
         </tr>
-        <tr><td style="padding:0 48px;"><div style="height:1px;background-color:#222222;"></div></td></tr>
+
+        <!-- Intro -->
         <tr>
-          <td style="padding:28px 48px;text-align:center;">
-            <p style="margin:0 0 16px;color:#555555;font-size:12px;letter-spacing:2px;text-transform:uppercase;">Find us</p>
-            <table align="center" cellpadding="0" cellspacing="0">
+          <td style="padding:40px 32px 24px;">
+            <h1 style="margin:0 0 8px;color:#000000;font-size:26px;font-weight:300;line-height:1.2;">Thank you, ${safeName}.</h1>
+            <p style="margin:0;color:#555555;font-size:14px;line-height:1.6;">We've received your message and we're excited to connect.</p>
+          </td>
+        </tr>
+
+        <!-- Divider -->
+        <tr><td style="padding:0 32px;"><div style="height:1px;background-color:#000000;"></div></td></tr>
+
+        <!-- Body -->
+        <tr>
+          <td style="padding:28px 32px;">
+            <p style="margin:0 0 16px;color:#000000;font-size:14px;line-height:1.8;">Hi ${safeName},</p>
+            <p style="margin:0 0 16px;color:#000000;font-size:14px;line-height:1.8;">Your message has landed in our inbox. Our team will review your project and get back to you personally usually within <strong style="color:#000000;font-weight:600;">1-2 business days</strong>.</p>
+            <p style="margin:0 0 28px;color:#000000;font-size:14px;line-height:1.8;">In the meantime, feel free to explore our work or follow us on social media to see what we've been building.</p>
+
+            <!-- Message recap -->
+            <table width="100%" cellpadding="0" cellspacing="0">
               <tr>
-                <td style="padding:0 12px;"><a href="https://instagram.com/gridism.co" style="color:#888888;text-decoration:none;font-size:13px;letter-spacing:1px;">Instagram</a></td>
-                <td style="color:#333333;">·</td>
-                <td style="padding:0 12px;"><a href="https://id.linkedin.com/company/gridismco" style="color:#888888;text-decoration:none;font-size:13px;letter-spacing:1px;">LinkedIn</a></td>
+                <td style="background-color:#efefed;border-left:3px solid #000000;border-radius:0;padding:16px 20px;">
+                  <p style="margin:0 0 6px;color:#555555;font-size:11px;letter-spacing:2px;text-transform:uppercase;">Your message</p>
+                  <p style="margin:0;color:#000000;font-size:14px;line-height:1.7;">${safeMessage}</p>
+                </td>
               </tr>
             </table>
           </td>
         </tr>
+
+        <!-- Divider -->
+        <tr><td style="padding:0 32px;"><div style="height:1px;background-color:#000000;"></div></td></tr>
+
+        <!-- Social -->
         <tr>
-          <td style="background-color:#0d0d0d;padding:20px 48px;text-align:center;border-top:1px solid #1a1a1a;">
-            <p style="margin:0;color:#444444;font-size:11px;line-height:1.6;">© 2026 Gridism Co · Jakarta, Indonesia<br>You're receiving this because you submitted our contact form.</p>
+          <td style="padding:20px 32px;text-align:center;">
+            <p style="margin:0 0 12px;color:#555555;font-size:11px;letter-spacing:2px;text-transform:uppercase;">Find us</p>
+            <table align="center" cellpadding="0" cellspacing="0">
+              <tr>
+                <td style="padding:0 12px;"><a href="https://instagram.com/gridism.co" style="color:#000000;text-decoration:underline;font-size:13px;">Instagram</a></td>
+                <td style="color:#aaaaaa;">·</td>
+                <td style="padding:0 12px;"><a href="https://id.linkedin.com/company/gridismco" style="color:#000000;text-decoration:underline;font-size:13px;">LinkedIn</a></td>
+              </tr>
+            </table>
           </td>
         </tr>
+
+        <!-- Divider -->
+        <tr><td style="padding:0 32px;"><div style="height:1px;background-color:#000000;"></div></td></tr>
+
+        <!-- Footer -->
+        <tr>
+          <td style="padding:16px 32px;text-align:center;">
+            <p style="margin:0;color:#888888;font-size:11px;line-height:1.6;">© 2026 Gridism Co · Jakarta, Indonesia<br>You're receiving this because you submitted our contact form.</p>
+          </td>
+        </tr>
+
       </table>
     </td></tr>
   </table>
