@@ -25,10 +25,8 @@ const ConnectSection = () => {
             message: formData.get("message") as string,
         };
 
-        const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8080";
-
         try {
-            const response = await fetch(`${apiUrl}/api/contact`, {
+            const response = await fetch("/api/contact", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(payload),
