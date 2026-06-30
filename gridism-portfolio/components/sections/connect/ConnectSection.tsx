@@ -165,16 +165,24 @@ const ConnectSection = () => {
                     </h1>
                 </div>
 
-                {/* Right Side: Form */}
+                {/* Right Side: Logo + Form */}
                 <div
                     className="w-full flex flex-col justify-center"
                     style={{ maxWidth: "886px" }}
                 >
+                    {/* Logo */}
+                    <div className="mb-8">
+                        <img
+                            src="/images/ICON BLACK.webp"
+                            alt="Gridism"
+                            style={{ width: "56px", height: "56px", objectFit: "contain", display: "block" }}
+                        />
+                    </div>
+
                     <form onSubmit={handleSubmit} className="flex flex-col gap-5">
-                        
+
                         <div className="flex flex-col gap-2">
                             <label
-                                className="font-medium"
                                 style={{
                                     fontFamily: "'Switzer', sans-serif",
                                     fontWeight: 500,
@@ -190,7 +198,7 @@ const ConnectSection = () => {
                                 name="name"
                                 placeholder="Hello..."
                                 required
-                                className="bg-transparent py-3 focus:outline-none transition-colors rounded-none w-full"
+                                className="bg-transparent py-3 focus:outline-none w-full"
                                 style={{
                                     fontFamily: "'Switzer', sans-serif",
                                     fontWeight: 300,
@@ -199,13 +207,13 @@ const ConnectSection = () => {
                                     color: "#000000",
                                     border: "none",
                                     borderBottom: "1px solid #000000",
+                                    borderRadius: 0,
                                 }}
                             />
                         </div>
 
                         <div className="flex flex-col gap-2">
                             <label
-                                className="font-medium"
                                 style={{
                                     fontFamily: "'Switzer', sans-serif",
                                     fontWeight: 500,
@@ -218,10 +226,10 @@ const ConnectSection = () => {
                             </label>
                             <input
                                 type="email"
-                                name="email" 
+                                name="email"
                                 placeholder="HappyJohn@gmail.com"
                                 required
-                                className="bg-transparent py-3 focus:outline-none transition-colors rounded-none w-full"
+                                className="bg-transparent py-3 focus:outline-none w-full"
                                 style={{
                                     fontFamily: "'Switzer', sans-serif",
                                     fontWeight: 300,
@@ -230,13 +238,13 @@ const ConnectSection = () => {
                                     color: "#000000",
                                     border: "none",
                                     borderBottom: "1px solid #000000",
+                                    borderRadius: 0,
                                 }}
                             />
                         </div>
 
                         <div className="flex flex-col gap-2">
                             <label
-                                className="font-medium"
                                 style={{
                                     fontFamily: "'Switzer', sans-serif",
                                     fontWeight: 500,
@@ -249,9 +257,9 @@ const ConnectSection = () => {
                             </label>
                             <input
                                 type="text"
-                                name="company" 
+                                name="company"
                                 placeholder="Your company or website"
-                                className="bg-transparent py-3 focus:outline-none transition-colors rounded-none w-full"
+                                className="bg-transparent py-3 focus:outline-none w-full"
                                 style={{
                                     fontFamily: "'Switzer', sans-serif",
                                     fontWeight: 300,
@@ -260,13 +268,13 @@ const ConnectSection = () => {
                                     color: "#000000",
                                     border: "none",
                                     borderBottom: "1px solid #000000",
+                                    borderRadius: 0,
                                 }}
                             />
                         </div>
 
                         <div className="flex flex-col gap-2">
                             <label
-                                className="font-medium"
                                 style={{
                                     fontFamily: "'Switzer', sans-serif",
                                     fontWeight: 500,
@@ -280,9 +288,9 @@ const ConnectSection = () => {
                             <input
                                 type="text"
                                 name="social"
-                                placeholder="Your company or website"
+                                placeholder="@yourhandle"
                                 required
-                                className="bg-transparent py-3 focus:outline-none transition-colors rounded-none w-full"
+                                className="bg-transparent py-3 focus:outline-none w-full"
                                 style={{
                                     fontFamily: "'Switzer', sans-serif",
                                     fontWeight: 300,
@@ -291,13 +299,13 @@ const ConnectSection = () => {
                                     color: "#000000",
                                     border: "none",
                                     borderBottom: "1px solid #000000",
+                                    borderRadius: 0,
                                 }}
                             />
                         </div>
 
                         <div className="flex flex-col gap-2">
                             <label
-                                className="font-medium"
                                 style={{
                                     fontFamily: "'Switzer', sans-serif",
                                     fontWeight: 500,
@@ -313,7 +321,7 @@ const ConnectSection = () => {
                                 placeholder="I want to build...."
                                 required
                                 rows={2}
-                                className="bg-transparent py-3 focus:outline-none transition-colors rounded-none w-full resize-none"
+                                className="bg-transparent py-3 focus:outline-none w-full resize-none"
                                 style={{
                                     fontFamily: "'Switzer', sans-serif",
                                     fontWeight: 300,
@@ -322,17 +330,19 @@ const ConnectSection = () => {
                                     color: "#000000",
                                     border: "none",
                                     borderBottom: "1px solid #000000",
+                                    borderRadius: 0,
                                 }}
                             />
                         </div>
-                        
+
                         <div className="flex justify-end mt-2">
-                            <button 
+                            <button
                                 type="submit"
-                                disabled={result === "Sending..."} 
+                                disabled={result === "Sending..."}
                                 className="bg-[#060606] text-white px-10 py-3 text-[18px] font-medium transition-all duration-300 hover:bg-[#060606]/90 disabled:opacity-50"
+                                style={{ borderRadius: 0 }}
                             >
-                                {result === "Submit" ? "Submit" : result}
+                                {result}
                             </button>
                         </div>
                     </form>
