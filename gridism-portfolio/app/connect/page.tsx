@@ -130,35 +130,35 @@ export default function Home() {
                             <div className="w-full flex flex-row items-end justify-between px-[60px] box-border">
                                 {/* Left — both buttons side by side */}
                                 <div className="flex flex-row items-end gap-[48px]">
-                                    <button
-                                        className="text-white cursor-pointer hover:opacity-70 transition-opacity"
+                                    <a
+                                        href="/work"
+                                        className="text-white hover:opacity-70 transition-opacity"
                                         style={{
                                             fontFamily: "'Switzer', sans-serif",
                                             fontSize: "16px",
                                             lineHeight: "22px",
                                             textAlign: "left",
-                                            background: "none",
-                                            border: "none",
-                                            padding: 0,
+                                            textDecoration: "none",
+                                            display: "block",
                                         }}
                                     >
                                         OUR WORKS<br />(DETAILED)
-                                    </button>
+                                    </a>
 
-                                    <button
-                                        className="text-white cursor-pointer hover:opacity-70 transition-opacity"
+                                    <a
+                                        href="/connect"
+                                        className="text-white hover:opacity-70 transition-opacity"
                                         style={{
                                             fontFamily: "'Switzer', sans-serif",
                                             fontSize: "16px",
                                             lineHeight: "22px",
-                                            background: "none",
-                                            border: "none",
-                                            padding: 0,
+                                            textDecoration: "none",
                                             paddingBottom: "2px",
+                                            display: "block",
                                         }}
                                     >
                                         LET&apos;S DISCUSS
-                                    </button>
+                                    </a>
                                 </div>
 
                                 {/* Right — Gridism logo */}

@@ -134,36 +134,36 @@ const FooterSection = ({ footerImage, footerLogo, footerBgColor, footerFontColor
                 style={{ gap: "48px" }}
               >
                 {/* OUR WORKS (DETAILED) */}
-                <button
-                  className="text-white cursor-pointer hover:opacity-70 transition-opacity"
+                <TransitionLink
+                  href="/work"
+                  className="text-white hover:opacity-70 transition-opacity"
                   style={{
                     fontFamily: "'Switzer', sans-serif",
                     fontSize: "16px",
                     lineHeight: "22px",
                     textAlign: "left",
-                    background: "none",
-                    border: "none",
-                    padding: 0,
+                    textDecoration: "none",
+                    display: "block",
                   }}
                 >
                   OUR WORKS<br />(DETAILED)
-                </button>
+                </TransitionLink>
 
-                {/* LET'S DISCUSS — right beside OUR WORKS */}
-                <button
-                  className="text-white cursor-pointer hover:opacity-70 transition-opacity"
+                {/* LET'S DISCUSS */}
+                <TransitionLink
+                  href="/connect"
+                  className="text-white hover:opacity-70 transition-opacity"
                   style={{
                     fontFamily: "'Switzer', sans-serif",
                     fontSize: "16px",
                     lineHeight: "22px",
-                    background: "none",
-                    border: "none",
-                    padding: 0,
-                    paddingBottom: "2px", /* align baseline with bottom of OUR WORKS (DETAILED) */
+                    textDecoration: "none",
+                    paddingBottom: "2px",
+                    display: "block",
                   }}
                 >
                   LET&apos;S DISCUSS
-                </button>
+                </TransitionLink>
               </div>
 
               {/* Right — Gridism logo, same bottom alignment as buttons */}
