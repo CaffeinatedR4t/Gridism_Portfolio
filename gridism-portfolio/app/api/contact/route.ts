@@ -74,22 +74,23 @@ export async function POST(req: NextRequest) {
     // 1. Owner notification email
     const ownerHTML = `<!DOCTYPE html>
 <html lang="en">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"></head>
-<body style="margin:0;padding:0;background-color:#F9F9F7;font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Switzer:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body style="margin:0;padding:0;background-color:#F9F9F7;font-family:'Switzer',Arial,Helvetica,sans-serif;">
   <table width="100%" cellpadding="0" cellspacing="0" style="background-color:#F9F9F7;padding:48px 0;">
     <tr><td align="center">
       <table width="600" cellpadding="0" cellspacing="0" style="background-color:#F9F9F7;border:1px solid #000000;border-radius:0;overflow:hidden;">
 
         <!-- Header -->
         <tr>
-          <td style="background-color:#060606;padding:16px 32px;">
-            <table width="100%" cellpadding="0" cellspacing="0">
+          <td style="background-color:#060606;padding:14px 24px;">
+            <table cellpadding="0" cellspacing="0">
               <tr>
                 <td>
-                  <img src="https://gridism.co/images/ICON%20BLACK.webp" alt="Gridism" width="28" height="28" style="display:block;filter:invert(1);" />
-                </td>
-                <td style="padding-left:12px;">
-                  <span style="color:#F9F9F7;font-size:13px;font-weight:500;letter-spacing:0.05em;">New Contact Form Submission</span>
+                  <img src="https://gridism.co/images/GRD%20WHITE%20TM.png" alt="Gridism" height="22" style="display:block;" />
                 </td>
               </tr>
             </table>
@@ -98,9 +99,9 @@ export async function POST(req: NextRequest) {
 
         <!-- Intro -->
         <tr>
-          <td style="padding:40px 32px 24px;">
-            <h1 style="margin:0 0 8px;color:#000000;font-size:26px;font-weight:300;line-height:1.2;">Someone reached out.</h1>
-            <p style="margin:0;color:#555555;font-size:14px;line-height:1.6;">A new message was submitted through the Gridism portfolio contact form.</p>
+          <td style="padding:40px 32px 24px;font-family:'Switzer',Arial,Helvetica,sans-serif;">
+            <h1 style="margin:0 0 8px;color:#000000;font-size:26px;font-weight:300;line-height:1.2;font-family:'Switzer',Arial,Helvetica,sans-serif;">Someone reached out.</h1>
+            <p style="margin:0;color:#555555;font-size:14px;line-height:1.6;font-family:'Switzer',Arial,Helvetica,sans-serif;">A new message was submitted through the Gridism portfolio contact form.</p>
           </td>
         </tr>
 
@@ -113,35 +114,35 @@ export async function POST(req: NextRequest) {
             <table width="100%" cellpadding="0" cellspacing="0">
               <tr>
                 <td style="padding:10px 0;border-bottom:1px solid #dddddd;width:100px;vertical-align:top;">
-                  <strong style="color:#000000;font-size:11px;text-transform:uppercase;letter-spacing:1px;">Name</strong>
+                  <strong style="color:#000000;font-size:11px;text-transform:uppercase;letter-spacing:1px;font-family:'Switzer',Arial,Helvetica,sans-serif;">Name</strong>
                 </td>
-                <td style="padding:10px 0 10px 16px;border-bottom:1px solid #dddddd;color:#000000;font-size:14px;">${safeName}</td>
+                <td style="padding:10px 0 10px 16px;border-bottom:1px solid #dddddd;color:#000000;font-size:14px;font-family:'Switzer',Arial,Helvetica,sans-serif;">${safeName}</td>
               </tr>
               <tr>
                 <td style="padding:10px 0;border-bottom:1px solid #dddddd;vertical-align:top;">
-                  <strong style="color:#000000;font-size:11px;text-transform:uppercase;letter-spacing:1px;">Email</strong>
+                  <strong style="color:#000000;font-size:11px;text-transform:uppercase;letter-spacing:1px;font-family:'Switzer',Arial,Helvetica,sans-serif;">Email</strong>
                 </td>
-                <td style="padding:10px 0 10px 16px;border-bottom:1px solid #dddddd;font-size:14px;">
-                  <a href="mailto:${safeEmail}" style="color:#000000;text-decoration:underline;">${safeEmail}</a>
+                <td style="padding:10px 0 10px 16px;border-bottom:1px solid #dddddd;font-size:14px;font-family:'Switzer',Arial,Helvetica,sans-serif;">
+                  <a href="mailto:${safeEmail}" style="color:#000000;text-decoration:underline;font-family:'Switzer',Arial,Helvetica,sans-serif;">${safeEmail}</a>
                 </td>
               </tr>
               <tr>
                 <td style="padding:10px 0;border-bottom:1px solid #dddddd;vertical-align:top;">
-                  <strong style="color:#000000;font-size:11px;text-transform:uppercase;letter-spacing:1px;">Company</strong>
+                  <strong style="color:#000000;font-size:11px;text-transform:uppercase;letter-spacing:1px;font-family:'Switzer',Arial,Helvetica,sans-serif;">Company</strong>
                 </td>
-                <td style="padding:10px 0 10px 16px;border-bottom:1px solid #dddddd;color:#000000;font-size:14px;">${companyDisplay}</td>
+                <td style="padding:10px 0 10px 16px;border-bottom:1px solid #dddddd;color:#000000;font-size:14px;font-family:'Switzer',Arial,Helvetica,sans-serif;">${companyDisplay}</td>
               </tr>
               <tr>
                 <td style="padding:10px 0;border-bottom:1px solid #dddddd;vertical-align:top;">
-                  <strong style="color:#000000;font-size:11px;text-transform:uppercase;letter-spacing:1px;">Social</strong>
+                  <strong style="color:#000000;font-size:11px;text-transform:uppercase;letter-spacing:1px;font-family:'Switzer',Arial,Helvetica,sans-serif;">Social</strong>
                 </td>
-                <td style="padding:10px 0 10px 16px;border-bottom:1px solid #dddddd;color:#000000;font-size:14px;">${safeSocial}</td>
+                <td style="padding:10px 0 10px 16px;border-bottom:1px solid #dddddd;color:#000000;font-size:14px;font-family:'Switzer',Arial,Helvetica,sans-serif;">${safeSocial}</td>
               </tr>
               <tr>
                 <td style="padding:10px 0;vertical-align:top;">
-                  <strong style="color:#000000;font-size:11px;text-transform:uppercase;letter-spacing:1px;">Message</strong>
+                  <strong style="color:#000000;font-size:11px;text-transform:uppercase;letter-spacing:1px;font-family:'Switzer',Arial,Helvetica,sans-serif;">Message</strong>
                 </td>
-                <td style="padding:10px 0 10px 16px;color:#000000;font-size:14px;line-height:1.7;">${safeMessage}</td>
+                <td style="padding:10px 0 10px 16px;color:#000000;font-size:14px;line-height:1.7;font-family:'Switzer',Arial,Helvetica,sans-serif;">${safeMessage}</td>
               </tr>
             </table>
           </td>
@@ -153,7 +154,7 @@ export async function POST(req: NextRequest) {
         <!-- Footer -->
         <tr>
           <td style="padding:16px 32px;text-align:center;">
-            <p style="margin:0;color:#888888;font-size:11px;line-height:1.6;">© 2026 Gridism Co · Jakarta, Indonesia<br>Sent from the Gridism Portfolio contact form.</p>
+            <p style="margin:0;color:#888888;font-size:11px;line-height:1.6;font-family:'Switzer',Arial,Helvetica,sans-serif;">© 2026 Gridism.co · Jakarta, Indonesia<br>Sent from the Gridism Portfolio contact form.</p>
           </td>
         </tr>
 
@@ -175,22 +176,23 @@ export async function POST(req: NextRequest) {
     // 2. Client thank-you email — non-fatal if it fails
     const clientHTML = `<!DOCTYPE html>
 <html lang="en">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"></head>
-<body style="margin:0;padding:0;background-color:#F9F9F7;font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Switzer:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body style="margin:0;padding:0;background-color:#F9F9F7;font-family:'Switzer',Arial,Helvetica,sans-serif;">
   <table width="100%" cellpadding="0" cellspacing="0" style="background-color:#F9F9F7;padding:48px 0;">
     <tr><td align="center">
       <table width="600" cellpadding="0" cellspacing="0" style="background-color:#F9F9F7;border:1px solid #000000;border-radius:0;overflow:hidden;">
 
         <!-- Header -->
         <tr>
-          <td style="background-color:#060606;padding:16px 32px;">
-            <table width="100%" cellpadding="0" cellspacing="0">
+          <td style="background-color:#060606;padding:14px 24px;">
+            <table cellpadding="0" cellspacing="0">
               <tr>
                 <td>
-                  <img src="https://gridism.co/images/ICON%20BLACK.webp" alt="Gridism" width="28" height="28" style="display:block;filter:invert(1);" />
-                </td>
-                <td style="padding-left:12px;">
-                  <span style="color:#F9F9F7;font-size:13px;font-weight:500;letter-spacing:0.05em;">Gridism Co</span>
+                  <img src="https://gridism.co/images/GRD%20WHITE%20TM.png" alt="Gridism" height="22" style="display:block;" />
                 </td>
               </tr>
             </table>
@@ -199,9 +201,9 @@ export async function POST(req: NextRequest) {
 
         <!-- Intro -->
         <tr>
-          <td style="padding:40px 32px 24px;">
-            <h1 style="margin:0 0 8px;color:#000000;font-size:26px;font-weight:300;line-height:1.2;">Thank you, ${safeName}.</h1>
-            <p style="margin:0;color:#555555;font-size:14px;line-height:1.6;">We've received your message and we're excited to connect.</p>
+          <td style="padding:40px 32px 24px;font-family:'Switzer',Arial,Helvetica,sans-serif;">
+            <h1 style="margin:0 0 8px;color:#000000;font-size:26px;font-weight:300;line-height:1.2;font-family:'Switzer',Arial,Helvetica,sans-serif;">Thank you, ${safeName}.</h1>
+            <p style="margin:0;color:#555555;font-size:14px;line-height:1.6;font-family:'Switzer',Arial,Helvetica,sans-serif;">We've received your message and we're excited to connect.</p>
           </td>
         </tr>
 
@@ -210,17 +212,17 @@ export async function POST(req: NextRequest) {
 
         <!-- Body -->
         <tr>
-          <td style="padding:28px 32px;">
-            <p style="margin:0 0 16px;color:#000000;font-size:14px;line-height:1.8;">Hi ${safeName},</p>
-            <p style="margin:0 0 16px;color:#000000;font-size:14px;line-height:1.8;">Your message has landed in our inbox. Our team will review your project and get back to you personally usually within <strong style="color:#000000;font-weight:600;">1-2 business days</strong>.</p>
-            <p style="margin:0 0 28px;color:#000000;font-size:14px;line-height:1.8;">In the meantime, feel free to explore our work or follow us on social media to see what we've been building.</p>
+          <td style="padding:28px 32px;font-family:'Switzer',Arial,Helvetica,sans-serif;">
+            <p style="margin:0 0 16px;color:#000000;font-size:14px;line-height:1.8;font-family:'Switzer',Arial,Helvetica,sans-serif;">Hi ${safeName},</p>
+            <p style="margin:0 0 16px;color:#000000;font-size:14px;line-height:1.8;font-family:'Switzer',Arial,Helvetica,sans-serif;">Your message has landed in our inbox. Our team will review your project and get back to you personally usually within <strong style="color:#000000;font-weight:600;font-family:'Switzer',Arial,Helvetica,sans-serif;">1-2 business days</strong>.</p>
+            <p style="margin:0 0 28px;color:#000000;font-size:14px;line-height:1.8;font-family:'Switzer',Arial,Helvetica,sans-serif;">In the meantime, feel free to explore our work or follow us on social media to see what we've been building.</p>
 
             <!-- Message recap -->
             <table width="100%" cellpadding="0" cellspacing="0">
               <tr>
                 <td style="background-color:#efefed;border-left:3px solid #000000;border-radius:0;padding:16px 20px;">
-                  <p style="margin:0 0 6px;color:#555555;font-size:11px;letter-spacing:2px;text-transform:uppercase;">Your message</p>
-                  <p style="margin:0;color:#000000;font-size:14px;line-height:1.7;">${safeMessage}</p>
+                  <p style="margin:0 0 6px;color:#555555;font-size:11px;letter-spacing:2px;text-transform:uppercase;font-family:'Switzer',Arial,Helvetica,sans-serif;">Your message</p>
+                  <p style="margin:0;color:#000000;font-size:14px;line-height:1.7;font-family:'Switzer',Arial,Helvetica,sans-serif;">${safeMessage}</p>
                 </td>
               </tr>
             </table>
@@ -233,12 +235,12 @@ export async function POST(req: NextRequest) {
         <!-- Social -->
         <tr>
           <td style="padding:20px 32px;text-align:center;">
-            <p style="margin:0 0 12px;color:#555555;font-size:11px;letter-spacing:2px;text-transform:uppercase;">Find us</p>
+            <p style="margin:0 0 12px;color:#555555;font-size:11px;letter-spacing:2px;text-transform:uppercase;font-family:'Switzer',Arial,Helvetica,sans-serif;">Find us</p>
             <table align="center" cellpadding="0" cellspacing="0">
               <tr>
-                <td style="padding:0 12px;"><a href="https://instagram.com/gridism.co" style="color:#000000;text-decoration:underline;font-size:13px;">Instagram</a></td>
-                <td style="color:#aaaaaa;">·</td>
-                <td style="padding:0 12px;"><a href="https://id.linkedin.com/company/gridismco" style="color:#000000;text-decoration:underline;font-size:13px;">LinkedIn</a></td>
+                <td style="padding:0 12px;"><a href="https://instagram.com/gridism.co" style="color:#000000;text-decoration:underline;font-size:13px;font-family:'Switzer',Arial,Helvetica,sans-serif;">Instagram</a></td>
+                <td style="color:#aaaaaa;font-family:'Switzer',Arial,Helvetica,sans-serif;">·</td>
+                <td style="padding:0 12px;"><a href="https://id.linkedin.com/company/gridismco" style="color:#000000;text-decoration:underline;font-size:13px;font-family:'Switzer',Arial,Helvetica,sans-serif;">LinkedIn</a></td>
               </tr>
             </table>
           </td>
@@ -250,7 +252,7 @@ export async function POST(req: NextRequest) {
         <!-- Footer -->
         <tr>
           <td style="padding:16px 32px;text-align:center;">
-            <p style="margin:0;color:#888888;font-size:11px;line-height:1.6;">© 2026 Gridism Co · Jakarta, Indonesia<br>You're receiving this because you submitted our contact form.</p>
+            <p style="margin:0;color:#888888;font-size:11px;line-height:1.6;font-family:'Switzer',Arial,Helvetica,sans-serif;">© 2026 Gridism.co · Jakarta, Indonesia<br>You're receiving this because you submitted our contact form.</p>
           </td>
         </tr>
 
