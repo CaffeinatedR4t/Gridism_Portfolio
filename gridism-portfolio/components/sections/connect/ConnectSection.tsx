@@ -165,20 +165,11 @@ const ConnectSection = () => {
                     </h1>
                 </div>
 
-                {/* Right Side: Logo + Form */}
+                {/* Right Side: Form */}
                 <div
                     className="w-full flex flex-col justify-center"
                     style={{ maxWidth: "886px" }}
                 >
-                    {/* Logo */}
-                    <div className="mb-8">
-                        <img
-                            src="/images/ICON BLACK.webp"
-                            alt="Gridism"
-                            style={{ width: "56px", height: "56px", objectFit: "contain", display: "block" }}
-                        />
-                    </div>
-
                     <form onSubmit={handleSubmit} className="flex flex-col gap-5">
 
                         <div className="flex flex-col gap-2">
